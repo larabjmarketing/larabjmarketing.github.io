@@ -1,99 +1,49 @@
 ---
-import Icon, { type IconName } from '../Icon.astro';
-
-// Cinta oscura con dos filas de píldoras que se mueven en sentidos opuestos:
-// arriba las plataformas, abajo formatos y medición.
-// Cada fila se muestra una vez para lectores de pantalla; la copia que hace el bucle está oculta.
-type Item = { label: string; icon: IconName };
-
-const ROWS: { label: string; items: Item[] }[] = [
-  {
-    label: 'Plataformas',
-    items: [
-      { label: 'Google Ads', icon: 'search' },
-      { label: 'Meta Ads', icon: 'instagram' },
-      { label: 'TikTok Ads', icon: 'video' },
-      { label: 'LinkedIn Ads', icon: 'briefcase' },
-      { label: 'Microsoft Ads', icon: 'search-plus' },
-      { label: 'DV360', icon: 'screen' },
-      { label: 'Amazon DSP', icon: 'cart' },
-      { label: 'ChatGPT Ads', icon: 'chat' },
-    ],
-  },
-  {
-    label: 'Formatos y medición',
-    items: [
-      { label: 'Performance Max', icon: 'star' },
-      { label: 'YouTube', icon: 'video' },
-      { label: 'Televisión conectada', icon: 'tv' },
-      { label: 'DOOH', icon: 'pin' },
-      { label: 'Audio digital', icon: 'audio' },
-      { label: 'GA4', icon: 'chart' },
-      { label: 'GTM server-side', icon: 'server' },
-      { label: 'Lead scoring', icon: 'target' },
-    ],
-  },
+// Cinta en movimiento con las plataformas y formatos con los que trabajo.
+// La lista se muestra una vez para lectores de pantalla; la copia que hace el bucle está oculta.
+const ITEMS = [
+  'Google Ads',
+  'Meta Ads',
+  'TikTok Ads',
+  'LinkedIn Ads',
+  'Microsoft Ads',
+  'YouTube',
+  'Performance Max',
+  'DV360',
+  'Amazon DSP',
+  'Televisión conectada',
+  'DOOH',
+  'Audio digital',
+  'ChatGPT Ads',
+  'GA4',
+  'GTM server-side',
 ];
 ---
 
-<section class="marquee on-dark" aria-label="Plataformas y formatos con los que trabajo">
-  {
-    ROWS.map((row, r) => (
-      <div class:list={['marquee__row', { 'marquee__row--reverse': r % 2 === 1 }]}>
-        <div class="marquee__track">
-          {[0, 1].map((copy) => (
-            <ul class="marquee__list" role="list" aria-label={copy === 0 ? row.label : undefined} aria-hidden={copy === 1 ? 'true' : undefined}>
-              {row.items.map((item) => (
-                <li class="pill">
-                  <span class="pill__icon">
-                    <Icon name={item.icon} size={16} />
-                  </span>
-                  {item.label}
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      </div>
-    ))
-  }
+<section class="marquee" aria-label="Plataformas y formatos">
+  <div class="marquee__track">
+    <ul class="marquee__list" role="list">
+      {ITEMS.map((item) => <li>{item}</li>)}
+    </ul>
+    <ul class="marquee__list" role="list" aria-hidden="true">
+      {ITEMS.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
 </section>
 
 <style>
   .marquee {
-    position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding-block: 28px;
-    background: var(--dark);
-    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-  }
-
-  /* Brillo suave de fondo */
-  .marquee::before {
-    content: '';
-    position: absolute;
-    inset: -40% 30%;
-    background: radial-gradient(closest-side, rgba(13, 127, 113, 0.35), transparent);
-    pointer-events: none;
-  }
-
-  .marquee__row {
-    position: relative;
-    display: flex;
+    padding-block: 22px;
+    border-block: 1px solid var(--border);
+    background: var(--surface);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
 
   .marquee__track {
     display: flex;
     width: max-content;
-    animation: marquee 55s linear infinite;
-  }
-
-  .marquee__row--reverse .marquee__track {
-    animation-direction: reverse;
-    animation-duration: 62s;
+    animation: marquee 48s linear infinite;
   }
 
   .marquee:hover .marquee__track {
@@ -102,56 +52,34 @@ const ROWS: { label: string; items: Item[] }[] = [
 
   .marquee__list {
     display: flex;
-    gap: 12px;
-    margin: 0;
-    padding: 0 12px 0 0;
-  }
-
-  .pill {
-    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 18px 8px 8px;
-    border-radius: var(--radius-pill);
-    background: var(--dark-2);
-    border: 1px solid var(--dark-border);
-    color: var(--on-dark);
-    font-size: 15px;
-    font-weight: 700;
-    white-space: nowrap;
-    transition:
-      background-color 0.25s ease,
-      border-color 0.25s ease,
-      color 0.25s ease,
-      translate 0.25s ease;
+    margin: 0;
+    padding: 0;
   }
 
-  .pill__icon {
+  .marquee__list li {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
+    gap: 28px;
+    padding-right: 28px;
+    font-size: clamp(18px, 15px + 0.6vw, 24px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink-2);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .marquee__list li:hover {
+    color: var(--accent);
+  }
+
+  .marquee__list li::after {
+    content: '';
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: rgba(94, 211, 193, 0.12);
-    color: var(--accent-light);
-    transition:
-      background-color 0.25s ease,
-      color 0.25s ease,
-      rotate 0.4s var(--ease-spring);
-  }
-
-  .pill:hover {
     background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-    translate: 0 -2px;
-  }
-
-  .pill:hover .pill__icon {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    rotate: -10deg;
   }
 
   @keyframes marquee {
@@ -160,31 +88,11 @@ const ROWS: { label: string; items: Item[] }[] = [
     }
   }
 
-  @media (max-width: 639px) {
-    .marquee {
-      gap: 10px;
-      padding-block: 20px;
-    }
-
-    .pill {
-      font-size: 14px;
-      padding: 6px 14px 6px 6px;
-    }
-
-    .pill__icon {
-      width: 26px;
-      height: 26px;
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .marquee {
-      mask-image: none;
-    }
-
     .marquee__track {
       animation: none;
       width: auto;
+      flex-wrap: wrap;
     }
 
     .marquee__list[aria-hidden='true'] {
@@ -193,7 +101,7 @@ const ROWS: { label: string; items: Item[] }[] = [
 
     .marquee__list {
       flex-wrap: wrap;
-      justify-content: center;
+      row-gap: 10px;
       padding-inline: var(--gutter);
     }
   }
