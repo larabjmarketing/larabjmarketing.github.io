@@ -1,0 +1,211 @@
+---
+import { Image } from 'astro:assets';
+import BarCover from './BarCover.astro';
+import lara from '../../assets/img/lara-borrego-freelance-paid-media.jpg';
+import { postUrl, formatShortDate, isoDate, type Post } from '../../lib/blog';
+
+// Tarjeta de artículo. `featured` es el artículo destacado del blog (horizontal y más grande).
+interface Props {
+  post: Post;
+  featured?: boolean;
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { post, featured = false, headingLevel = featured ? 'h2' : 'h3' } = Astro.props;
+const { data } = post;
+const Heading = headingLevel;
+const searchText = `${data.title} ${data.description} ${data.category}`.toLowerCase();
+---
+
+<a
+  href={postUrl(post)}
+  class:list={['post-card', { 'post-card--featured': featured }]}
+  data-post
+  data-category={data.category}
+  data-search={searchText}
+>
+  <BarCover tone={data.cover.tone} bars={data.cover.bars} height={featured ? '100%' : '200px'} class="post-card__cover" />
+  <div class="post-card__body">
+    <div class="post-card__tags">
+      <span class="pill">{data.category}</span>
+      {featured && <span class="label post-card__flag">Destacado</span>}
+    </div>
+    <Heading class="post-card__title">{data.title}</Heading>
+    <p class="post-card__text">{featured ? data.description : data.excerpt}</p>
+    {
+      featured ? (
+        <div class="post-card__author">
+          <Image src={lara} alt="" width={72} height={72} class="post-card__avatar" />
+          <div>
+            <p class="post-card__name">Lara Borrego</p>
+            <p class="post-card__meta">
+              <time datetime={isoDate(data.date)}>{formatShortDate(data.date)}</time> · {data.readingTime} min de lectura
+            </p>
+          </div>
+        </div>
+      ) : (
+        <p class="post-card__meta post-card__foot">
+          <time datetime={isoDate(data.date)}>{formatShortDate(data.date)}</time> · {data.readingTime} min de lectura
+        </p>
+      )
+    }
+  </div>
+</a>
+
+<style>
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    color: var(--ink);
+    transition:
+      opacity 0.7s ease,
+      translate 0.8s var(--ease-out),
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .post-card:hover {
+    color: var(--ink);
+    border-color: var(--accent-border);
+    box-shadow: var(--shadow-raised);
+  }
+
+  .post-card:hover .post-card__title {
+    color: var(--accent-dark);
+  }
+
+  .post-card[hidden] {
+    display: none;
+  }
+
+  .post-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 28px;
+    flex: 1 1 auto;
+  }
+
+  .post-card__tags {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pill {
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--accent-tint);
+    color: var(--accent-dark);
+    font-size: var(--fs-label);
+    font-weight: 700;
+  }
+
+  .post-card__flag {
+    color: var(--muted);
+  }
+
+  .post-card__title {
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 700;
+    transition: color 0.2s ease;
+  }
+
+  .post-card__text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .post-card__meta {
+    font-size: 13px;
+    color: var(--muted-2);
+  }
+
+  .post-card__foot {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .post-card__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .post-card__author :global(.post-card__avatar) {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-pill);
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .post-card__name {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* Destacado */
+  .post-card--featured {
+    flex-direction: row;
+    border-radius: var(--radius-block);
+    box-shadow: 0 10px 36px rgba(17, 17, 20, 0.06);
+  }
+
+  .post-card--featured :global(.post-card__cover) {
+    flex: 0 0 50%;
+    min-height: 420px;
+  }
+
+  .post-card--featured .post-card__body {
+    justify-content: center;
+    gap: 18px;
+    padding: 48px 56px;
+  }
+
+  .post-card--featured .post-card__title {
+    font-size: clamp(26px, 20px + 1.3vw, 38px);
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .post-card--featured .post-card__text {
+    font-size: 17px;
+  }
+
+  @media (max-width: 1023px) {
+    .post-card--featured {
+      flex-direction: column;
+    }
+
+    .post-card--featured :global(.post-card__cover) {
+      flex-basis: auto;
+      min-height: 0;
+      height: 260px;
+    }
+
+    .post-card--featured .post-card__body {
+      padding: 32px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .post-card__body,
+    .post-card--featured .post-card__body {
+      padding: 24px;
+    }
+
+    .post-card--featured :global(.post-card__cover) {
+      height: 200px;
+    }
+  }
+</style>

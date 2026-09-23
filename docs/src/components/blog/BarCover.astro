@@ -1,0 +1,97 @@
+---
+// Portada de artículo: gráfico de barras abstracto hecho con HTML y CSS (design/Blog.dc.html).
+// Las barras crecen al entrar en pantalla y reaccionan al pasar el ratón por la tarjeta.
+interface Props {
+  tone: 'accent' | 'dark' | 'tint' | 'deep';
+  bars: number[];
+  height?: string;
+  class?: string;
+}
+
+const { tone, bars, height = '200px', class: className } = Astro.props;
+---
+
+<div class:list={['cover', `cover--${tone}`, className]} style={`--cover-h: ${height}`} aria-hidden="true">
+  {bars.map((h, i) => <span class:list={['cover__bar', { 'cover__bar--hi': i >= 3 }]} style={`--h: ${h}%; --b: ${i}`} />)}
+</div>
+
+<style>
+  .cover {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: var(--cover-h);
+    padding: 32px 36px 0;
+    overflow: hidden;
+  }
+
+  .cover__bar {
+    flex: 1 1 0;
+    height: var(--h);
+    border-radius: 8px 8px 0 0;
+    transform-origin: bottom;
+    transition: transform 0.5s var(--ease-spring, ease);
+    transition-delay: calc(var(--b) * 40ms);
+  }
+
+  .cover--accent {
+    background: var(--accent);
+  }
+
+  .cover--dark {
+    background: var(--dark);
+  }
+
+  .cover--deep {
+    background: #0F766E;
+  }
+
+  .cover--tint {
+    background: var(--accent-tint);
+  }
+
+  .cover--accent .cover__bar,
+  .cover--dark .cover__bar,
+  .cover--deep .cover__bar {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .cover--accent .cover__bar--hi,
+  .cover--dark .cover__bar--hi,
+  .cover--deep .cover__bar--hi {
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .cover--tint .cover__bar {
+    background: var(--accent-border);
+  }
+
+  .cover--tint .cover__bar--hi {
+    background: var(--accent);
+  }
+
+  /* Crecen al aparecer (depende de .js y de la clase is-visible del script de movimiento) */
+  :global(.js) .cover:not(.is-visible) .cover__bar {
+    transform: scaleY(0.08);
+  }
+
+  :global(.js) .cover .cover__bar {
+    transition:
+      transform 0.9s var(--ease-out, ease),
+      scale 0.4s var(--ease-spring, ease);
+    transition-delay: calc(0.1s + var(--b) * 90ms), 0s;
+  }
+
+  /* Al pasar el ratón por la tarjeta, las barras "respiran" */
+  :global(a:hover) .cover__bar:nth-child(odd) {
+    scale: 1 1.08;
+  }
+
+  :global(a:hover) .cover__bar:nth-child(even) {
+    scale: 1 0.92;
+  }
+
+  .cover__bar {
+    transform-origin: bottom;
+  }
+</style>

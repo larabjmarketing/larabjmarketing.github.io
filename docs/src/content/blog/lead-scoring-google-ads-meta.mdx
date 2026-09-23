@@ -1,0 +1,87 @@
+---
+title: 'Lead scoring en Google Ads y Meta: cómo pujar por leads que acaban comprando'
+shortTitle: 'Lead scoring en Google Ads y Meta'
+description: 'Cómo puntuar tus leads, devolver ese dato a las plataformas y dejar de optimizar por formularios que nunca se convierten en ventas.'
+excerpt: 'Cómo puntuar tus leads y devolver ese dato a las plataformas para que optimicen por calidad.'
+date: 2026-09-18
+category: 'Lead scoring y CRM'
+readingTime: 12
+featured: true
+image: '../../assets/blog/cap-leadscoring-google-ads-fuentes-datos.jpg'
+imageAlt: 'Pantalla de Google Ads para elegir una fuente de datos, con HubSpot seleccionado'
+cover:
+  tone: accent
+  bars: [40, 62, 55, 78, 92]
+flow:
+  - { step: '1 · Formulario', text: 'Lead entra' }
+  - { step: '2 · CRM', text: 'Se puntúa (0 a 100)' }
+  - { step: '3 · Plataformas', text: 'Vuelve como valor' }
+  - { step: '4 · Algoritmo', text: 'Puja por calidad' }
+summary:
+  - { label: 'El problema', text: 'las campañas optimizan por formularios, no por clientes.' }
+  - { label: 'La solución', text: 'puntuar cada lead en el CRM y devolver esa puntuación a Google Ads y Meta como valor de conversión.' }
+  - { label: 'El resultado', text: 'el algoritmo aprende a buscar personas parecidas a tus mejores leads.' }
+sidebarCta:
+  title: '¿Lo aplicamos a tu cuenta?'
+  text: 'Revisamos tu captación de leads en una llamada gratuita de 30 minutos.'
+finalCta:
+  title: '¿Lo vemos en tu cuenta?'
+  text: 'En una llamada gratuita de 30 minutos te cuento cómo aplicaría el lead scoring a tus campañas.'
+faq:
+  - q: '¿Necesito un CRM para hacer lead scoring?'
+    a: 'Ayuda mucho, pero puedes empezar con una hoja de cálculo bien estructurada y automatizaciones sencillas.'
+  - q: '¿Cuántos leads necesito para que funcione?'
+    a: 'Cuantas más conversiones cualificadas al mes, antes aprende la campaña. Con pocos datos, conviene optimizar por una etapa intermedia del embudo.'
+  - q: '¿Funciona también en B2C?'
+    a: 'Sí, sobre todo en formación, inmobiliaria, salud privada o servicios de ticket alto, donde no todos los leads valen lo mismo.'
+service:
+  label: 'Freelance de Google Ads'
+  href: '/freelance-google-ads/'
+---
+
+import captura from '../../assets/blog/cap-leadscoring-google-ads-fuentes-datos.jpg';
+
+## Qué es el lead scoring aplicado a campañas
+
+El lead scoring es asignar una puntuación a cada contacto según la probabilidad de que acabe comprando. En marketing de captación se usa desde hace años para priorizar al equipo comercial, pero su mayor potencial está en otro sitio: enseñar a las plataformas publicitarias qué leads valen más.
+
+Si Google Ads y Meta solo reciben "ha llegado un formulario", tratan igual a un estudiante curioso que a un director de compras con presupuesto. Con el score, la puja cambia.
+
+## Cómo asignar la puntuación
+
+Empieza simple: combina datos del formulario, comportamiento en la web y lo que ocurre después en el CRM. Un ejemplo de modelo inicial:
+
+| Criterio | Puntos |
+| --- | --: |
+| Encaja con tu cliente ideal (sector, tamaño, cargo) | +30 |
+| Presupuesto o necesidad declarada en el formulario | +25 |
+| Visita a precios o casos antes de convertir | +15 |
+| Email corporativo | +10 |
+| Abre la primera comunicación comercial | +10 |
+| Datos incompletos o email personal genérico | -20 |
+
+Revisa el modelo cada trimestre comparando la puntuación con las ventas cerradas. Si los leads de 80 puntos no compran más que los de 40, el modelo necesita ajustes.
+
+## Cómo enviar el score a Google Ads y Meta
+
+**En Google Ads**, usa las conversiones mejoradas para leads o la importación de conversiones offline. Crea una acción de conversión para "lead cualificado" con un valor ligado a la puntuación y pasa a pujar por valor.
+
+Si usas un CRM como HubSpot, Salesforce o Zoho, Google Ads permite conectarlo como fuente de datos sin programar nada. Si necesitas más control, también puedes hacerlo con la API de Google Ads.
+
+<Figure
+  src={captura}
+  alt="Pantalla de Google Ads para elegir una fuente de datos, con HubSpot seleccionado"
+  caption="Google Ads: pantalla para elegir la fuente de datos. HubSpot, Salesforce y Zoho CRM se conectan de forma nativa."
+/>
+
+**En Meta**, envía los cambios de estado del CRM con la API de conversiones. Define qué etapa del embudo quieres que optimice la campaña y dale tiempo al algoritmo para aprender.
+
+<MidCta title="¿No sabes si tu CRM está preparado?" text="Lo revisamos juntas en 30 minutos, sin coste." />
+
+## Errores habituales
+
+**Puntuar sin datos de venta.** Si nunca comparas la puntuación con las ventas cerradas, no sabes si el modelo acierta.
+
+**Cambiar la conversión principal de golpe.** Las campañas vuelven a aprender. Mejor introducir el nuevo objetivo de forma gradual.
+
+**Olvidar el consentimiento.** Los datos que devuelves a las plataformas deben cumplir el RGPD y el Consent Mode v2.

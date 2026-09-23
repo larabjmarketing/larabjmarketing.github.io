@@ -1,0 +1,60 @@
+---
+// Migas de pan. El último elemento es la página actual (sin enlace).
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Migas de pan" class="crumbs">
+  <ol role="list">
+    {
+      items.map((item, i) => (
+        <li>
+          {item.href && i < items.length - 1 ? (
+            <a href={item.href}>{item.label}</a>
+          ) : (
+            <span aria-current="page">{item.label}</span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: var(--muted-2);
+  }
+
+  li + li::before {
+    content: '/';
+    margin-right: 8px;
+    color: var(--muted-2);
+  }
+
+  a {
+    color: var(--muted);
+  }
+
+  a:hover {
+    color: var(--accent-dark);
+    text-decoration: underline;
+  }
+
+  [aria-current] {
+    color: var(--muted);
+  }
+</style>

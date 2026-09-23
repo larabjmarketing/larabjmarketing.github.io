@@ -1,0 +1,72 @@
+---
+import LinkCard from '../cards/LinkCard.astro';
+import { ARTICLES, type ArticleKey } from '../../data/articles';
+
+// Enlaces internos: artículos del blog y otros servicios.
+interface Props {
+  articles: ArticleKey[];
+  services: { label: string; href: string }[];
+}
+
+const { articles, services } = Astro.props;
+---
+
+<section class="section section--flush-top">
+  <div class="container">
+    <h2 class="visually-hidden">Sigue leyendo</h2>
+    <div class="related grid">
+      {articles.map((key) => <LinkCard label="Del blog" title={ARTICLES[key].title} href={ARTICLES[key].href} />)}
+      <div class="related__services">
+        <p class="label">Otros servicios</p>
+        <ul role="list">
+          {
+            services.map((s) => (
+              <li>
+                <a href={s.href} class="link-arrow">
+                  {s.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .related {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .related__services {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 28px;
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .related__services .label {
+    color: var(--muted);
+  }
+
+  .related__services ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .related__services .link-arrow {
+    font-size: 17px;
+    color: var(--ink);
+  }
+
+  .related__services .link-arrow:hover {
+    color: var(--accent-dark);
+  }
+</style>

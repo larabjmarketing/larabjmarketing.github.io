@@ -1,0 +1,54 @@
+---
+// Google Tag Manager con Consent Mode v2.
+// 1. Antes de cargar GTM se fija el consentimiento por defecto: todo denegado salvo lo necesario.
+// 2. Si la persona ya eligió en una visita anterior, se aplica su elección al momento.
+// 3. GA4 y el resto de etiquetas se configuran dentro del contenedor de GTM (ver README).
+// Sin PUBLIC_GTM_ID (por ejemplo, en local) no se carga nada de Google.
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+---
+
+{
+  gtmId && (
+    <>
+      <script is:inline define:vars={{ gtmId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag('consent', 'default', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: 'denied',
+          functionality_storage: 'granted',
+          security_storage: 'granted',
+          wait_for_update: 500,
+        });
+        gtag('set', 'ads_data_redaction', true);
+        gtag('set', 'url_passthrough', true);
+        try {
+          var saved = JSON.parse(localStorage.getItem('lb_consent') || 'null');
+          if (saved && saved.v === 1) {
+            gtag('consent', 'update', {
+              analytics_storage: saved.analytics ? 'granted' : 'denied',
+              ad_storage: saved.ads ? 'granted' : 'denied',
+              ad_user_data: saved.ads ? 'granted' : 'denied',
+              ad_personalization: saved.ads ? 'granted' : 'denied',
+            });
+          }
+        } catch (e) {}
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', gtmId);
+      </script>
+    </>
+  )
+}

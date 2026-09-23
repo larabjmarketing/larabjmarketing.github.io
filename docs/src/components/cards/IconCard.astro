@@ -1,0 +1,73 @@
+---
+import Icon, { type IconName } from '../Icon.astro';
+
+// Tarjeta con icono. Con `href` toda la tarjeta es un enlace y muestra `cta` con flecha.
+interface Props {
+  icon: IconName;
+  title: string;
+  text: string;
+  href?: string;
+  cta?: string;
+}
+
+const { icon, title, text, href, cta } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag class:list={['icon-card', { 'icon-card--link': href }]} href={href}>
+  <span class="icon-card__icon"><Icon name={icon} size={22} /></span>
+  <h3 class="h3">{title}</h3>
+  <p class="text-sm">{text}</p>
+  {cta && <span class="link-arrow icon-card__cta">{cta}</span>}
+</Tag>
+
+<style>
+  .icon-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 32px;
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    color: var(--ink);
+  }
+
+  .icon-card--link {
+    gap: 14px;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .icon-card--link:hover {
+    color: var(--ink);
+    transform: translateY(-2px);
+    border-color: var(--accent-border);
+    box-shadow: var(--shadow-raised);
+  }
+
+  .icon-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-tint);
+    color: var(--accent-dark);
+  }
+
+  .icon-card__cta {
+    margin-top: auto;
+    font-size: 14px;
+  }
+
+  @media (max-width: 639px) {
+    .icon-card {
+      padding: 24px;
+    }
+  }
+</style>

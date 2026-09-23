@@ -1,0 +1,60 @@
+---
+// Cifra destacada con su descripción.
+// - float: tarjeta blanca flotante (hero de la home)
+// - tile: mini tarjeta sobre fondo claro (hero de servicio)
+interface Props {
+  value: string;
+  label: string;
+  variant?: 'float' | 'tile';
+  class?: string;
+}
+
+const { value, label, variant = 'tile', class: className } = Astro.props;
+---
+
+<div class:list={['metric', `metric--${variant}`, className]}>
+  <span class="metric__value">{value}</span>
+  <span class="metric__label">{label}</span>
+</div>
+
+<style>
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .metric__value {
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--accent);
+  }
+
+  .metric__label {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  .metric--float {
+    padding: 16px 20px;
+    border-radius: var(--radius-card-sm);
+    background: var(--surface);
+    box-shadow: var(--shadow-pop);
+  }
+
+  .metric--float .metric__value {
+    font-size: 26px;
+  }
+
+  .metric--tile {
+    padding: 18px;
+    border-radius: 16px;
+    background: var(--surface-2);
+  }
+
+  .metric--tile .metric__value {
+    font-size: 30px;
+  }
+</style>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Lead scoring en Google Ads y Meta · Blog Lara Borrego</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FAFAF8;color:#111114}
+a{color:#111114;text-decoration:none}a:hover{color:#0B6B60}
+h1,h2,h3,p{margin:0}
+</style>
+</helmet>
+<div style="width: 1440px; height: 7000px; box-sizing: border-box; display: flex; flex-direction: column; background: #FAFAF8; overflow: hidden;">
+<!-- NAV FLOTANTE -->
+<div style="box-sizing: border-box; padding: 20px 80px 0;">
+<nav style="height: 68px; box-sizing: border-box; padding: 0 12px 0 28px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 8px 30px rgba(17,17,20,0.06); display: flex; align-items: center; justify-content: space-between;">
+<a href="#top" style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Lara <span style="color: {{accentText}};">Borrego.</span></a>
+<div style="display: flex; align-items: center; gap: 24px; font-size: 15px; font-weight: 500;">
+<a href="#servicios">Paid Media ⌄</a>
+<a href="#vision360">Visión 360 ⌄</a>
+<a href="#casos">Casos</a>
+<a href="#blog" style="font-weight: 700; color: #0B6B60;">Blog</a>
+<a href="#docencia">Docencia</a>
+<a href="#sobre">Sobre mí</a>
+<a href="#faq">FAQ</a>
+<a href="#llamada" style="display: flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #D4D2CC; font-weight: 700;">Llamada gratis 30 min</a>
+<a href="#auditoria" style="display: flex; align-items: center; height: 46px; padding: 0 24px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; box-shadow: 0 6px 18px rgba(13,127,113,0.30);">Pide tu auditoría</a>
+</div>
+</nav>
+</div>
+
+<!-- CABECERA ARTICULO -->
+<section style="box-sizing: border-box; padding: 56px 80px 40px; display: flex; flex-direction: column; gap: 24px; align-items: center;">
+<nav aria-label="Migas de pan" style="display: flex; gap: 8px; font-size: 14px; color: #71717A;"><a href="#" style="color: #52525B;">Inicio</a><span>/</span><a href="Blog.dc.html" style="color: #52525B;">Blog</a><span>/</span><span>Lead scoring y CRM</span></nav>
+<span style="padding: 5px 12px; border-radius: 999px; background: #E3F3F0; color: #0B6B60; font-size: 12px; font-weight: 700;">Lead scoring y CRM</span>
+<h1 style="max-width: 980px; text-align: center; font-size: 60px; line-height: 1.06; font-weight: 800; letter-spacing: -0.04em;">Lead scoring en Google Ads y Meta: cómo pujar por leads que acaban comprando</h1>
+<p style="max-width: 760px; text-align: center; font-size: 20px; line-height: 1.6; color: #52525B;">Cómo puntuar tus leads, devolver ese dato a las plataformas y dejar de optimizar por formularios que nunca se convierten en ventas.</p>
+<div style="display: flex; align-items: center; gap: 12px;"><img src="../assets/lara.jpg" alt="" style="width: 36px; height: 36px; border-radius: 999px; object-fit: cover; object-position: center 20%;"><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 700;">Lara Borrego</span><span style="font-size: 13px; color: #71717A;">18 de septiembre de 2026 · 12 min de lectura</span></div></div>
+</section>
+<section style="box-sizing: border-box; padding: 0 80px 64px;">
+<div style="border-radius: 28px; overflow: hidden; box-sizing: border-box; background: #15141F; padding: 56px 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #F4F4F5;">
+<div style="flex-grow: 1; flex-basis: 0; box-sizing: border-box; padding: 24px; border-radius: 18px; background: #1E1D2A; border: 1px solid #33313F; display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 13px; color: #A1A1AA;">1 · Formulario</span><span style="font-size: 20px; font-weight: 700;">Lead entra</span></div>
+<span style="color: {{accentLight}}; font-size: 28px;">→</span>
+<div style="flex-grow: 1; flex-basis: 0; box-sizing: border-box; padding: 24px; border-radius: 18px; background: #1E1D2A; border: 1px solid #33313F; display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 13px; color: #A1A1AA;">2 · CRM</span><span style="font-size: 20px; font-weight: 700;">Se puntúa (0 a 100)</span></div>
+<span style="color: {{accentLight}}; font-size: 28px;">→</span>
+<div style="flex-grow: 1; flex-basis: 0; box-sizing: border-box; padding: 24px; border-radius: 18px; background: #1E1D2A; border: 1px solid #33313F; display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 13px; color: #A1A1AA;">3 · Plataformas</span><span style="font-size: 20px; font-weight: 700;">Vuelve como valor</span></div>
+<span style="color: {{accentLight}}; font-size: 28px;">→</span>
+<div style="flex-grow: 1; flex-basis: 0; box-sizing: border-box; padding: 24px; border-radius: 18px; background: {{accent}}; display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 13px; color: #E3F3F0;">4 · Algoritmo</span><span style="font-size: 20px; font-weight: 700; color: #FFFFFF;">Puja por calidad</span></div>
+</div>
+</section>
+
+<!-- CUERPO -->
+<section style="box-sizing: border-box; padding: 0 80px 80px; display: flex; gap: 72px; align-items: flex-start;">
+<aside style="width: 300px; flex-shrink: 0; display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #71717A; padding-bottom: 10px;">En este artículo</span><a href="#" style="font-size: 15px; line-height: 1.4; padding: 8px 0 8px 14px; border-left: 2px solid #0D7F71; color: #0B6B60; font-weight: 700;">Resumen rápido</a><a href="#" style="font-size: 15px; line-height: 1.4; padding: 8px 0 8px 14px; border-left: 2px solid #ECEAE4; color: #52525B; font-weight: 500;">Qué es el lead scoring aplicado a campañas</a><a href="#" style="font-size: 15px; line-height: 1.4; padding: 8px 0 8px 14px; border-left: 2px solid #ECEAE4; color: #52525B; font-weight: 500;">Cómo asignar la puntuación</a><a href="#" style="font-size: 15px; line-height: 1.4; padding: 8px 0 8px 14px; border-left: 2px solid #ECEAE4; color: #52525B; font-weight: 500;">Cómo enviar el score a Google Ads y Meta</a><a href="#" style="font-size: 15px; line-height: 1.4; padding: 8px 0 8px 14px; border-left: 2px solid #ECEAE4; color: #52525B; font-weight: 500;">Errores habituales</a><a href="#" style="font-size: 15px; line-height: 1.4; padding: 8px 0 8px 14px; border-left: 2px solid #ECEAE4; color: #52525B; font-weight: 500;">Preguntas frecuentes</a></div>
+<div style="box-sizing: border-box; padding: 26px; border-radius: 22px; background: #15141F; color: #F4F4F5; display: flex; flex-direction: column; gap: 14px;">
+<span style="font-size: 19px; font-weight: 800; line-height: 1.25;">¿Lo aplicamos a tu cuenta?</span>
+<span style="font-size: 14px; line-height: 1.6; color: #A1A1AA;">Revisamos tu captación de leads en una llamada gratuita de 30 minutos.</span>
+<a href="#llamada" style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; font-size: 15px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"></rect><path d="M3 9h18M8 2v4M16 2v4"></path></svg>Reservar llamada</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #71717A;">Compartir</span><div style="display: flex; gap: 8px;"><a href="#" style="padding: 8px 14px; border-radius: 999px; border: 1px solid #ECEAE4; background: #FFFFFF; font-size: 14px; font-weight: 600;">LinkedIn</a><a href="#" style="padding: 8px 14px; border-radius: 999px; border: 1px solid #ECEAE4; background: #FFFFFF; font-size: 14px; font-weight: 600;">Copiar enlace</a></div></div>
+</aside>
+<article style="width: 760px; display: flex; flex-direction: column; gap: 22px;">
+<div style="box-sizing: border-box; padding: 28px 32px; border-radius: 22px; background: #E3F3F0; border: 1px solid #B7E1D9; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0B6B60;">Resumen rápido</span>
+<p style="font-size: 17px; line-height: 1.65;"><strong>El problema:</strong> las campañas optimizan por formularios, no por clientes.</p>
+<p style="font-size: 17px; line-height: 1.65;"><strong>La solución:</strong> puntuar cada lead en el CRM y devolver esa puntuación a Google Ads y Meta como valor de conversión.</p>
+<p style="font-size: 17px; line-height: 1.65;"><strong>El resultado:</strong> el algoritmo aprende a buscar personas parecidas a tus mejores leads.</p>
+</div>
+<h2 style="font-size: 32px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin-top: 16px;">Qué es el lead scoring aplicado a campañas</h2>
+<p style="font-size: 18px; line-height: 1.75; color: #27272A;">El lead scoring es asignar una puntuación a cada contacto según la probabilidad de que acabe comprando. En marketing de captación se usa desde hace años para priorizar al equipo comercial, pero su mayor potencial está en otro sitio: enseñar a las plataformas publicitarias qué leads valen más.</p>
+<p style="font-size: 18px; line-height: 1.75; color: #27272A;">Si Google Ads y Meta solo reciben "ha llegado un formulario", tratan igual a un estudiante curioso que a un director de compras con presupuesto. Con el score, la puja cambia.</p>
+<h2 style="font-size: 32px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin-top: 16px;">Cómo asignar la puntuación</h2>
+<p style="font-size: 18px; line-height: 1.75; color: #27272A;">Empieza simple: combina datos del formulario, comportamiento en la web y lo que ocurre después en el CRM. Un ejemplo de modelo inicial:</p>
+<div style="border-radius: 18px; border: 1px solid #ECEAE4; background: #FFFFFF; overflow: hidden;"><div style="display: flex; justify-content: space-between; padding: 14px 22px; background: #F5F4F0; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #71717A;"><span>Criterio</span><span>Puntos</span></div><div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 22px; border-top: 1px solid #ECEAE4; font-size: 16px;"><span>Encaja con tu cliente ideal (sector, tamaño, cargo)</span><span style="font-weight: 800; color: #0B6B60;">+30</span></div><div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 22px; border-top: 1px solid #ECEAE4; font-size: 16px;"><span>Presupuesto o necesidad declarada en el formulario</span><span style="font-weight: 800; color: #0B6B60;">+25</span></div><div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 22px; border-top: 1px solid #ECEAE4; font-size: 16px;"><span>Visita a precios o casos antes de convertir</span><span style="font-weight: 800; color: #0B6B60;">+15</span></div><div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 22px; border-top: 1px solid #ECEAE4; font-size: 16px;"><span>Email corporativo</span><span style="font-weight: 800; color: #0B6B60;">+10</span></div><div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 22px; border-top: 1px solid #ECEAE4; font-size: 16px;"><span>Abre la primera comunicación comercial</span><span style="font-weight: 800; color: #0B6B60;">+10</span></div><div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 22px; border-top: 1px solid #ECEAE4; font-size: 16px;"><span>Datos incompletos o email personal genérico</span><span style="font-weight: 800; color: #B42318;">-20</span></div></div>
+<p style="font-size: 18px; line-height: 1.75; color: #27272A;">Revisa el modelo cada trimestre comparando la puntuación con las ventas cerradas. Si los leads de 80 puntos no compran más que los de 40, el modelo necesita ajustes.</p>
+<h2 style="font-size: 32px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin-top: 16px;">Cómo enviar el score a Google Ads y Meta</h2>
+<p style="font-size: 18px; line-height: 1.75; color: #27272A;"><strong>En Google Ads</strong>, usa las conversiones mejoradas para leads o la importación de conversiones offline. Crea una acción de conversión para "lead cualificado" con un valor ligado a la puntuación y pasa a pujar por valor.</p>
+<p style="font-size: 18px; line-height: 1.75; color: #27272A;">Si usas un CRM como HubSpot, Salesforce o Zoho, Google Ads permite conectarlo como fuente de datos sin programar nada. Si necesitas más control, también puedes hacerlo con la API de Google Ads.</p><figure style="margin: 8px 0; display: flex; flex-direction: column; gap: 10px;"><img src="../assets/cap-leadscoring-google-ads-fuentes-datos.jpg" alt="Pantalla de Google Ads para elegir una fuente de datos, con HubSpot seleccionado" style="width: 100%; border-radius: 16px; border: 1px solid #ECEAE4; box-shadow: 0 8px 28px rgba(17,17,20,0.06); display: block;"><figcaption style="font-size: 14px; line-height: 1.5; color: #71717A;">Google Ads: pantalla para elegir la fuente de datos. HubSpot, Salesforce y Zoho CRM se conectan de forma nativa.</figcaption></figure><p style="font-size: 18px; line-height: 1.75; color: #27272A;"><strong>En Meta</strong>, envía los cambios de estado del CRM con la API de conversiones. Define qué etapa del embudo quieres que optimice la campaña y dale tiempo al algoritmo para aprender.</p>
+<div style="box-sizing: border-box; padding: 28px 32px; border-radius: 22px; background: #15141F; color: #F4F4F5; display: flex; justify-content: space-between; align-items: center; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 20px; font-weight: 800;">¿No sabes si tu CRM está preparado?</span><span style="font-size: 15px; color: #A1A1AA;">Lo revisamos juntas en 30 minutos, sin coste.</span></div>
+<a href="#llamada" style="display: flex; align-items: center; gap: 8px; height: 48px; padding: 0 22px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; white-space: nowrap;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"></rect><path d="M3 9h18M8 2v4M16 2v4"></path></svg>Reservar llamada</a>
+</div>
+<h2 style="font-size: 32px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin-top: 16px;">Errores habituales</h2>
+<p style="font-size: 18px; line-height: 1.75; color: #27272A;"><strong>Puntuar sin datos de venta.</strong> Si nunca comparas la puntuación con las ventas cerradas, no sabes si el modelo acierta.</p>
+<p style="font-size: 18px; line-height: 1.75; color: #27272A;"><strong>Cambiar la conversión principal de golpe.</strong> Las campañas vuelven a aprender. Mejor introducir el nuevo objetivo de forma gradual.</p>
+<p style="font-size: 18px; line-height: 1.75; color: #27272A;"><strong>Olvidar el consentimiento.</strong> Los datos que devuelves a las plataformas deben cumplir el RGPD y el Consent Mode v2.</p>
+<h2 style="font-size: 32px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin-top: 16px;">Preguntas frecuentes</h2>
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="box-sizing: border-box; padding: 22px 26px; border-radius: 18px; background: #FFFFFF; border: 1px solid #ECEAE4; display: flex; flex-direction: column; gap: 8px;"><h3 style="font-size: 18px; font-weight: 700;">¿Necesito un CRM para hacer lead scoring?</h3><p style="font-size: 16px; line-height: 1.65; color: #52525B;">Ayuda mucho, pero puedes empezar con una hoja de cálculo bien estructurada y automatizaciones sencillas.</p></div>
+<div style="box-sizing: border-box; padding: 22px 26px; border-radius: 18px; background: #FFFFFF; border: 1px solid #ECEAE4; display: flex; flex-direction: column; gap: 8px;"><h3 style="font-size: 18px; font-weight: 700;">¿Cuántos leads necesito para que funcione?</h3><p style="font-size: 16px; line-height: 1.65; color: #52525B;">Cuantas más conversiones cualificadas al mes, antes aprende la campaña. Con pocos datos, conviene optimizar por una etapa intermedia del embudo.</p></div>
+<div style="box-sizing: border-box; padding: 22px 26px; border-radius: 18px; background: #FFFFFF; border: 1px solid #ECEAE4; display: flex; flex-direction: column; gap: 8px;"><h3 style="font-size: 18px; font-weight: 700;">¿Funciona también en B2C?</h3><p style="font-size: 16px; line-height: 1.65; color: #52525B;">Sí, sobre todo en formación, inmobiliaria, salud privada o servicios de ticket alto, donde no todos los leads valen lo mismo.</p></div>
+</div>
+<div style="box-sizing: border-box; margin-top: 24px; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; display: flex; gap: 24px; align-items: center;">
+<img src="../assets/lara.jpg" alt="Lara Borrego" style="width: 96px; height: 96px; border-radius: 999px; object-fit: cover; object-position: center 20%; flex-shrink: 0;">
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #71717A;">Sobre la autora</span><span style="font-size: 20px; font-weight: 800;">Lara Borrego</span><span style="font-size: 15px; line-height: 1.6; color: #52525B;">Freelance de paid media con más de 8 años en Google Ads, Meta Ads y programática. Docente de IA aplicada a la publicidad en KSchool y de programática en el Máster de EPMD.</span><a href="https://www.linkedin.com/in/lara-borrego-paid-media/" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 700; color: #0B6B60;">LinkedIn →</a></div>
+</div>
+</article>
+</section>
+
+<!-- RELACIONADOS -->
+<section style="box-sizing: border-box; padding: 0 80px 80px; display: flex; flex-direction: column; gap: 28px;">
+<h2 style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em;">Sigue leyendo</h2>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;"><a href="Blog-ai-max.dc.html" style="box-sizing: border-box; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; overflow: hidden;">
+<div style="height: 200px; box-sizing: border-box; padding: 32px 36px 0; background: #15141F; display: flex; align-items: flex-end; gap: 12px;"><div style="flex-grow: 1; height: 30%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.25);"></div><div style="flex-grow: 1; height: 45%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.25);"></div><div style="flex-grow: 1; height: 70%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.25);"></div><div style="flex-grow: 1; height: 60%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.85);"></div><div style="flex-grow: 1; height: 85%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.85);"></div></div>
+<div style="padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+<span style="align-self: flex-start; padding: 5px 12px; border-radius: 999px; background: #E3F3F0; color: #0B6B60; font-size: 12px; font-weight: 700;">Google Ads</span>
+<h3 style="font-size: 21px; line-height: 1.3; font-weight: 700;">AI Max para Search: qué cambia y cómo mantener el control</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Qué activa AI Max, cómo se ve en el informe de términos de búsqueda y qué controles aplico.</p>
+<span style="font-size: 13px; color: #71717A; padding-top: 12px; border-top: 1px solid #ECEAE4;">9 min de lectura</span>
+</div>
+</a><a href="Blog-tracking-server-side.dc.html" style="box-sizing: border-box; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; overflow: hidden;">
+<div style="height: 200px; box-sizing: border-box; padding: 32px 36px 0; background: #E3F3F0; display: flex; align-items: flex-end; gap: 12px;"><div style="flex-grow: 1; height: 70%; border-radius: 8px 8px 0 0; background: #B7E1D9;"></div><div style="flex-grow: 1; height: 50%; border-radius: 8px 8px 0 0; background: #B7E1D9;"></div><div style="flex-grow: 1; height: 65%; border-radius: 8px 8px 0 0; background: #B7E1D9;"></div><div style="flex-grow: 1; height: 40%; border-radius: 8px 8px 0 0; background: #0D7F71;"></div><div style="flex-grow: 1; height: 80%; border-radius: 8px 8px 0 0; background: #0D7F71;"></div></div>
+<div style="padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+<span style="align-self: flex-start; padding: 5px 12px; border-radius: 999px; background: #E3F3F0; color: #0B6B60; font-size: 12px; font-weight: 700;">Medición y analítica</span>
+<h3 style="font-size: 21px; line-height: 1.3; font-weight: 700;">Tracking server-side: guía para recuperar conversiones perdidas</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">GTM server-side, API de conversiones de Meta y conversiones mejoradas, explicado paso a paso.</p>
+<span style="font-size: 13px; color: #71717A; padding-top: 12px; border-top: 1px solid #ECEAE4;">11 min de lectura</span>
+</div>
+</a><a href="Blog-chatgpt-ads.dc.html" style="box-sizing: border-box; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; overflow: hidden;">
+<div style="height: 200px; box-sizing: border-box; padding: 32px 36px 0; background: #0F766E; display: flex; align-items: flex-end; gap: 12px;"><div style="flex-grow: 1; height: 50%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.25);"></div><div style="flex-grow: 1; height: 75%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.25);"></div><div style="flex-grow: 1; height: 60%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.25);"></div><div style="flex-grow: 1; height: 90%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.85);"></div><div style="flex-grow: 1; height: 70%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.85);"></div></div>
+<div style="padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+<span style="align-self: flex-start; padding: 5px 12px; border-radius: 999px; background: #E3F3F0; color: #0B6B60; font-size: 12px; font-weight: 700;">IA y ChatGPT Ads</span>
+<h3 style="font-size: 21px; line-height: 1.3; font-weight: 700;">ChatGPT Ads en España: cómo funciona y a quién le conviene</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Cómo se ven los anuncios en ChatGPT, cómo se compran y en qué casos haría una primera prueba.</p>
+<span style="font-size: 13px; color: #71717A; padding-top: 12px; border-top: 1px solid #ECEAE4;">8 min de lectura</span>
+</div>
+</a></div>
+</section>
+<section style="box-sizing: border-box; padding: 0 80px 80px;">
+<div style="box-sizing: border-box; padding: 56px 64px; border-radius: 32px; background: #15141F; color: #F4F4F5; display: flex; justify-content: space-between; align-items: center; gap: 48px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px;">
+<h2 style="font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.03em;">¿Lo vemos en tu cuenta?</h2>
+<p style="font-size: 17px; line-height: 1.6; color: #A1A1AA;">En una llamada gratuita de 30 minutos te cuento cómo aplicaría el lead scoring a tus campañas.</p>
+</div>
+<a href="#llamada" style="display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 28px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; white-space: nowrap;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"></rect><path d="M3 9h18M8 2v4M16 2v4"></path></svg>Reservar llamada gratuita de 30 min</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer id="blog" style="flex-grow: 1; box-sizing: border-box; padding: 40px 80px; border-top: 1px solid #ECEAE4; display: flex; justify-content: space-between; align-items: flex-start; gap: 48px; font-size: 15px; color: #52525B;">
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<span style="font-size: 20px; font-weight: 800; color: #111114;">Lara <span style="color: {{accentText}};">Borrego.</span></span>
+<span>Freelance de Paid Media · España</span>
+</div>
+<div style="display: flex; gap: 64px;">
+<div style="display: flex; flex-direction: column; gap: 10px;"><span style="font-weight: 700; color: #111114;">Paid Media</span><a href="#" style="color: #52525B;">Auditoría</a><a href="#" style="color: #52525B;">Google Ads</a><a href="#" style="color: #52525B;">Meta Ads</a><a href="#" style="color: #52525B;">Programática</a></div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><span style="font-weight: 700; color: #111114;">Visión 360</span><a href="#" style="color: #52525B;">Analítica y medición</a><a href="#" style="color: #52525B;">Web y UX/UI</a><a href="#" style="color: #52525B;">Branding</a><a href="#" style="color: #52525B;">CRM y social media</a></div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><span style="font-weight: 700; color: #111114;">Más</span><a href="#" style="color: #52525B;">Blog</a><a href="#" style="color: #52525B;">Docencia</a><a href="https://www.linkedin.com/in/lara-borrego-paid-media/" target="_blank" rel="noopener" style="color: #52525B;">LinkedIn</a></div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0D7F71","options":["#0D7F71","#0F766E","#0E7F74","#0B6E8A"]},"$preview":{"width":1440,"height":7000}}'>
+class Component extends DCLogic {
+renderVals() {
+const a = this.props.accent ?? '#0D7F71';
+return { accent: a, accentText: a, accentLight: '#5ED3C1' };
+}
+}
+</script>
+</body>
+</html>

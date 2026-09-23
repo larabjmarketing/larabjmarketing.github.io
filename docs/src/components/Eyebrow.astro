@@ -1,0 +1,52 @@
+---
+// Etiqueta con punto de color. `tone` según el fondo sobre el que va:
+// light (fondo general), surface (sección blanca) o dark (sección oscura).
+interface Props {
+  tone?: 'light' | 'surface' | 'dark';
+  as?: 'span' | 'p' | 'div';
+  class?: string;
+}
+
+const { tone = 'light', as: Tag = 'span', class: className } = Astro.props;
+---
+
+<Tag class:list={['eyebrow', `eyebrow--${tone}`, className]}>
+  <span class="eyebrow__dot" aria-hidden="true"></span><slot />
+</Tag>
+
+<style>
+  .eyebrow {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink-2);
+    font-size: var(--fs-label);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow--surface {
+    background: var(--bg);
+  }
+
+  .eyebrow--dark {
+    background: var(--dark-3);
+    border-color: var(--dark-border);
+    color: var(--on-dark-2);
+  }
+
+  .eyebrow__dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+  }
+</style>

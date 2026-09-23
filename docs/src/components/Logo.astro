@@ -1,0 +1,21 @@
+---
+interface Props {
+  href?: string;
+  class?: string;
+}
+const { href = '/', class: className } = Astro.props;
+---
+
+<a href={href} class:list={['logo', className]} aria-label="Lara Borrego, ir al inicio">
+  Lara <span class="accent">Borrego.</span>
+</a>
+
+<style>
+  .logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+</style>

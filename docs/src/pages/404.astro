@@ -1,0 +1,106 @@
+---
+// Página 404 (GitHub Pages sirve /404.html). Enlaza a servicios y al blog (sección 8 del brief).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Button from '../components/Button.astro';
+import ArticleCard from '../components/blog/ArticleCard.astro';
+import { PAID_MEDIA, SERVICIOS_360 } from '../config/site';
+import { getPosts } from '../lib/blog';
+
+const posts = (await getPosts()).slice(0, 3);
+const services = [...PAID_MEDIA, SERVICIOS_360[0], SERVICIOS_360[1]];
+---
+
+<BaseLayout
+  title="Página no encontrada | Lara Borrego"
+  description="Esta página no existe o ha cambiado de dirección. Te dejo los servicios y los últimos artículos del blog para que sigas desde ahí."
+  noindex
+>
+  <section class="section nf">
+    <div class="container nf__inner">
+      <p class="nf__code" aria-hidden="true">404</p>
+      <Eyebrow>Página no encontrada</Eyebrow>
+      <h1 class="h1 h1--sm">Esta página no existe.</h1>
+      <p class="lead">Puede que haya cambiado de dirección o que el enlace tenga un error. Sigue desde aquí:</p>
+      <div class="nf__actions">
+        <Button href="/" size="lg">Ir al inicio</Button>
+        <Button href="/blog/" variant="outline" size="lg">Ver el blog</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="container">
+      <h2 class="h2 h2--sm nf__title">Servicios</h2>
+      <ul class="nf__services" role="list">
+        {
+          services.map((s) => (
+            <li>
+              <a href={s.href} class="link-arrow">
+                {s.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="h2 h2--sm nf__title">Últimos artículos del blog</h2>
+      <div class="grid grid--3">
+        {posts.map((p) => <ArticleCard post={p} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf__inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 880px;
+  }
+
+  .nf__code {
+    font-size: clamp(96px, 60px + 10vw, 200px);
+    line-height: 0.9;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    color: transparent;
+    background: linear-gradient(120deg, var(--accent) 20%, var(--accent-light));
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: float-y 6s ease-in-out infinite;
+  }
+
+  .nf__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .nf__title {
+    margin-bottom: 32px;
+  }
+
+  .nf__services {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px 32px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nf__services .link-arrow {
+    font-size: 17px;
+    color: var(--ink);
+  }
+
+  .nf__services .link-arrow:hover {
+    color: var(--accent-dark);
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import { Font } from 'astro:assets';
+import Seo, { type SeoProps } from '../components/Seo.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { SITE } from '../config/site';
+import '../styles/global.css';
+import '../styles/motion.css';
+
+interface Props extends SeoProps {
+  /** La página incluye el bloque de contacto (#contacto): los botones de la navegación se quedan en ella. */
+  hasContactForm?: boolean;
+}
+
+const { hasContactForm = false, ...seo } = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js');
+    </script>
+    <Analytics />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#FAFAF8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Font cssVariable="--font-jakarta" preload={[{ weight: '800' }, { weight: '400' }]} />
+    <Seo {...seo} />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <Nav hasContactForm={hasContactForm} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppFloat />
+    <CookieBanner />
+    <script>
+      import '../scripts/motion';
+      import { captureAttribution } from '../lib/leads';
+
+      captureAttribution();
+    </script>
+  </body>
+</html>

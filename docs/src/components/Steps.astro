@@ -1,0 +1,91 @@
+---
+// Pasos numerados en horizontal (2 columnas en tablet, 1 en móvil).
+interface Props {
+  steps: { title: string; text: string }[];
+}
+
+const { steps } = Astro.props;
+---
+
+<ol class="steps" role="list">
+  {
+    steps.map((step, i) => (
+      <li class="step">
+        <div class="step__marker">
+          <span class="step__num" aria-hidden="true">{i + 1}</span>
+          {i < steps.length - 1 && <span class="step__line" aria-hidden="true" />}
+        </div>
+        <h3>{step.title}</h3>
+        <p class="text-sm">{step.text}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .step__marker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .step__num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--accent);
+    color: var(--accent-dark);
+    font-weight: 700;
+  }
+
+  .step__line {
+    flex-grow: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  @media (max-width: 1023px) {
+    .steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px 32px;
+    }
+
+    .step:nth-child(2n) .step__line {
+      display: none;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .steps {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+
+    .step__line {
+      display: none;
+    }
+  }
+</style>

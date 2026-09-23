@@ -1,0 +1,270 @@
+---
+import { Image } from 'astro:assets';
+import Eyebrow from '../Eyebrow.astro';
+import Button from '../Button.astro';
+import lara from '../../assets/img/lara-borrego-freelance-paid-media.jpg';
+import { SPECIALISTS, PRINCIPLES } from '../../data/servicios360';
+import { contactHref } from '../../lib/contact';
+
+// Sección oscura Servicios 360: tarjeta central y 6 especialistas.
+interface Props {
+  id?: string;
+  /** La página tiene formulario de contacto propio. */
+  hasContactForm?: boolean;
+}
+
+const { id = 'servicios-360', hasContactForm = true } = Astro.props;
+---
+
+<section id={id} class="section section--lg section--dark on-dark v360">
+  <div class="container v360__inner">
+    <div class="v360__head">
+      <div class="v360__title">
+        <Eyebrow tone="dark">Servicios 360</Eyebrow>
+        <h2 class="h2 v360__h2">
+          Cuando hace falta algo más que anuncios, <span class="accent-light">lo coordino yo.</span>
+        </h2>
+      </div>
+      <p class="text v360__intro">
+        A menudo lo que frena una campaña es una web lenta, unas conversiones mal configuradas o un CRM que nadie revisa.
+        Para eso trabajo con profesionales de confianza en cada área. Yo llevo la estrategia y el paid media y me ocupo de
+        que todo encaje.
+      </p>
+    </div>
+
+    <div class="v360__board">
+      <div class="v360__core">
+        <p class="label">El centro del plan</p>
+        <h3>Estrategia y paid media</h3>
+        <p>Defino objetivos, presupuesto y KPIs de negocio, gestiono las campañas y dirijo al equipo. Tú hablas solo conmigo.</p>
+        <div class="v360__lead">
+          <Image src={lara} alt="" width={104} height={104} class="v360__avatar" />
+          <div>
+            <p class="v360__name">Lara Borrego</p>
+            <p class="v360__role">Directora del proyecto</p>
+          </div>
+        </div>
+      </div>
+
+      <ul class="v360__grid" role="list">
+        {
+          SPECIALISTS.map((s) => (
+            <li class="v360__card">
+              <p class="v360__tag">Especialista</p>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <ol class="v360__principles" role="list">
+      {
+        PRINCIPLES.map((p, i) => (
+          <li>
+            <p class="v360__ptitle">
+              <span class="accent-light">{String(i + 1).padStart(2, '0')} </span>
+              {p.title}
+            </p>
+            <p class="text-sm">{p.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <Button href={contactHref('llamada', hasContactForm)} tipo="llamada" variant="light" icon="calendar" class="v360__cta">
+      Cuéntame tu proyecto en una llamada gratuita de 30 min
+    </Button>
+  </div>
+</section>
+
+<style>
+  .v360__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  .v360__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 64px;
+  }
+
+  .v360__title {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 760px;
+  }
+
+  .v360__h2 {
+    font-size: clamp(34px, 24px + 2.6vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .v360__intro {
+    max-width: 460px;
+    line-height: 1.65;
+  }
+
+  .v360__board {
+    display: flex;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .v360__core {
+    flex: 0 0 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 40px;
+    border-radius: 26px;
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .v360__core h3 {
+    font-size: 34px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .v360__lead {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .v360__lead :global(.v360__avatar) {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-pill);
+    object-fit: cover;
+    object-position: center 20%;
+    border: 2px solid #fff;
+  }
+
+  .v360__name {
+    font-weight: 800;
+  }
+
+  .v360__role {
+    font-size: 14px;
+  }
+
+  .v360__grid {
+    flex: 1 1 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .v360__card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 28px;
+    border-radius: var(--radius-card);
+    background: var(--dark-2);
+    border: 1px solid var(--dark-border);
+  }
+
+  .v360__tag {
+    font-size: var(--fs-label);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+  }
+
+  .v360__card h3 {
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  .v360__card p:last-child {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--on-dark-muted);
+  }
+
+  .v360__principles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin: 0;
+    padding: 40px 0 0;
+    border-top: 1px solid var(--dark-border);
+  }
+
+  .v360__principles li {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .v360__ptitle {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .v360__inner :global(.v360__cta) {
+    align-self: flex-start;
+  }
+
+  @media (max-width: 1339px) {
+    .v360__board {
+      flex-direction: column;
+    }
+
+    .v360__core {
+      flex-basis: auto;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .v360__head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .v360__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 639px) {
+    .v360__inner {
+      gap: 40px;
+    }
+
+    .v360__core {
+      padding: 28px 24px;
+    }
+
+    .v360__core h3 {
+      font-size: 28px;
+    }
+
+    .v360__grid,
+    .v360__principles {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .v360__card {
+      padding: 24px;
+    }
+  }
+</style>

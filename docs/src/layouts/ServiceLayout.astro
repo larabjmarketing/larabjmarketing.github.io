@@ -1,0 +1,150 @@
+---
+// Plantilla de página de servicio (design/Servicio-google-ads.dc.html).
+// Orden: migas, hero, qué incluye/tipos, para quién, gestión, caso, FAQ, enlaces internos y contacto.
+// Slots opcionales para secciones propias de una página:
+//   after-hero, after-features, after-includes
+import BaseLayout from './BaseLayout.astro';
+import ServiceHero from '../components/service/ServiceHero.astro';
+import IncludesList from '../components/service/IncludesList.astro';
+import CaseHighlight from '../components/service/CaseHighlight.astro';
+import RelatedLinks from '../components/service/RelatedLinks.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import IconCard from '../components/cards/IconCard.astro';
+import AudienceCard from '../components/cards/AudienceCard.astro';
+import FaqSection from '../components/FaqSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import type { Crumb } from '../components/Breadcrumbs.astro';
+import { SIN_PERMANENCIA, type Service } from '../data/services';
+import { SITE } from '../config/site';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const site = Astro.site!;
+const url = new URL(`/${service.slug}/`, site).href;
+
+const parent: Crumb =
+  service.parent === '360' && service.slug !== 'servicios-360'
+    ? { label: 'Servicios 360', href: '/servicios-360/' }
+    : { label: 'Paid Media', href: '/#servicios' };
+
+const crumbs: Crumb[] =
+  service.slug === 'servicios-360'
+    ? [{ label: 'Inicio', href: '/' }, { label: service.breadcrumb }]
+    : [{ label: 'Inicio', href: '/' }, parent, { label: service.breadcrumb }];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.eyebrow,
+    serviceType: service.serviceType,
+    description: service.description,
+    url,
+    areaServed: { '@type': 'Country', name: 'España' },
+    provider: {
+      '@type': 'Person',
+      name: SITE.name,
+      jobTitle: SITE.jobTitle,
+      url: new URL('/', site).href,
+      sameAs: [SITE.linkedin],
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    // "Paid Media" no tiene página propia (enlaza a una sección de la home): no entra en el JSON-LD
+    itemListElement: crumbs.filter((c) => !c.href?.startsWith('/#')).map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.label,
+      item: c.href ? new URL(c.href.split('#')[0], site).href : url,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: service.faq.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  },
+];
+---
+
+<BaseLayout title={service.seoTitle} description={service.description} jsonLd={jsonLd} hasContactForm>
+  <ServiceHero service={service} crumbs={crumbs} />
+
+  <slot name="after-hero" />
+
+  {
+    service.features && (
+      <section class="section section--surface">
+        <div class="container">
+          <div class="section-head">
+            <Eyebrow>{service.features.eyebrow}</Eyebrow>
+            <h2 class="h2 h2--md">{service.features.title}</h2>
+            {service.features.text && <p class="text">{service.features.text}</p>}
+          </div>
+          <div class="grid grid--3">
+            {service.features.items.map((item) => (
+              <IconCard icon={item.icon} title={item.title} text={item.text} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <slot name="after-features" />
+
+  {
+    service.audience && (
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <Eyebrow>{service.audience.eyebrow ?? 'Para quién'}</Eyebrow>
+            <h2 class="h2 h2--md">{service.audience.title}</h2>
+          </div>
+          <div class="grid grid--3">
+            {service.audience.items.map((item) => (
+              <AudienceCard label={item.label} title={item.title} text={item.text} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <IncludesList
+    eyebrow={service.includes.eyebrow}
+    title={service.includes.title}
+    items={service.includes.items}
+    note={SIN_PERMANENCIA}
+  />
+
+  <slot name="after-includes" />
+
+  {service.caseStudy ? <CaseHighlight caseKey={service.caseStudy} /> : <div class="spacer" />}
+
+  <FaqSection title={service.faq.title} items={service.faq.items} class="section--flush-top" />
+
+  <RelatedLinks articles={service.articles} services={service.otherServices} />
+
+  <ContactSection
+    title={service.contact.title}
+    text={service.contact.text}
+    defaultTipo={service.contact.defaultTipo}
+    auditoriaLabel={service.contact.auditoriaLabel}
+    investmentRequired={false}
+  />
+</BaseLayout>
+
+<style>
+  .spacer {
+    height: var(--section-y);
+  }
+</style>

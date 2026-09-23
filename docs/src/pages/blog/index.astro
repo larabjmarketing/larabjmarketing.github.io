@@ -1,0 +1,299 @@
+---
+// Listado del blog (design/Blog.dc.html): cabecera con buscador, filtros por categoría,
+// artículo destacado, últimos artículos y banda de contacto.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+import Icon from '../../components/Icon.astro';
+import ArticleCard from '../../components/blog/ArticleCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { CATEGORIES } from '../../content.config';
+import { getPosts } from '../../lib/blog';
+
+const posts = await getPosts();
+const featured = posts.find((p) => p.data.featured) ?? posts[0];
+const rest = posts.filter((p) => p !== featured);
+
+// Solo se muestran como filtro las categorías con artículos (sección 6 del brief)
+const usedCategories = CATEGORIES.filter((c) => posts.some((p) => p.data.category === c));
+
+const site = Astro.site!;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Blog de paid media',
+  url: new URL('/blog/', site).href,
+  inLanguage: 'es-ES',
+  author: { '@type': 'Person', name: 'Lara Borrego' },
+  blogPost: posts.map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.data.title,
+    url: new URL(`/blog/${p.id}/`, site).href,
+    datePublished: p.data.date.toISOString(),
+  })),
+};
+---
+
+<BaseLayout
+  title="Blog de paid media | Lara Borrego"
+  description="Blog de paid media: lo que aprendo gestionando Google Ads, Meta Ads, programática y medición. Qué funciona, qué no y cómo lo configuro. Pregúntame."
+  jsonLd={jsonLd}
+>
+  <section class="blog-head">
+    <div class="container blog-head__inner">
+      <div class="blog-head__copy">
+        <Eyebrow>Blog</Eyebrow>
+        <h1 class="h1 h1--sm">Blog de paid media</h1>
+        <p class="lead">
+          Escribo sobre lo que me encuentro gestionando cuentas de Google Ads, Meta Ads y programática: qué funciona, qué
+          no y cómo lo configuro.
+        </p>
+      </div>
+      <form class="blog-search" role="search" data-blog-search>
+        <Icon name="search" size={18} class="blog-search__icon" />
+        <label for="blog-search" class="visually-hidden">Buscar en el blog</label>
+        <input id="blog-search" type="search" placeholder="Buscar artículos" autocomplete="off" />
+      </form>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="filters" role="group" aria-label="Filtrar por categoría" data-blog-filters>
+      <button type="button" class="filter is-active" aria-pressed="true" data-filter="">Todos</button>
+      {
+        usedCategories.map((c) => (
+          <button type="button" class="filter" aria-pressed="false" data-filter={c}>
+            {c}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <section class="featured" aria-label="Artículo destacado">
+    <div class="container">
+      <ArticleCard post={featured} featured />
+    </div>
+  </section>
+
+  <section class="latest">
+    <div class="container">
+      <h2 class="latest__title">Últimos artículos</h2>
+      <div class="grid grid--3" data-blog-grid>
+        {rest.map((post) => <ArticleCard post={post} />)}
+      </div>
+      <p class="empty" role="status" data-blog-empty hidden>
+        No hay artículos que coincidan con tu búsqueda. Prueba con otra palabra o{' '}
+        <button type="button" class="empty__reset" data-blog-reset>ver todos</button>.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="¿Prefieres que lo revisemos en tu cuenta?"
+    text="Cada cuenta es distinta. En 30 minutos vemos la tuya y te digo por dónde empezaría."
+  />
+</BaseLayout>
+
+<style>
+  .blog-head {
+    padding-block: 72px 40px;
+  }
+
+  .blog-head__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 64px;
+  }
+
+  .blog-head__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    max-width: 800px;
+  }
+
+  .blog-search {
+    flex: 0 0 380px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 56px;
+    padding: 0 20px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    border: 1px solid var(--border-input);
+    color: var(--muted-2);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .blog-search:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-tint);
+  }
+
+  .blog-search input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 48px;
+  }
+
+  .filter {
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      translate 0.2s ease;
+  }
+
+  .filter:hover {
+    border-color: var(--accent-border);
+    translate: 0 -1px;
+  }
+
+  .filter.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .featured {
+    padding-bottom: 72px;
+  }
+
+  .featured:has([data-post][hidden]) {
+    display: none;
+  }
+
+  .latest {
+    padding-bottom: 72px;
+  }
+
+  .latest__title {
+    margin-bottom: 32px;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+  }
+
+  .latest:not(:has([data-post]:not([hidden]))) .latest__title {
+    display: none;
+  }
+
+  .empty {
+    font-size: 17px;
+    color: var(--muted);
+  }
+
+  .empty__reset {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-weight: 700;
+    color: var(--accent-dark);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1023px) {
+    .blog-head__inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 32px;
+    }
+
+    .blog-search {
+      flex-basis: auto;
+      max-width: 480px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .blog-head {
+      padding-top: 40px;
+    }
+
+    .filters {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      margin-inline: calc(var(--gutter) * -1);
+      padding-inline: var(--gutter);
+      padding-bottom: 32px;
+      scrollbar-width: none;
+    }
+
+    .filter {
+      flex-shrink: 0;
+    }
+  }
+</style>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('#blog-search');
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-blog-filters] [data-filter]')];
+  const posts = [...document.querySelectorAll<HTMLElement>('[data-post]')];
+  const empty = document.querySelector<HTMLElement>('[data-blog-empty]');
+  let category = '';
+
+  const normalize = (s: string) =>
+    s
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+  const apply = () => {
+    const query = normalize(input?.value.trim() ?? '');
+    let visible = 0;
+    posts.forEach((post) => {
+      const matchCat = !category || post.dataset.category === category;
+      const matchText = !query || normalize(post.dataset.search ?? '').includes(query);
+      const show = matchCat && matchText;
+      post.hidden = !show;
+      if (show) {
+        visible++;
+        post.classList.add('is-visible');
+      }
+    });
+    if (empty) empty.hidden = visible > 0;
+  };
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      category = btn.dataset.filter ?? '';
+      buttons.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      apply();
+    });
+  });
+
+  input?.addEventListener('input', apply);
+  input?.form?.addEventListener('submit', (e) => e.preventDefault());
+
+  document.querySelector('[data-blog-reset]')?.addEventListener('click', () => {
+    if (input) input.value = '';
+    buttons[0]?.click();
+  });
+</script>

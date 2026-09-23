@@ -1,0 +1,567 @@
+/* ---------------------------------------------------------------
+   Movimiento e interacciones
+   - Todo lo que se oculta para animar depende de la clase .js en <html>,
+     que solo se añade si hay JavaScript y no se pide movimiento reducido.
+   - Se usan las propiedades translate/scale para no chocar con los
+     transform de los estados hover.
+---------------------------------------------------------------- */
+
+:root {
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  interpolate-size: allow-keywords;
+}
+
+/* ---------- Aparición al hacer scroll ---------- */
+.js
+  :is(
+    .section-head,
+    .compare__title,
+    .compare,
+    .v360__head,
+    .v360__core,
+    .v360__principles,
+    .actions,
+    .audit__copy,
+    .report,
+    .band,
+    .about__copy,
+    .faq-section__intro,
+    .contact__intro,
+    .contact__form,
+    .post-card--featured,
+    .cta-band,
+    .grid > *,
+    .v360__grid > *,
+    .steps > *,
+    .faq > *
+  ):not(.is-visible) {
+  opacity: 0;
+  translate: 0 28px;
+}
+
+.js body
+  :is(
+    .section-head,
+    .compare__title,
+    .compare,
+    .v360__head,
+    .v360__core,
+    .v360__principles,
+    .actions,
+    .audit__copy,
+    .report,
+    .band,
+    .about__copy,
+    .faq-section__intro,
+    .contact__intro,
+    .contact__form,
+    .post-card--featured,
+    .cta-band,
+    .grid > *,
+    .v360__grid > *,
+    .steps > *,
+    .faq > *
+  ) {
+  transition:
+    opacity 0.7s ease,
+    translate 0.8s var(--ease-out),
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  transition-delay: calc(var(--i, 0) * 90ms), calc(var(--i, 0) * 90ms), 0s, 0s, 0s;
+}
+
+.js .about__photo:not(.is-visible) {
+  opacity: 0;
+  scale: 0.96;
+}
+
+.js .about__photo {
+  transition:
+    opacity 0.9s ease,
+    scale 1.1s var(--ease-out);
+}
+
+/* ---------- Hero: entrada y métricas flotantes ---------- */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    scale: 0.7;
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-18px, 22px) scale(1.06);
+  }
+  66% {
+    transform: translate(16px, -14px) scale(0.96);
+  }
+}
+
+.hero__visual {
+  --px: 0;
+  --py: 0;
+  isolation: isolate;
+}
+
+/* Halo de color detrás de la foto */
+.hero__visual::before {
+  content: '';
+  position: absolute;
+  inset: 40px 10px 20px 30px;
+  z-index: -1;
+  border-radius: 48%;
+  background:
+    radial-gradient(closest-side at 35% 40%, rgba(94, 211, 193, 0.45), transparent),
+    radial-gradient(closest-side at 70% 70%, rgba(13, 127, 113, 0.22), transparent);
+  animation: blob 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero__photo,
+.hero__m,
+.hero__badge {
+  transition: translate 0.6s var(--ease-out);
+}
+
+.hero__photo {
+  translate: calc(var(--px) * -6px) calc(var(--py) * -6px);
+}
+
+.hero__m {
+  animation:
+    pop-in 0.7s var(--ease-spring) backwards,
+    float-y var(--float-dur, 6s) ease-in-out var(--float-delay, 0s) infinite;
+  animation-delay: var(--pop-delay, 0.3s), var(--float-delay, 0s);
+  translate: calc(var(--px) * var(--depth, 14px)) calc(var(--py) * var(--depth, 14px));
+  cursor: default;
+}
+
+.hero__m:hover {
+  animation-play-state: running, paused;
+  box-shadow: 0 18px 44px rgba(13, 127, 113, 0.22);
+}
+
+.hero__m--1 {
+  --depth: 22px;
+  --pop-delay: 0.35s;
+  --float-dur: 6.5s;
+  --float-delay: -1s;
+}
+
+.hero__m--2 {
+  --depth: 16px;
+  --pop-delay: 0.5s;
+  --float-dur: 5.5s;
+  --float-delay: -3s;
+}
+
+.hero__m--3 {
+  --depth: 26px;
+  --pop-delay: 0.65s;
+  --float-dur: 7s;
+  --float-delay: -2s;
+}
+
+.hero__badge {
+  translate: calc(var(--px) * 10px) calc(var(--py) * 10px);
+  animation: rise-in 0.7s var(--ease-out) 0.8s backwards;
+}
+
+.hero__chips li {
+  animation: rise-in 0.6s var(--ease-out) backwards;
+  animation-delay: calc(0.4s + var(--i, 0) * 70ms);
+}
+
+.hero__chips li:nth-child(1) { --i: 0; }
+.hero__chips li:nth-child(2) { --i: 1; }
+.hero__chips li:nth-child(3) { --i: 2; }
+.hero__chips li:nth-child(4) { --i: 3; }
+.hero__chips li:nth-child(5) { --i: 4; }
+.hero__chips li:nth-child(6) { --i: 5; }
+
+.hero__chips li {
+  transition:
+    border-color 0.2s ease,
+    translate 0.2s ease;
+}
+
+.hero__chips li:hover {
+  border-color: var(--accent-border);
+  translate: 0 -2px;
+}
+
+@media (max-width: 639px) {
+  .hero__m {
+    animation: pop-in 0.6s var(--ease-spring) backwards;
+    animation-delay: var(--pop-delay, 0.3s);
+    translate: none;
+  }
+
+  .hero__visual::before {
+    display: none;
+  }
+}
+
+/* ---------- Navegación: sombra al hacer scroll ---------- */
+.nav {
+  transition:
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.is-scrolled .nav {
+  box-shadow: 0 12px 36px rgba(17, 17, 20, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(1.4) blur(10px);
+}
+
+/* ---------- Tarjetas ---------- */
+.icon-card__icon {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    rotate 0.4s var(--ease-spring),
+    scale 0.4s var(--ease-spring);
+}
+
+.icon-card--link:hover .icon-card__icon {
+  background: var(--accent);
+  color: #fff;
+  rotate: -8deg;
+  scale: 1.08;
+}
+
+.case-card,
+.audience-card {
+  transition:
+    opacity 0.7s ease,
+    translate 0.8s var(--ease-out),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.case-card:hover,
+.audience-card:hover {
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-raised);
+}
+
+/* Foco de luz que sigue al ratón en las tarjetas oscuras */
+.v360__card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    opacity 0.7s ease,
+    translate 0.8s var(--ease-out),
+    border-color 0.3s ease;
+}
+
+.v360__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    320px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(94, 211, 193, 0.16),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.v360__card:hover {
+  border-color: rgba(94, 211, 193, 0.45);
+}
+
+.v360__card:hover::before {
+  opacity: 1;
+}
+
+/* Tarjeta central: brillo que recorre el borde */
+@keyframes sheen {
+  0% {
+    translate: -120% 0;
+  }
+  60%,
+  100% {
+    translate: 220% 0;
+  }
+}
+
+.v360__core {
+  position: relative;
+  overflow: hidden;
+}
+
+.v360__core::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  animation: sheen 6s ease-in-out 1s infinite;
+  pointer-events: none;
+}
+
+/* ---------- Barras del informe y pasos ---------- */
+.js .report__fill {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.3s var(--ease-out);
+}
+
+.js .report.is-visible .report__fill {
+  transform: scaleX(1);
+}
+
+.report li:nth-child(2) .report__fill { transition-delay: 0.15s; }
+.report li:nth-child(3) .report__fill { transition-delay: 0.3s; }
+.report li:nth-child(4) .report__fill { transition-delay: 0.45s; }
+
+.js .step__line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.9s var(--ease-out);
+  transition-delay: calc(0.3s + var(--i, 0) * 90ms);
+}
+
+.js .step.is-visible .step__line {
+  transform: scaleX(1);
+}
+
+.step__num {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+.step:hover .step__num {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Botones ---------- */
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.28) 50%, transparent 70%);
+  translate: -110% 0;
+  transition: translate 0.6s ease;
+}
+
+.btn--primary:hover::after {
+  translate: 110% 0;
+}
+
+/* ---------- FAQ: apertura suave (navegadores compatibles) ---------- */
+.faq__item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 0.35s var(--ease-out),
+    content-visibility 0.35s allow-discrete;
+}
+
+.faq__item[open]::details-content {
+  block-size: auto;
+}
+
+.faq__item {
+  transition:
+    opacity 0.7s ease,
+    translate 0.8s var(--ease-out),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.faq__item:hover,
+.faq__item[open] {
+  border-color: var(--accent-border);
+}
+
+.faq__item[open] {
+  box-shadow: var(--shadow-card);
+}
+
+/* ================================================================
+   Interacciones generales
+================================================================ */
+
+/* ---------- Subrayado animado en la palabra destacada de los titulares ---------- */
+:is(.hero__title, .s-hero__title) .accent {
+  background-image: linear-gradient(transparent 62%, rgba(94, 211, 193, 0.35) 62%, rgba(94, 211, 193, 0.35) 90%, transparent 90%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation: marker 1s var(--ease-out) 0.6s backwards;
+}
+
+@keyframes marker {
+  from {
+    background-size: 0% 100%;
+  }
+}
+
+/* ---------- Punto de las etiquetas con latido ---------- */
+.eyebrow__dot {
+  position: relative;
+}
+
+.eyebrow__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: dot-pulse 2.4s ease-out infinite;
+}
+
+@keyframes dot-pulse {
+  0% {
+    opacity: 0.7;
+    scale: 1;
+  }
+  70%,
+  100% {
+    opacity: 0;
+    scale: 2.6;
+  }
+}
+
+/* ---------- Iconos de botones ---------- */
+.btn:hover svg {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+  25% {
+    rotate: -12deg;
+  }
+  75% {
+    rotate: 10deg;
+  }
+}
+
+/* ---------- Botones magnéticos (el script mueve --mx y --my) ---------- */
+.is-magnetic {
+  translate: var(--mx, 0) var(--my, 0);
+  transition:
+    translate 0.35s var(--ease-out),
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* ---------- Tarjetas con inclinación 3D y brillo ---------- */
+.tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.55), transparent 45%);
+  opacity: 0;
+  mix-blend-mode: soft-light;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.tilt.is-tilting::after {
+  opacity: 1;
+}
+
+:is(.icon-card, .case-card, .audience-card, .area, .post-card, .report) {
+  position: relative;
+}
+
+/* ---------- Navegación: píldora que sigue al ratón ---------- */
+.nav__hover {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 0;
+  height: 40px;
+  width: var(--w, 0);
+  translate: var(--x, 0) -50%;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  opacity: 0;
+  transition:
+    translate 0.35s var(--ease-out),
+    width 0.35s var(--ease-out),
+    opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.nav__hover.is-on {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.hero__title, .s-hero__title) .accent,
+  .eyebrow__dot::after,
+  .btn:hover svg {
+    animation: none !important;
+  }
+
+  .nav__hover {
+    display: none;
+  }
+}
+
+/* ---------- Sin movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero__visual::before,
+  .v360__core::after,
+  .hero__m,
+  .hero__badge,
+  .hero__chips li {
+    animation: none !important;
+  }
+
+  .js .report__fill,
+  .js .step__line {
+    transform: none !important;
+  }
+}

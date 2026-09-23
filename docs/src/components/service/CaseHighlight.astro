@@ -1,0 +1,119 @@
+---
+import { CASES, type CaseKey } from '../../data/cases';
+import { PAGES, PAGE_READY } from '../../config/site';
+
+// Caso destacado en bloque oscuro.
+interface Props {
+  caseKey: CaseKey;
+}
+
+const c = CASES[Astro.props.caseKey];
+---
+
+<section class="section">
+  <div class="container">
+    <div class="case on-dark">
+      <p class="case__figure">
+        <span class="case__value metric__value">{c.figure}</span>
+        <span class="case__unit">{c.figureLabel}</span>
+      </p>
+      <div class="case__copy">
+        <p class="label case__meta">Caso · {c.sector} · cliente confidencial</p>
+        <h2 class="case__title">{c.title}</h2>
+        <p class="text">{c.text}</p>
+        {PAGE_READY.casos && <a href={PAGES.casos} class="link-arrow">Ver todos los casos</a>}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .case {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    padding: 56px;
+    border-radius: var(--radius-block);
+    background: var(--dark);
+    color: var(--on-dark);
+  }
+
+  /* Halo de color detrás de la cifra */
+  .case::before {
+    content: '';
+    position: absolute;
+    left: -80px;
+    top: 50%;
+    width: 420px;
+    height: 420px;
+    translate: 0 -50%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(94, 211, 193, 0.18), transparent);
+    animation: blob 12s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .case__figure {
+    position: relative;
+    flex: 0 0 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .case .case__value {
+    font-size: clamp(64px, 40px + 4vw, 96px);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--accent-light);
+  }
+
+  .case__unit {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .case__copy {
+    position: relative;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .case__meta {
+    color: var(--on-dark-muted);
+  }
+
+  .case__title {
+    font-size: clamp(24px, 20px + 0.8vw, 32px);
+    line-height: 1.2;
+  }
+
+  .case .text {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 1023px) {
+    .case {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 28px;
+      padding: 40px;
+    }
+
+    .case__figure {
+      flex-basis: auto;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .case {
+      padding: 32px 24px;
+    }
+  }
+</style>

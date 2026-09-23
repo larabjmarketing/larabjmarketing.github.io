@@ -1,0 +1,863 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { TIPOS, INVERSIONES, type Tipo } from '../lib/contact';
+import { PAGES, SITE, whatsappUrl } from '../config/site';
+
+// Formulario de contacto (sección 7 del brief): guarda en Supabase y envía generate_lead a GA4.
+// "¿Qué necesitas?" e "Inversión" son grupos de opciones seleccionables (radios accesibles).
+interface Props {
+  /** Prefijo para los id de los campos (debe ser único en la página). */
+  idPrefix?: string;
+  /** Opción preseleccionada si la URL no trae ?tipo= */
+  defaultTipo?: Tipo;
+  /** Texto de la opción de auditoría (en servicios: "Una auditoría de Google Ads"). */
+  auditoriaLabel?: string;
+  /** En la home la inversión es obligatoria; en servicios, opcional. */
+  investmentRequired?: boolean;
+}
+
+const {
+  idPrefix = 'f',
+  defaultTipo = 'llamada',
+  auditoriaLabel = TIPOS.auditoria,
+  investmentRequired = true,
+} = Astro.props;
+
+const OPTIONS: { value: Tipo; label: string; icon: IconName; submit: string }[] = [
+  { value: 'llamada', label: TIPOS.llamada, icon: 'calendar', submit: 'Pedir mi llamada gratuita' },
+  { value: 'auditoria', label: auditoriaLabel, icon: 'search-plus', submit: 'Pedir mi auditoría' },
+  { value: 'gestion', label: TIPOS.gestion, icon: 'trend', submit: 'Hablemos de mis campañas' },
+  { value: 'otro', label: TIPOS.otro, icon: 'chat', submit: 'Enviar mensaje' },
+];
+const defaultSubmit = OPTIONS.find((o) => o.value === defaultTipo)?.submit ?? 'Enviar solicitud';
+const id = (name: string) => `${idPrefix}-${name}`;
+---
+
+<div class="contact-form-wrap on-dark">
+  <form class="contact-form" method="post" data-contact-form novalidate>
+    <fieldset class="group">
+      <legend class="group__legend">¿Qué necesitas?</legend>
+      <div class="choices">
+        {
+          OPTIONS.map((o) => (
+            <label class="choice">
+              <input
+                type="radio"
+                name="tipo"
+                value={o.value}
+                checked={o.value === defaultTipo}
+                data-submit={o.submit}
+                class="choice__input"
+              />
+              <span class="choice__card">
+                <span class="choice__icon">
+                  <Icon name={o.icon} size={20} />
+                </span>
+                <span class="choice__label">{o.label}</span>
+                <span class="choice__check" aria-hidden="true">
+                  <Icon name="check" size={13} strokeWidth={3} />
+                </span>
+              </span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <div class="row">
+      <div class="field">
+        <label for={id('nombre')}>Nombre</label>
+        <input
+          id={id('nombre')}
+          name="nombre"
+          type="text"
+          autocomplete="name"
+          required
+          maxlength="120"
+          aria-describedby={id('nombre-error')}
+          data-error="Escribe tu nombre."
+        />
+        <p class="field__error" id={id('nombre-error')} hidden></p>
+      </div>
+
+      <div class="field">
+        <label for={id('email')}>Email</label>
+        <input
+          id={id('email')}
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          maxlength="200"
+          aria-describedby={id('email-error')}
+          data-error="Escribe un email válido, por ejemplo nombre@empresa.com."
+        />
+        <p class="field__error" id={id('email-error')} hidden></p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for={id('web')}>Web</label>
+      <input
+        id={id('web')}
+        name="web"
+        type="text"
+        inputmode="url"
+        autocomplete="url"
+        placeholder="tuweb.com"
+        maxlength="300"
+        data-field-web
+      />
+    </div>
+
+    <fieldset
+      class="group"
+      aria-describedby={id('inversion-error')}
+      data-radio-group="inversion"
+      data-required={investmentRequired ? 'true' : undefined}
+      data-error="Elige una opción."
+    >
+      <legend class="group__legend">
+        Inversión mensual en publicidad{!investmentRequired && <span class="field__optional"> (opcional)</span>}
+      </legend>
+      <div class="chips">
+        {
+          INVERSIONES.map((value) => (
+            <label class="chip">
+              <input type="radio" name="inversion" value={value} class="chip__input" />
+              <span class="chip__label">{value}</span>
+            </label>
+          ))
+        }
+      </div>
+      <p class="field__error" id={id('inversion-error')} hidden></p>
+    </fieldset>
+
+    <!-- Campo trampa antispam: invisible para personas, los bots lo rellenan -->
+    <div class="field--trap" aria-hidden="true">
+      <label for={id('empresa')}>No rellenes este campo</label>
+      <input id={id('empresa')} name="empresa" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="consent">
+      <input
+        id={id('privacidad')}
+        name="privacidad"
+        type="checkbox"
+        required
+        aria-describedby={id('privacidad-error')}
+        data-error="Necesito que aceptes la política de privacidad para responderte."
+      />
+      <label for={id('privacidad')}>
+        He leído y acepto la <a href={PAGES.privacidad} class="inline-link">política de privacidad</a>.
+      </label>
+    </div>
+    <p class="field__error consent__error" id={id('privacidad-error')} hidden></p>
+
+    <button type="submit" class="submit" data-submit-btn>
+      <span class="submit__label" data-submit-label>{defaultSubmit}</span>
+      <span class="submit__arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>
+      <span class="submit__spinner" aria-hidden="true"></span>
+    </button>
+
+    <p class="reassure">
+      <span><Icon name="check" size={14} strokeWidth={2.6} /> Sin compromiso</span>
+      <span><Icon name="clock" size={14} strokeWidth={2.2} /> Respuesta en 48 horas</span>
+    </p>
+
+    <p class="contact-form__status" role="alert" data-form-status></p>
+  </form>
+
+  <div class="contact-thanks" tabindex="-1" data-form-thanks hidden>
+    <span class="contact-thanks__icon" aria-hidden="true">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="contact-thanks__tick" d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+    </span>
+    <p class="contact-thanks__title">Gracias. Te respondo en 48 horas.</p>
+    <p class="contact-thanks__text">Si prefieres adelantarlo, escríbeme directamente:</p>
+    <div class="contact-thanks__links">
+      <a href={whatsappUrl()} class="direct-wa" target="_blank" rel="noopener" data-whatsapp>
+        <WhatsAppIcon size={18} /> WhatsApp<span class="visually-hidden"> (se abre en una pestaña nueva)</span>
+      </a>
+      <a href={`mailto:${SITE.email}`} class="inline-link">{SITE.email}</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .contact-form,
+  .contact-thanks {
+    width: 100%;
+    padding: 32px;
+    border-radius: 24px;
+    background: var(--dark-2);
+    border: 1px solid var(--dark-border);
+    color: var(--on-dark);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .contact-form[hidden],
+  .contact-thanks[hidden] {
+    display: none;
+  }
+
+  .group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  .group__legend,
+  .field label {
+    margin-bottom: 10px;
+    padding: 0;
+    font-size: var(--fs-label);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--on-dark-muted);
+  }
+
+  .field label {
+    margin-bottom: 0;
+  }
+
+  .field__optional {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+
+  /* Tarjetas de "¿Qué necesitas?" */
+  .choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .choice {
+    position: relative;
+    display: block;
+    cursor: pointer;
+  }
+
+  .choice__input,
+  .chip__input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  .choice__card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+    min-height: 64px;
+    padding: 12px 34px 12px 12px;
+    border-radius: 14px;
+    border: 1px solid var(--dark-input-border);
+    background: var(--dark);
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      translate 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .choice:hover .choice__card {
+    border-color: #4a4858;
+    translate: 0 -2px;
+  }
+
+  .choice__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--dark-3);
+    color: var(--accent-light);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      rotate 0.4s var(--ease-spring);
+  }
+
+  .choice__label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .choice__check {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    color: var(--dark);
+    scale: 0;
+    transition: scale 0.3s var(--ease-spring);
+  }
+
+  .choice__input:checked + .choice__card {
+    border-color: var(--accent-light);
+    background: rgba(94, 211, 193, 0.1);
+    box-shadow: 0 0 0 1px var(--accent-light) inset;
+  }
+
+  .choice__input:checked + .choice__card .choice__icon {
+    background: var(--accent);
+    color: #fff;
+    rotate: -8deg;
+  }
+
+  .choice__input:checked + .choice__card .choice__check {
+    scale: 1;
+  }
+
+  .choice__input:focus-visible + .choice__card,
+  .chip__input:focus-visible + .chip__label {
+    outline: 3px solid var(--accent-light);
+    outline-offset: 2px;
+  }
+
+  /* Chips de inversión */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .chip__label {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--dark-input-border);
+    background: var(--dark);
+    font-size: 14px;
+    font-weight: 600;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      scale 0.2s var(--ease-spring);
+  }
+
+  .chip:hover .chip__label {
+    border-color: #4a4858;
+  }
+
+  .chip__input:checked + .chip__label {
+    background: var(--accent-light);
+    border-color: var(--accent-light);
+    color: var(--dark);
+    scale: 1.04;
+  }
+
+  [data-radio-group][aria-invalid='true'] .chip__label {
+    border-color: #f87171;
+  }
+
+  /* Campos de texto */
+  .row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--dark-input-border);
+    background: var(--dark);
+    color: var(--on-dark);
+    font-size: 16px;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .field input::placeholder {
+    color: #8b8b94;
+  }
+
+  .field input:hover {
+    border-color: #4a4858;
+  }
+
+  .field input:focus-visible {
+    outline: none;
+    border-color: var(--accent-light);
+    box-shadow: 0 0 0 3px rgba(94, 211, 193, 0.25);
+  }
+
+  .field input[aria-invalid='true'] {
+    border-color: #f87171;
+  }
+
+  .field__error {
+    font-size: 14px;
+    color: #fca5a5;
+  }
+
+  .group .field__error {
+    margin-top: 8px;
+  }
+
+  .field--trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--on-dark-muted);
+  }
+
+  .consent input {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--accent);
+  }
+
+  .consent .inline-link,
+  .contact-thanks .inline-link {
+    color: var(--accent-light);
+  }
+
+  .consent__error {
+    margin-top: -8px;
+  }
+
+  /* Botón de envío */
+  .submit {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 58px;
+    margin-top: 4px;
+    padding: 0 28px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(13, 127, 113, 0.4);
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .submit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+    translate: -110% 0;
+    transition: translate 0.7s ease;
+  }
+
+  .submit:hover {
+    background: var(--accent-dark);
+    box-shadow: 0 14px 30px rgba(13, 127, 113, 0.5);
+  }
+
+  .submit:hover::before {
+    translate: 110% 0;
+  }
+
+  .submit__arrow {
+    display: flex;
+    transition: translate 0.3s var(--ease-spring);
+  }
+
+  .submit:hover .submit__arrow {
+    translate: 5px 0;
+  }
+
+  .submit__spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2.5px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  .submit[aria-busy='true'] {
+    cursor: progress;
+  }
+
+  .submit[aria-busy='true'] .submit__arrow {
+    display: none;
+  }
+
+  .submit[aria-busy='true'] .submit__spinner {
+    display: block;
+  }
+
+  .submit__label {
+    transition: opacity 0.2s ease;
+  }
+
+  .submit__label.is-changing {
+    opacity: 0;
+  }
+
+  .reassure {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin-top: -4px;
+    font-size: 13px;
+    color: var(--on-dark-muted);
+  }
+
+  .reassure span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .reassure :global(svg) {
+    color: var(--accent-light);
+  }
+
+  .contact-form__status:empty {
+    display: none;
+  }
+
+  .contact-form__status {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fca5a5;
+  }
+
+  /* Mensaje de gracias */
+  .contact-thanks {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-block: 48px;
+    animation: pop-in 0.5s var(--ease-spring);
+  }
+
+  .contact-thanks:focus {
+    outline: none;
+  }
+
+  .contact-thanks__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 0 8px rgba(13, 127, 113, 0.2);
+    animation: pop-in 0.6s var(--ease-spring) 0.1s backwards;
+  }
+
+  .contact-thanks__tick {
+    stroke-dasharray: 24;
+    stroke-dashoffset: 24;
+    animation: draw 0.5s ease-out 0.5s forwards;
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .contact-thanks__title {
+    font-size: 26px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .contact-thanks__text {
+    font-size: 16px;
+    color: var(--on-dark-muted);
+  }
+
+  .contact-thanks__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 18px;
+  }
+
+  .direct-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: var(--radius-pill);
+    background: #179447;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .direct-wa:hover {
+    background: #127a3a;
+    color: #fff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-thanks__tick {
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .contact-form,
+    .contact-thanks {
+      padding: 22px 18px;
+    }
+
+    .row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .choice__card {
+      min-height: 58px;
+      padding: 10px 30px 10px 10px;
+      gap: 10px;
+    }
+
+    .choice__icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .choice__label {
+      font-size: 13px;
+    }
+  }
+</style>
+
+<script>
+  import { CONTACT_ID, type Tipo } from '../lib/contact';
+  import { getAttribution, sendLead, trackLead, LeadError } from '../lib/leads';
+  import { SITE } from '../config/site';
+
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  const webInput = form?.querySelector<HTMLInputElement>('[data-field-web]');
+  const status = form?.querySelector<HTMLElement>('[data-form-status]');
+  const thanks = form?.parentElement?.querySelector<HTMLElement>('[data-form-thanks]');
+  const submit = form?.querySelector<HTMLButtonElement>('[data-submit-btn]');
+  const submitLabel = form?.querySelector<HTMLElement>('[data-submit-label]');
+  const tipoRadios = form ? [...form.querySelectorAll<HTMLInputElement>('input[name="tipo"]')] : [];
+  const renderedAt = Date.now();
+
+  /* ---------- Tipo de solicitud ---------- */
+  const currentTipo = () => (tipoRadios.find((r) => r.checked)?.value ?? 'llamada') as Tipo;
+
+  const updateSubmitLabel = () => {
+    const radio = tipoRadios.find((r) => r.checked);
+    if (!submitLabel || !radio?.dataset.submit || submitLabel.textContent === radio.dataset.submit) return;
+    submitLabel.classList.add('is-changing');
+    window.setTimeout(() => {
+      submitLabel.textContent = radio.dataset.submit ?? '';
+      submitLabel.classList.remove('is-changing');
+    }, 150);
+  };
+
+  const selectTipo = (tipo: string | null) => {
+    const radio = tipoRadios.find((r) => r.value === tipo);
+    if (!radio) return;
+    radio.checked = true;
+    updateSubmitLabel();
+  };
+
+  tipoRadios.forEach((r) => r.addEventListener('change', updateSubmitLabel));
+
+  const goToForm = () => {
+    document.getElementById(CONTACT_ID)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    form?.querySelector<HTMLElement>('input[name="nombre"]')?.focus({ preventScroll: true });
+  };
+
+  // ?tipo= en la URL al llegar a la página
+  selectTipo(new URLSearchParams(location.search).get('tipo'));
+
+  // Botones con data-tipo: si el formulario está en esta página, preselecciona sin recargar
+  document.addEventListener('click', (event) => {
+    const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[data-tipo]');
+    if (!link || !form) return;
+    const url = new URL(link.href);
+    if (url.pathname !== location.pathname) return;
+    event.preventDefault();
+    selectTipo(link.dataset.tipo ?? null);
+    history.replaceState(null, '', `${url.search}${url.hash}`);
+    goToForm();
+  });
+
+  // Campo de URL del hero: rellena Web y baja al formulario
+  document.querySelectorAll<HTMLFormElement>('[data-prefill-web]').forEach((heroForm) => {
+    heroForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const value = heroForm.querySelector<HTMLInputElement>('input')?.value.trim() ?? '';
+      if (webInput && value) webInput.value = value;
+      selectTipo(heroForm.dataset.prefillWeb || 'auditoria');
+      history.replaceState(null, '', `?tipo=${currentTipo()}#${CONTACT_ID}`);
+      goToForm();
+    });
+  });
+
+  /* ---------- Validación ---------- */
+  const setError = (el: HTMLElement, valid: boolean, message: string) => {
+    el.setAttribute('aria-invalid', String(!valid));
+    const errorId = el.getAttribute('aria-describedby');
+    const error = errorId ? document.getElementById(errorId) : null;
+    if (error) {
+      error.textContent = valid ? '' : message;
+      error.hidden = valid;
+    }
+    return valid;
+  };
+
+  const validateField = (field: HTMLInputElement) =>
+    setError(field, field.checkValidity(), field.dataset.error ?? 'Revisa este campo.');
+
+  const validateGroup = (group: HTMLElement) => {
+    if (group.dataset.required !== 'true') return true;
+    const checked = Boolean(group.querySelector('input:checked'));
+    return setError(group, checked, group.dataset.error ?? 'Elige una opción.');
+  };
+
+  const fields = form ? [...form.querySelectorAll<HTMLInputElement>('input[required]:not([type="radio"])')] : [];
+  const groups = form ? [...form.querySelectorAll<HTMLElement>('[data-radio-group]')] : [];
+
+  fields.forEach((field) => {
+    field.addEventListener(field.type === 'checkbox' ? 'change' : 'blur', () => validateField(field));
+    field.addEventListener('input', () => {
+      if (field.getAttribute('aria-invalid') === 'true') validateField(field);
+    });
+  });
+  groups.forEach((group) => group.addEventListener('change', () => validateGroup(group)));
+
+  /* ---------- Envío ---------- */
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form || !status || !submit) return;
+    status.textContent = '';
+
+    const invalid: HTMLElement[] = [
+      ...fields.filter((f) => !validateField(f)),
+      ...groups.filter((g) => !validateGroup(g)),
+    ];
+    if (invalid.length) {
+      const first = invalid[0];
+      (first.matches('input') ? first : first.querySelector<HTMLElement>('input'))?.focus();
+      return;
+    }
+
+    const data = new FormData(form);
+    const tipo = currentTipo();
+
+    // Antispam: campo trampa relleno o envío demasiado rápido. Se simula el éxito sin guardar nada.
+    const isBot = String(data.get('empresa') ?? '') !== '' || Date.now() - renderedAt < 2500;
+
+    submit.setAttribute('aria-busy', 'true');
+    submit.disabled = true;
+
+    try {
+      if (!isBot) {
+        const attribution = getAttribution();
+        await sendLead({
+          tipo,
+          nombre: String(data.get('nombre')).trim(),
+          email: String(data.get('email')).trim(),
+          web: String(data.get('web') ?? '').trim() || null,
+          inversion: String(data.get('inversion') ?? '') || null,
+          pagina_origen: location.pathname,
+          utm_source: attribution.utm_source ?? null,
+          utm_medium: attribution.utm_medium ?? null,
+          utm_campaign: attribution.utm_campaign ?? null,
+          gclid: attribution.gclid ?? null,
+          fbclid: attribution.fbclid ?? null,
+        });
+        trackLead(tipo);
+      }
+      form.hidden = true;
+      if (thanks) {
+        thanks.hidden = false;
+        thanks.focus();
+      }
+    } catch (error) {
+      const kind = error instanceof LeadError ? error.kind : 'server';
+      status.textContent =
+        kind === 'rate'
+          ? 'Ya he recibido varias solicitudes tuyas. Te respondo en 48 horas.'
+          : `No se ha podido enviar. Inténtalo de nuevo o escríbeme a ${SITE.email}.`;
+      if (kind === 'config') console.warn('[formulario] Faltan PUBLIC_SUPABASE_URL o PUBLIC_SUPABASE_ANON_KEY.');
+    } finally {
+      submit.removeAttribute('aria-busy');
+      submit.disabled = false;
+    }
+  });
+</script>

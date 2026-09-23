@@ -1,0 +1,120 @@
+---
+import { Image } from 'astro:assets';
+import Eyebrow from '../Eyebrow.astro';
+import Button from '../Button.astro';
+import lara from '../../assets/img/lara-borrego-freelance-paid-media.jpg';
+import { PAGES, PAGE_READY } from '../../config/site';
+---
+
+<section id="sobre" class="section section--surface about">
+  <div class="container about__inner">
+    <Image
+      src={lara}
+      alt="Lara Borrego"
+      widths={[440, 660, 880]}
+      sizes="(max-width: 1023px) calc(100vw - 80px), 440px"
+      class="about__photo"
+    />
+    <div class="about__copy">
+      <Eyebrow tone="surface">Sobre mí</Eyebrow>
+      <h2 class="h2 h2--md">Hola, soy Lara.</h2>
+      <p class="text">
+        Empecé en 2017 en ad operations en Smartclip, del grupo Atresmedia. Después dirigí el equipo de paid media en una
+        agencia de performance y hoy trabajo como freelance desde Granada, con agencias y directamente con marcas. Antes de
+        tocar una campaña me gusta entender cómo gana dinero cada negocio, porque ahí es donde se decide casi todo.
+      </p>
+      <div id="docencia" class="about__teach">
+        <div>
+          <p class="about__teach-title">También formo a otros profesionales</p>
+          <p class="text-sm">Docente de IA aplicada a la publicidad (KSchool) y de programática (Máster EPMD).</p>
+        </div>
+        {PAGE_READY.docencia && <a href={PAGES.docencia} class="link-arrow">Ver docencia</a>}
+      </div>
+      <Button href="?tipo=llamada#contacto" tipo="llamada" size="lg" icon="calendar" class="about__cta">
+        Hablemos 30 minutos, gratis
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__inner {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .about__inner :global(.about__photo) {
+    flex-shrink: 0;
+    width: 440px;
+    height: 520px;
+    border-radius: var(--radius-block);
+    object-fit: cover;
+    object-position: center 15%;
+  }
+
+  .about__copy {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .about__copy .text {
+    line-height: 1.65;
+  }
+
+  .about__teach {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    padding: 24px 28px;
+    border-radius: 20px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .about__teach > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .about__teach-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .about__teach .link-arrow {
+    white-space: nowrap;
+  }
+
+  .about__copy :global(.about__cta) {
+    align-self: flex-start;
+  }
+
+  @media (max-width: 1023px) {
+    .about__inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 48px;
+    }
+
+    .about__inner :global(.about__photo) {
+      width: 100%;
+      max-width: 440px;
+      height: auto;
+      aspect-ratio: 440 / 520;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .about__teach {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 20px;
+    }
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+// Tarjeta de enlace interno ("Del blog", "Otros servicios").
+interface Props {
+  label: string;
+  title: string;
+  href: string;
+  tone?: 'tint' | 'plain';
+}
+
+const { label, title, href, tone = 'tint' } = Astro.props;
+---
+
+<a href={href} class:list={['link-card', `link-card--${tone}`]}>
+  <span class="label">{label}</span>
+  <span class="link-card__title">{title}</span>
+</a>
+
+<style>
+  .link-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 28px;
+    border-radius: var(--radius-card);
+    transition: transform 0.2s ease;
+  }
+
+  .link-card:hover {
+    transform: translateY(-2px);
+    color: var(--ink);
+  }
+
+  .link-card--tint {
+    background: var(--accent-tint);
+    border: 1px solid var(--accent-border);
+  }
+
+  .link-card--tint .label {
+    color: var(--accent-dark);
+  }
+
+  .link-card--plain {
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .link-card--plain .label {
+    color: var(--muted);
+  }
+
+  .link-card__title {
+    font-size: 19px;
+    line-height: 1.35;
+    font-weight: 700;
+  }
+
+  .link-card:hover .link-card__title {
+    color: var(--accent-dark);
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+import Eyebrow from './Eyebrow.astro';
+import Faq, { type FaqItem } from './Faq.astro';
+
+// Sección de FAQ a dos columnas: título a la izquierda (fija al hacer scroll) y preguntas a la derecha.
+// El slot por defecto añade contenido bajo el título (texto y botón).
+interface Props {
+  title: string;
+  items: FaqItem[];
+  id?: string;
+  eyebrow?: string;
+  class?: string;
+}
+
+const { title, items, id, eyebrow = 'Preguntas frecuentes', class: className } = Astro.props;
+---
+
+<section id={id} class:list={['section', 'faq-section', className]}>
+  <div class="container faq-section__inner">
+    <div class="faq-section__intro">
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 class="h2 h2--md">{title}</h2>
+      <slot />
+    </div>
+    <Faq items={items} />
+  </div>
+</section>
+
+<style>
+  .faq-section__inner {
+    display: grid;
+    grid-template-columns: 400px minmax(0, 1fr);
+    gap: 80px;
+    align-items: start;
+  }
+
+  .faq-section__intro {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  @media (max-width: 1023px) {
+    .faq-section__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+    }
+
+    .faq-section__intro {
+      position: static;
+    }
+  }
+</style>

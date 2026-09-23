@@ -1,0 +1,192 @@
+---
+import { Image } from 'astro:assets';
+import Breadcrumbs, { type Crumb } from '../Breadcrumbs.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Button from '../Button.astro';
+import Metric from '../cards/Metric.astro';
+import lara from '../../assets/img/lara-borrego-freelance-paid-media.jpg';
+import type { Service } from '../../data/services';
+import { contactHref } from '../../lib/contact';
+
+interface Props {
+  service: Service;
+  crumbs: Crumb[];
+}
+
+const { service, crumbs } = Astro.props;
+
+// Titular con la parte destacada en color de acento
+const [before, after] = service.highlight
+  ? service.headline.split(service.highlight)
+  : [service.headline, undefined];
+---
+
+<section class="s-hero">
+  <div class="container s-hero__inner">
+    <Breadcrumbs items={crumbs} />
+    <div class="s-hero__grid">
+      <div class="s-hero__copy">
+        <h1 class="s-hero__title">
+          <Eyebrow>{service.eyebrow}</Eyebrow>
+          <span class="h1 h1--sm">
+            {before}{service.highlight && <span class="accent">{service.highlight}</span>}{after}
+          </span>
+        </h1>
+        <p class="lead s-hero__lead">{service.subtitle}</p>
+        <div class="s-hero__ctas">
+          <Button href={contactHref(service.primaryTipo, true)} tipo={service.primaryTipo} size="lg">
+            {service.primaryCta}
+          </Button>
+          <Button href={contactHref('llamada', true)} tipo="llamada" variant="outline" size="lg" icon="calendar">
+            Llamada gratuita de 30 min
+          </Button>
+        </div>
+      </div>
+
+      <div class="s-hero__card">
+        <div class="s-hero__who">
+          <Image src={lara} alt="Lara Borrego" width={112} height={112} loading="eager" class="s-hero__avatar" />
+          <div>
+            <p class="s-hero__name">Lara Borrego</p>
+            <p class="s-hero__caption">{service.cardCaption ?? 'Gestiona tu cuenta en persona'}</p>
+          </div>
+        </div>
+        <div class="s-hero__metrics">
+          {service.metrics.map((m) => <Metric value={m.value} label={m.label} />)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .s-hero {
+    padding-block: 48px 88px;
+  }
+
+  .s-hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .s-hero__grid {
+    display: flex;
+    align-items: center;
+    gap: 72px;
+  }
+
+  .s-hero__copy {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .s-hero__title {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .s-hero__lead {
+    max-width: 620px;
+  }
+
+  .s-hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .s-hero__card {
+    flex: 0 0 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 32px;
+    border-radius: 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-raised);
+    animation: rise-in 0.8s var(--ease-out) 0.15s backwards;
+  }
+
+  .s-hero__who {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .s-hero__who :global(.s-hero__avatar) {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-pill);
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .s-hero__name {
+    font-weight: 800;
+  }
+
+  .s-hero__caption {
+    font-size: 14px;
+    color: var(--muted-2);
+  }
+
+  .s-hero__metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .s-hero__metrics :global(.metric) {
+    transition:
+      background-color 0.25s ease,
+      translate 0.25s ease;
+  }
+
+  .s-hero__metrics :global(.metric:hover) {
+    background: var(--accent-tint);
+    translate: 0 -2px;
+  }
+
+  @media (max-width: 1179px) {
+    .s-hero__grid {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 48px;
+    }
+
+    .s-hero__card {
+      flex-basis: auto;
+      max-width: 560px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .s-hero {
+      padding-block: 24px 64px;
+    }
+
+    .s-hero__inner,
+    .s-hero__copy,
+    .s-hero__title {
+      gap: 22px;
+    }
+
+    .s-hero__card {
+      padding: 24px 20px;
+    }
+
+    .s-hero__metrics {
+      gap: 10px;
+    }
+
+    .s-hero__metrics :global(.metric__value) {
+      font-size: 24px;
+    }
+  }
+</style>

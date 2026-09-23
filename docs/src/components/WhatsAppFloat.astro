@@ -1,0 +1,208 @@
+---
+import { Image } from 'astro:assets';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import lara from '../assets/img/lara-borrego-freelance-paid-media.jpg';
+import { whatsappUrl } from '../config/site';
+
+// Botón flotante de WhatsApp con un globo de saludo que aparece una vez por sesión.
+---
+
+<div class="wa" data-wa>
+  <div class="wa__bubble" role="status" data-wa-bubble hidden>
+    <Image src={lara} alt="" width={80} height={80} class="wa__avatar" />
+    <p><strong>¿Hablamos?</strong> Escríbeme por WhatsApp y te respondo yo.</p>
+    <button type="button" class="wa__close" aria-label="Cerrar mensaje" data-wa-close>×</button>
+  </div>
+  <a
+    href={whatsappUrl()}
+    class="wa__btn"
+    target="_blank"
+    rel="noopener"
+    aria-label="Escríbeme por WhatsApp (se abre en una pestaña nueva)"
+    data-whatsapp
+  >
+    <span class="wa__ring" aria-hidden="true"></span>
+    <WhatsAppIcon size={28} />
+  </a>
+</div>
+
+<style>
+  .wa {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 70;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    transition:
+      opacity 0.3s ease,
+      translate 0.3s ease;
+  }
+
+  /* Mientras el banner de cookies está abierto, el botón se aparta */
+  :global(body.has-cookie-banner) .wa {
+    opacity: 0;
+    translate: 0 20px;
+    pointer-events: none;
+  }
+
+  .wa__btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #179447;
+    color: #fff;
+    box-shadow: 0 10px 28px rgba(23, 148, 71, 0.4);
+    transition:
+      transform 0.3s var(--ease-spring),
+      box-shadow 0.3s ease;
+    animation: pop-in 0.6s var(--ease-spring) 1.2s backwards;
+  }
+
+  .wa__btn:hover {
+    color: #fff;
+    transform: scale(1.08) rotate(-6deg);
+    box-shadow: 0 14px 36px rgba(23, 148, 71, 0.5);
+  }
+
+  .wa__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid #179447;
+    animation: wa-ring 2.6s ease-out 2s infinite;
+  }
+
+  @keyframes wa-ring {
+    0% {
+      opacity: 0.8;
+      scale: 1;
+    }
+    70%,
+    100% {
+      opacity: 0;
+      scale: 1.6;
+    }
+  }
+
+  .wa__bubble {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 290px;
+    padding: 14px 40px 14px 14px;
+    border-radius: 18px 18px 4px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-pop);
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--muted);
+    animation: rise-in 0.5s var(--ease-out);
+  }
+
+  .wa__bubble[hidden] {
+    display: none;
+  }
+
+  .wa__bubble strong {
+    color: var(--ink);
+  }
+
+  .wa__bubble :global(.wa__avatar) {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .wa__close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: var(--muted-2);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .wa__close:hover {
+    background: var(--surface-2);
+    color: var(--ink);
+  }
+
+  @media (max-width: 639px) {
+    .wa {
+      right: 14px;
+      bottom: 14px;
+    }
+
+    .wa__btn {
+      width: 54px;
+      height: 54px;
+    }
+
+    .wa__bubble {
+      max-width: calc(100vw - 28px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wa__ring {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const bubble = document.querySelector<HTMLElement>('[data-wa-bubble]');
+  const KEY = 'lb_wa_bubble';
+  let seen = false;
+  try {
+    seen = sessionStorage.getItem(KEY) === '1';
+  } catch {
+    /* sin almacenamiento */
+  }
+
+  const hideBubble = () => {
+    if (bubble) bubble.hidden = true;
+    try {
+      sessionStorage.setItem(KEY, '1');
+    } catch {
+      /* sin almacenamiento */
+    }
+  };
+
+  if (bubble && !seen) {
+    window.setTimeout(() => {
+      if (!document.body.classList.contains('has-cookie-banner')) bubble.hidden = false;
+      window.setTimeout(hideBubble, 9000);
+    }, 6000);
+  }
+
+  document.querySelector('[data-wa-close]')?.addEventListener('click', hideBubble);
+
+  // Evento para GA4 (vía GTM) en cualquier enlace de WhatsApp de la web
+  document.addEventListener('click', (event) => {
+    const link = (event.target as HTMLElement).closest('[data-whatsapp]');
+    if (!link) return;
+    hideBubble();
+    const w = window as unknown as { dataLayer?: unknown[] };
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ event: 'click_whatsapp', pagina_origen: location.pathname });
+  });
+</script>

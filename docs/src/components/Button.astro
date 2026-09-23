@@ -1,0 +1,161 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import Icon, { type IconName } from './Icon.astro';
+import type { Tipo } from '../lib/contact';
+
+// Botón o enlace con aspecto de botón.
+// - primary: fondo de acento (acción principal)
+// - outline: borde oscuro
+// - outline-soft: borde suave (navegación)
+// - light: blanco, para fondos oscuros
+// - ink: negro
+// Con `tipo`, el enlace preselecciona esa opción en el formulario de contacto.
+interface Props extends Omit<HTMLAttributes<'a'>, 'type'> {
+  href?: string;
+  variant?: 'primary' | 'outline' | 'outline-soft' | 'light' | 'ink';
+  size?: 'sm' | 'md' | 'lg';
+  icon?: IconName;
+  tipo?: Tipo;
+  type?: 'button' | 'submit';
+  block?: boolean;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  icon,
+  tipo,
+  type = 'button',
+  block = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = ['btn', `btn--${variant}`, `btn--${size}`, block && 'btn--block', className];
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes} data-tipo={tipo} {...rest}>
+      {icon && <Icon name={icon} />}
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={classes} {...(rest as HTMLAttributes<'button'>)}>
+      {icon && <Icon name={icon} />}
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn :global(svg) {
+    flex-shrink: 0;
+  }
+
+  .btn--sm {
+    min-height: 46px;
+    padding: 0 20px;
+    font-size: 15px;
+  }
+
+  .btn--md {
+    min-height: 52px;
+    padding: 0 24px;
+    font-size: 16px;
+  }
+
+  .btn--lg {
+    min-height: 56px;
+    padding: 0 28px;
+    font-size: 17px;
+  }
+
+  .btn--block {
+    display: flex;
+    width: 100%;
+  }
+
+  .btn--primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: var(--shadow-btn);
+  }
+
+  .btn--primary:hover {
+    background: var(--accent-dark);
+    color: #fff;
+  }
+
+  .btn--outline {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+  }
+
+  .btn--outline:hover {
+    border-color: var(--accent-dark);
+    color: var(--accent-dark);
+  }
+
+  .btn--outline-soft {
+    border: 1.5px solid var(--border-strong);
+    color: var(--ink);
+    background: transparent;
+  }
+
+  .btn--outline-soft:hover {
+    border-color: var(--accent-dark);
+    color: var(--accent-dark);
+  }
+
+  .btn--light {
+    background: #fff;
+    color: var(--dark);
+  }
+
+  .btn--light:hover {
+    background: var(--accent-tint);
+    color: var(--dark);
+  }
+
+  .btn--ink {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .btn--ink:hover {
+    background: var(--accent-dark);
+    color: #fff;
+  }
+
+  @media (max-width: 639px) {
+    .btn {
+      white-space: normal;
+      padding-block: 12px;
+    }
+  }
+</style>

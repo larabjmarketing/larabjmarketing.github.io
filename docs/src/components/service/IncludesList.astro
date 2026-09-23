@@ -1,0 +1,95 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import Icon from '../Icon.astro';
+
+// "Qué incluye": título a la izquierda y lista con checks a la derecha.
+interface Props {
+  eyebrow: string;
+  title: string;
+  items: readonly string[];
+  note?: string;
+}
+
+const { eyebrow, title, items, note } = Astro.props;
+---
+
+<section class="section section--surface includes">
+  <div class="container includes__inner">
+    <div class="section-head includes__head">
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 class="h2 h2--md">{title}</h2>
+      {note && <p class="text">{note}</p>}
+    </div>
+    <ul class="includes__list grid" role="list">
+      {
+        items.map((item) => (
+          <li>
+            <span class="includes__check">
+              <Icon name="check" size={16} strokeWidth={2.4} />
+            </span>
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .includes__inner {
+    display: grid;
+    grid-template-columns: 460px minmax(0, 1fr);
+    gap: 80px;
+    align-items: start;
+  }
+
+  .includes__head {
+    margin-bottom: 0;
+  }
+
+  .includes__list {
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .includes__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .includes__check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: var(--radius-pill);
+    background: var(--accent-tint);
+    color: var(--accent-dark);
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease,
+      scale 0.3s var(--ease-spring);
+  }
+
+  .includes__list li:hover .includes__check {
+    background: var(--accent);
+    color: #fff;
+    scale: 1.12;
+  }
+
+  @media (max-width: 1023px) {
+    .includes__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+    }
+  }
+</style>

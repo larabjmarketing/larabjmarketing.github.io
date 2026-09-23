@@ -1,0 +1,71 @@
+---
+// Páginas legales. El texto está PENDIENTE (sección 12 del brief): mientras tanto no se indexan
+// y quedan fuera del sitemap. Cuando Lara tenga los textos, se sustituye `pending` por el contenido.
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+import { LEGAL_PAGES } from '../data/legal';
+
+
+export const getStaticPaths = (() => LEGAL_PAGES.map((page) => ({ params: { legal: page.slug }, props: { page } }))) satisfies GetStaticPaths;
+
+const { page } = Astro.props as { page: (typeof LEGAL_PAGES)[number] };
+---
+
+<BaseLayout title={`${page.title} | Lara Borrego`} description={page.description} noindex>
+  <section class="section legal">
+    <div class="container legal__inner">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: page.title }]} />
+      <h1 class="h1 h1--sm">{page.title}</h1>
+      <div class="legal__pending" role="note">
+        <p><strong>Texto pendiente.</strong> Esta página se completará con el texto legal definitivo.</p>
+        <p>
+          Mientras tanto, para cualquier consulta sobre tus datos escribe a{' '}
+          <a href={`mailto:${SITE.email}`} class="inline-link">{SITE.email}</a>.
+        </p>
+      </div>
+      {
+        page.slug === 'cookies' && (
+          <p class="text">
+            Puedes cambiar tu elección sobre las cookies en cualquier momento:{' '}
+            <button type="button" class="legal__btn" data-cookie-settings>
+              Configurar cookies
+            </button>
+          </p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 820px;
+  }
+
+  .legal__pending {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px 28px;
+    border-radius: var(--radius-card);
+    background: var(--accent-tint);
+    border: 1px solid var(--accent-border);
+    font-size: 17px;
+  }
+
+  .legal__btn {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-weight: 700;
+    color: var(--accent-dark);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>

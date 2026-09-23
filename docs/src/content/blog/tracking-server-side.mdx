@@ -1,0 +1,78 @@
+---
+title: 'Tracking server-side: guía para recuperar conversiones perdidas'
+shortTitle: 'Tracking server-side'
+description: 'Bloqueadores, cookies rechazadas e iOS hacen que parte de tus conversiones no llegue a Google ni a Meta. Así funciona el tracking server-side y así lo configuro en los proyectos.'
+excerpt: 'GTM server-side, API de conversiones de Meta y conversiones mejoradas, explicado paso a paso.'
+date: 2026-09-04
+category: 'Medición y analítica'
+readingTime: 11
+image: '../../assets/blog/cap-meta-api-conversiones.jpg'
+imageAlt: 'Configuración de la API de conversiones en el Administrador de eventos de Meta'
+cover:
+  tone: tint
+  bars: [70, 50, 65, 40, 80]
+summary:
+  - { label: 'El problema', text: 'el píxel del navegador no ve todas tus conversiones.' }
+  - { label: 'La solución', text: 'enviar los eventos también desde un servidor que controlas tú.' }
+  - { label: 'Lo que ganas', text: 'más señal para que las plataformas pujen mejor y datos más parecidos a tus ventas reales.' }
+sidebarCta:
+  title: '¿Revisamos tu medición?'
+  text: 'En 30 minutos vemos si estás perdiendo conversiones y cómo recuperarlas.'
+finalCta:
+  title: '¿Tu medición cuadra con tus ventas?'
+  text: 'Te ayudo a comprobarlo en una llamada gratuita de 30 minutos.'
+faq:
+  - q: '¿El server-side sustituye al píxel?'
+    a: 'No. Lo normal es que convivan: el píxel en el navegador y la API desde el servidor, deduplicados entre sí.'
+  - q: '¿Es compatible con el RGPD?'
+    a: 'Sí, siempre que respetes el consentimiento del usuario y envíes solo los datos para los que tienes base legal.'
+  - q: '¿Necesito un desarrollador?'
+    a: 'Depende de la opción. Las integraciones con socios no lo requieren; la integración directa y GTM en servidor sí necesitan conocimientos técnicos.'
+sources:
+  - { label: 'Dataslayer', href: 'https://www.dataslayer.ai/blog/server-side-tracking-2026' }
+service:
+  label: 'Implementación de tracking server-side'
+  href: '/medicion-server-side/'
+---
+
+import captura from '../../assets/blog/cap-meta-api-conversiones.jpg';
+
+## Por qué se pierden conversiones
+
+Durante años, medir era tan sencillo como pegar un píxel en la web. Hoy ese píxel se encuentra con bloqueadores de anuncios, cookies rechazadas, navegadores que limitan el seguimiento e iOS. Según un análisis de Dataslayer, entre un 15 % y un 40 % de las conversiones no llegan a Google Ads ni a Meta por estos motivos.
+
+El efecto no es solo que tus informes se queden cortos. Las campañas automatizadas pujan con esos datos, así que si ven menos conversiones de las reales, toman peores decisiones.
+
+## Qué es el tracking server-side
+
+Con el píxel tradicional, el navegador del usuario envía cada evento directamente a Google o a Meta. En server-side, los eventos pasan por un servidor que controlas tú y desde ahí se envían a cada plataforma.
+
+Las piezas más habituales son un contenedor de **Google Tag Manager en servidor**, la **API de conversiones de Meta** y las **conversiones mejoradas** de Google Ads, que añaden datos cifrados como el email para mejorar la atribución.
+
+## Las opciones para configurarlo en Meta
+
+<Figure
+  src={captura}
+  alt="Configuración de la API de conversiones en el Administrador de eventos de Meta"
+  caption="Configuración de la API de conversiones en el Administrador de eventos de Meta: integración directa, con o sin Dataset Quality API, o integración con socios."
+/>
+
+**Integración directa.** Es la más flexible y necesita un desarrollador. Si activas la Dataset Quality API, además ves métricas como la tasa de coincidencia de eventos, que te dice si Meta está reconociendo a los usuarios que le envías.
+
+**Integración con socios.** WordPress, Shopify, Tealium, Segment y otras plataformas se conectan sin código. Es la opción más rápida si tu web ya está en una de ellas.
+
+**GTM en servidor.** Es la que uso en la mayoría de proyectos, porque con un mismo contenedor envío los eventos a GA4, Google Ads y Meta y tengo todo el control en un solo sitio.
+
+<MidCta title="¿No sabes cuántas conversiones estás perdiendo?" text="Lo miramos en una llamada gratuita de 30 minutos." />
+
+## Tres detalles que marcan la diferencia
+
+**Deduplicación.** Si envías el mismo evento desde el navegador y desde el servidor, ambos deben llevar el mismo identificador de evento. Si no, Meta contará la conversión dos veces.
+
+**Calidad de coincidencia.** Cuantos más datos útiles envíes (email, teléfono, siempre cifrados), mejor podrá la plataforma atribuir la conversión. En Meta lo ves en la puntuación de calidad de coincidencia de eventos.
+
+**Consentimiento.** El server-side no es una forma de saltarse las cookies. Configúralo con Consent Mode v2 y envía solo los datos que tengas permiso para usar.
+
+## Qué cuesta mantenerlo
+
+El contenedor de servidor necesita alojamiento, en Google Cloud o en servicios especializados, con un coste mensual que depende del tráfico de tu web. A eso se suma la configuración inicial y una revisión periódica cuando cambian la web o las plataformas.

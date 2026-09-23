@@ -1,0 +1,330 @@
+---
+import { Image } from 'astro:assets';
+import Eyebrow from '../Eyebrow.astro';
+import Metric from '../cards/Metric.astro';
+import Icon from '../Icon.astro';
+import lara from '../../assets/img/lara-borrego-freelance-paid-media.jpg';
+
+const platforms = ['Google Ads', 'Meta Ads', 'TikTok Ads', 'LinkedIn Ads', 'Programática', 'Medición'];
+---
+
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <h1 class="hero__title">
+        <Eyebrow>Freelance de Paid Media en España</Eyebrow>
+        <span class="h1">Publicidad que se mide en <span class="accent">ventas</span>, no en clics.</span>
+      </h1>
+      <p class="lead hero__lead">
+        Llevo más de ocho años dentro de cuentas de Google Ads, Meta y programática. Me encargo de la estrategia, monto y
+        optimizo las campañas y me aseguro de que lo que se mide coincida con lo que vendes.
+      </p>
+
+      <form class="hero__form" data-prefill-web="auditoria">
+        <label for="hero-web" class="visually-hidden">Tu web</label>
+        <input id="hero-web" type="text" inputmode="url" autocomplete="url" placeholder="Escribe la URL de tu web" />
+        <button type="submit" class="hero__submit">Pide tu auditoría</button>
+      </form>
+
+      <p class="hero__note">
+        Te respondo en 48 horas. ¿Prefieres hablarlo?{' '}
+        <a href="?tipo=llamada#contacto" data-tipo="llamada" class="inline-link">Reserva una llamada gratuita de 30 min</a>
+      </p>
+
+      <ul class="hero__chips" role="list" aria-label="Plataformas">
+        {
+          platforms.map((p) => (
+            <li>
+              <Icon name="check" size={14} strokeWidth={2.4} class="accent" />
+              {p}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="hero__visual">
+      <Image
+        src={lara}
+        alt="Lara Borrego, freelance de paid media"
+        widths={[360, 480, 640, 800]}
+        sizes="(max-width: 639px) calc(100vw - 40px), 400px"
+        quality={72}
+        loading="eager"
+        fetchpriority="high"
+        class="hero__photo"
+      />
+      <Metric value="11" label="plataformas y formatos" variant="float" class="hero__m hero__m--1" />
+      <Metric value="8+ años" label="en paid media y ad ops" variant="float" class="hero__m hero__m--2" />
+      <Metric value="+30%" label="ROAS en e-commerce" variant="float" class="hero__m hero__m--3" />
+      <div class="hero__badge">
+        <span>Lara Borrego · yo llevo tu cuenta</span>
+        <a href="#casos" class="link-arrow">Ver casos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: 72px var(--section-y);
+  }
+
+  .hero__inner {
+    display: flex;
+    align-items: center;
+    gap: 72px;
+  }
+
+  .hero__copy {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .hero__title {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .hero__lead {
+    max-width: 600px;
+  }
+
+  .hero__form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 580px;
+    padding: 8px 8px 8px 24px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    border: 1px solid var(--border-input);
+    box-shadow: var(--shadow-float);
+  }
+
+  .hero__form:focus-within {
+    border-color: var(--accent);
+  }
+
+  .hero__form input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 48px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+  }
+
+  .hero__form input::placeholder {
+    color: var(--muted-2);
+  }
+
+  .hero__submit {
+    flex-shrink: 0;
+    height: 52px;
+    padding: 0 26px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition: background-color 0.2s ease;
+  }
+
+  .hero__submit:hover {
+    background: var(--accent-dark);
+  }
+
+  .hero__note {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .hero__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 620px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero__chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Foto con métricas flotantes */
+  .hero__visual {
+    position: relative;
+    flex: 0 0 520px;
+    height: 620px;
+  }
+
+  .hero__visual :global(.hero__photo) {
+    position: absolute;
+    left: 60px;
+    top: 0;
+    width: 400px;
+    height: 560px;
+    border-radius: var(--radius-block);
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .hero__visual :global(.hero__m) {
+    position: absolute;
+  }
+
+  .hero__visual :global(.hero__m--1) {
+    left: 0;
+    top: 150px;
+  }
+
+  .hero__visual :global(.hero__m--2) {
+    right: 0;
+    top: 60px;
+  }
+
+  .hero__visual :global(.hero__m--3) {
+    right: 0;
+    top: 360px;
+  }
+
+  .hero__badge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 520px;
+    width: max-content;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 14px 22px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    box-shadow: var(--shadow-pop);
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .hero__badge .link-arrow {
+    font-size: 13px;
+  }
+
+  /* Escritorio estrecho: la foto se reduce para dejar sitio al titular */
+  @media (min-width: 1024px) and (max-width: 1339px) {
+    .hero__inner {
+      gap: 48px;
+    }
+
+    .hero__visual {
+      zoom: 0.82;
+    }
+  }
+
+  /* Tablet: una columna, foto debajo */
+  @media (max-width: 1023px) {
+    .hero {
+      padding-top: 48px;
+    }
+
+    .hero__inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 56px;
+    }
+
+    .hero__visual {
+      flex-basis: auto;
+      width: 520px;
+      max-width: 100%;
+      margin-inline: auto;
+    }
+  }
+
+  /* Móvil: métricas en fila bajo la foto */
+  @media (max-width: 639px) {
+    .hero {
+      padding-top: 32px;
+    }
+
+    .hero__copy,
+    .hero__title {
+      gap: 22px;
+    }
+
+    .hero__form {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 8px;
+      border-radius: 24px;
+    }
+
+    .hero__form input {
+      padding: 0 14px;
+    }
+
+    .hero__visual {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero__visual :global(.hero__photo) {
+      position: static;
+      grid-column: 1 / -1;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+    }
+
+    .hero__visual :global(.hero__m) {
+      position: static;
+      padding: 12px;
+      border-radius: 14px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--border);
+    }
+
+    .hero__visual :global(.hero__m .metric__value) {
+      font-size: 20px;
+    }
+
+    .hero__visual :global(.hero__m .metric__label) {
+      font-size: 12px;
+    }
+
+    .hero__badge {
+      position: static;
+      grid-column: 1 / -1;
+      width: auto;
+      white-space: normal;
+      text-align: center;
+      border-radius: 20px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--border);
+    }
+  }
+</style>

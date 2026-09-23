@@ -1,0 +1,87 @@
+---
+import Button from './Button.astro';
+
+// Banda destacada con fondo tint (ChatGPT Ads en la home).
+interface Props {
+  label: string;
+  title: string;
+  text: string;
+  href: string;
+  cta: string;
+  /** Texto oculto que completa el nombre accesible del botón (p. ej. "sobre ChatGPT Ads"). */
+  ctaContext?: string;
+}
+
+const { label, title, text, href, cta, ctaContext } = Astro.props;
+---
+
+<section class="section section--flush-top">
+  <div class="container">
+    <div class="band">
+      <div class="band__copy">
+        <p class="label">{label}</p>
+        <h2 class="band__title">{title}</h2>
+        <p class="band__text">{text}</p>
+      </div>
+      <Button href={href} size="lg" class="band__cta">
+        {cta}{ctaContext && <span class="visually-hidden"> {ctaContext}</span>}
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+    padding: 48px 56px;
+    border-radius: 26px;
+    background: var(--accent-tint);
+    border: 1px solid var(--accent-border);
+  }
+
+  .band__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 820px;
+  }
+
+  .band .label {
+    color: var(--accent-dark);
+  }
+
+  .band__title {
+    font-size: clamp(28px, 22px + 1.3vw, 38px);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  .band__text {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .band :global(.band__cta) {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1023px) {
+    .band {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 28px;
+      padding: 40px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .band {
+      padding: 32px 24px;
+    }
+  }
+</style>

@@ -1,0 +1,324 @@
+---
+// Home: design/Main.dc.html + design/Home-2.dc.html como una sola página.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import PlatformMarquee from '../components/home/PlatformMarquee.astro';
+import Comparison from '../components/home/Comparison.astro';
+import Servicios360 from '../components/home/Servicios360.astro';
+import AuditReport from '../components/home/AuditReport.astro';
+import About from '../components/home/About.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Button from '../components/Button.astro';
+import Steps from '../components/Steps.astro';
+import HighlightBand from '../components/HighlightBand.astro';
+import FaqSection from '../components/FaqSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import IconCard from '../components/cards/IconCard.astro';
+import CaseCard from '../components/cards/CaseCard.astro';
+import type { IconName } from '../components/Icon.astro';
+import { getImage } from 'astro:assets';
+import { PAGES, PAGE_READY, SITE } from '../config/site';
+import { HOME_FAQ } from '../data/home-faq';
+import lara from '../assets/img/lara-borrego-freelance-paid-media.jpg';
+
+const services: { icon: IconName; title: string; text: string; href: string; cta: string }[] = [
+  {
+    icon: 'search-plus',
+    title: 'Auditoría de cuentas',
+    text: 'Estructura, señales, medición, pujas y creatividades. Un plan priorizado a 90 días.',
+    href: '/auditoria-google-ads/',
+    cta: 'Pide una auditoría',
+  },
+  {
+    icon: 'search',
+    title: 'Google y Microsoft Ads',
+    text: 'Search, Performance Max, AI Max, Shopping, YouTube y Demand Gen para leads y e-commerce.',
+    href: '/freelance-google-ads/',
+    cta: 'Ver Google Ads',
+  },
+  {
+    icon: 'instagram',
+    title: 'Meta, TikTok y LinkedIn',
+    text: 'Advantage+ y Andromeda, crecimiento en TikTok y captación B2B en LinkedIn.',
+    href: '/freelance-meta-ads/',
+    cta: 'Ver Meta, TikTok y LinkedIn',
+  },
+  {
+    icon: 'screen',
+    title: 'Programática y omnicanal',
+    text: 'DV360, Amazon DSP, DOOH, televisión conectada y audio digital.',
+    href: '/publicidad-programatica/',
+    cta: 'Ver programática',
+  },
+  {
+    icon: 'chat',
+    title: 'ChatGPT Ads y retail media',
+    text: 'Anuncios en ChatGPT, disponibles en España desde agosto de 2026, y campañas en Amazon.',
+    href: '/chatgpt-ads/',
+    cta: 'Ver ChatGPT Ads',
+  },
+  {
+    icon: 'people',
+    title: 'Apoyo a agencias',
+    text: 'Bolsa de horas senior, revisión de cuentas y formación de equipos in-house.',
+    href: '/apoyo-agencias/',
+    cta: 'Ver apoyo a agencias',
+  },
+];
+
+const cases = [
+  {
+    figure: '+30%',
+    figureLabel: 'de ROAS',
+    title: 'E-commerce de mascotas',
+    text: 'Shopping y PMax con feed segmentado por margen y pujas tROAS por rentabilidad.',
+    meta: 'Google Ads · cliente confidencial',
+  },
+  {
+    figure: '+60%',
+    figureLabel: 'de visitas a tienda',
+    title: 'Cadena de supermercados',
+    text: 'Plan omnicanal con DOOH y campañas locales, midiendo visitas físicas por zona.',
+    meta: 'Programática · cliente confidencial',
+  },
+  {
+    figure: '-40%',
+    figureLabel: 'de coste por lead',
+    title: 'Centro de formación',
+    text: 'Lead scoring y matrículas del CRM de vuelta a Google y Meta para pujar por alumnos.',
+    meta: 'Google y Meta · cliente confidencial',
+  },
+];
+
+const steps = [
+  { title: 'Auditar', text: 'Reviso cuentas, tracking, embudo y objetivos antes de tocar nada.' },
+  { title: 'Medir', text: 'GTM, GA4, server-side y CRM para que el algoritmo aprenda de ventas reales.' },
+  { title: 'Activar', text: 'Estructura, audiencias, creatividades y pujas en las plataformas que encajan.' },
+  { title: 'Escalar', text: 'Tests trimestrales, nuevos canales e informes en lenguaje claro ligados a rentabilidad.' },
+];
+
+// JSON-LD de la home: Person + ProfessionalService (sección 8 del brief) y FAQPage
+const site = Astro.site!;
+const home = new URL('/', site).href;
+const photo = await getImage({ src: lara, width: 800, format: 'jpg' });
+const photoUrl = new URL(photo.src, site).href;
+const personId = `${home}#lara-borrego`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': personId,
+    name: SITE.name,
+    jobTitle: SITE.jobTitle,
+    url: home,
+    image: photoUrl,
+    email: `mailto:${SITE.email}`,
+    telephone: SITE.phone,
+    sameAs: [SITE.linkedin],
+    address: { '@type': 'PostalAddress', addressLocality: 'Granada', addressCountry: 'ES' },
+    knowsAbout: ['Google Ads', 'Meta Ads', 'TikTok Ads', 'LinkedIn Ads', 'Publicidad programática', 'ChatGPT Ads', 'Tracking server-side', 'Lead scoring'],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${home}#servicio`,
+    name: 'Lara Borrego, freelance de paid media',
+    description:
+      'Freelance de paid media en España: Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, programática y ChatGPT Ads, con campañas medidas en ventas reales.',
+    url: home,
+    image: photoUrl,
+    email: SITE.email,
+    telephone: SITE.phone,
+    areaServed: { '@type': 'Country', name: 'España' },
+    address: { '@type': 'PostalAddress', addressLocality: 'Granada', addressCountry: 'ES' },
+    founder: { '@id': personId },
+    sameAs: [SITE.linkedin],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: HOME_FAQ.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  },
+];
+
+const auditPoints = [
+  { title: 'Inversión desperdiciada.', text: 'Términos, ubicaciones y audiencias que gastan sin devolver.' },
+  { title: 'Medición real.', text: 'Si las conversiones que optimizas son de verdad ventas.' },
+  { title: 'Señales al algoritmo.', text: 'Valores, lead scoring y datos del CRM que faltan.' },
+  { title: 'Plan a 90 días.', text: 'Qué haría primero y qué impacto espero.' },
+];
+---
+
+<BaseLayout
+  title="Lara Borrego | Freelance de Paid Media en España"
+  description="Freelance de paid media: Google Ads, Meta Ads, programática y ChatGPT Ads. Campañas medidas en ventas reales. Pide tu auditoría o una llamada gratuita de 30 min."
+  hasContactForm
+  jsonLd={jsonLd}
+>
+  <Hero />
+
+  <PlatformMarquee />
+
+  <!-- Qué hago -->
+  <section id="servicios" class="section">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Qué hago</Eyebrow>
+        <h2 class="h2">Trabajo en casi cualquier plataforma donde se compre publicidad.</h2>
+        <p class="text">
+          He gestionado desde la cuenta de Search de un negocio local hasta planes con programática, televisión conectada y
+          pantallas en la calle. Da igual el tamaño: reviso cada cuenta con el mismo detalle.
+        </p>
+      </div>
+      <div class="grid grid--3">
+        {services.map((s) => <IconCard {...s} />)}
+      </div>
+    </div>
+  </section>
+
+  <Comparison />
+
+  <Servicios360 />
+
+  <!-- Casos -->
+  <section id="casos" class="section">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Resultados</Eyebrow>
+        <h2 class="h2">Algunos resultados de proyectos recientes.</h2>
+      </div>
+      <div class="grid grid--3">
+        {cases.map((c) => <CaseCard {...c} />)}
+      </div>
+      <div class="actions">
+        <Button href="?tipo=llamada#contacto" tipo="llamada" variant="outline" icon="calendar">
+          ¿Te cuento cómo lo hicimos? Llamada gratuita de 30 min
+        </Button>
+        {PAGE_READY.casos && <a href={PAGES.casos} class="link-arrow">Ver todos los casos</a>}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo trabajo -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow tone="surface">Cómo trabajo</Eyebrow>
+        <h2 class="h2">Así trabajo.</h2>
+        <p class="text">El orden importa: si la medición falla, optimizar las campañas sirve de poco.</p>
+      </div>
+      <Steps steps={steps} />
+    </div>
+  </section>
+
+  <!-- La auditoría -->
+  <section class="section">
+    <div class="container audit">
+      <div class="audit__copy">
+        <Eyebrow>La auditoría</Eyebrow>
+        <h2 class="h2">Qué reviso en una auditoría.</h2>
+        <ul class="audit__list" role="list">
+          {
+            auditPoints.map((p) => (
+              <li>
+                <span class="accent" aria-hidden="true">● </span>
+                <strong>{p.title}</strong> <span class="audit__muted">{p.text}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="audit__report">
+        <AuditReport />
+      </div>
+    </div>
+  </section>
+
+  <HighlightBand
+    label="Novedad · desde agosto 2026 en España"
+    title="Ya se puede anunciar en ChatGPT en España."
+    text="Si quieres probarlo, te ayudo a ver si tiene sentido para tu negocio, a preparar la medición y a plantear las primeras pruebas."
+    href="/chatgpt-ads/"
+    cta="Saber más"
+    ctaContext="sobre la publicidad en ChatGPT"
+  />
+
+  <About />
+
+  <FaqSection id="faq" title="Lo que me preguntan antes de contratar a una freelance de paid media." items={HOME_FAQ}>
+    <p class="text-sm">¿Tienes otra duda? La resolvemos en una llamada gratuita de 30 minutos, sin compromiso.</p>
+    <Button href="?tipo=llamada#contacto" tipo="llamada" variant="outline" icon="calendar" class="faq-cta">
+      Reservar llamada
+    </Button>
+  </FaqSection>
+
+  <ContactSection
+    title="¿Hablamos de tu cuenta?"
+    text="Cuéntame qué tienes activo y qué te gustaría conseguir. En 48 horas te respondo con lo que veo y con lo que haría primero."
+  />
+</BaseLayout>
+
+<style>
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+    margin-top: 48px;
+  }
+
+  .audit {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .audit__copy {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .audit__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  .audit__muted {
+    color: var(--muted);
+  }
+
+  .audit__report {
+    flex: 0 0 520px;
+  }
+
+  :global(.faq-cta) {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 1023px) {
+    .audit {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 48px;
+    }
+
+    .audit__report {
+      flex-basis: auto;
+      width: 100%;
+      max-width: 560px;
+    }
+  }
+</style>

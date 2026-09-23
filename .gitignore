@@ -1,0 +1,13 @@
+# Dependencias y compilación (se generan con npm install / npm run build)
+node_modules/
+docs/dist/
+docs/.astro/
+
+# Entorno (claves): nunca al repositorio
+.env
+.env.*
+!.env.example
+
+# Sistema y editor
+.DS_Store
+docs/.claude/

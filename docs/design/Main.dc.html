@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Lara Borrego · Home parte 1</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FAFAF8;color:#111114}
+a{color:#111114;text-decoration:none}a:hover{color:#0B6B60}
+h1,h2,h3,p{margin:0}
+</style>
+</helmet>
+<div style="width: 1440px; height: 4700px; box-sizing: border-box; display: flex; flex-direction: column; background: #FAFAF8; overflow: hidden;">
+
+<!-- NAV FLOTANTE -->
+<div style="box-sizing: border-box; padding: 20px 80px 0;">
+<nav style="height: 68px; box-sizing: border-box; padding: 0 12px 0 28px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 8px 30px rgba(17,17,20,0.06); display: flex; align-items: center; justify-content: space-between;">
+<a href="#top" style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Lara <span style="color: {{accentText}};">Borrego.</span></a>
+<div style="display: flex; align-items: center; gap: 24px; font-size: 15px; font-weight: 500;">
+<a href="#servicios">Paid Media ⌄</a>
+<a href="#vision360">Visión 360 ⌄</a>
+<a href="#casos">Casos</a>
+<a href="#blog">Blog</a>
+<a href="#docencia">Docencia</a>
+<a href="#sobre">Sobre mí</a>
+<a href="#faq">FAQ</a>
+<a href="#llamada" style="display: flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #D4D2CC; font-weight: 700;">Llamada gratis 30 min</a>
+<a href="#auditoria" style="display: flex; align-items: center; height: 46px; padding: 0 24px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; box-shadow: 0 6px 18px rgba(13,127,113,0.30);">Pide tu auditoría</a>
+</div>
+</nav>
+</div>
+
+<!-- HERO -->
+<section id="top" style="box-sizing: border-box; padding: 72px 80px 96px; display: flex; gap: 72px; align-items: center;">
+<div style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; gap: 28px;">
+<h1 style="display: flex; flex-direction: column; gap: 28px; font-weight: 800;"><span style="align-self: flex-start; display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #3F3F46;"><span style="width: 8px; height: 8px; border-radius: 999px; background: {{accent}};"></span>Freelance de Paid Media en España</span><span style="font-size: 72px; line-height: 1.04; letter-spacing: -0.04em;">Publicidad que se mide en <span style="color: {{accentText}};">ventas</span>, no en clics.</span></h1>
+<p style="font-size: 20px; line-height: 1.6; color: #52525B; max-width: 600px;">Llevo más de ocho años dentro de cuentas de Google Ads, Meta y programática. Me encargo de la estrategia, monto y optimizo las campañas y me aseguro de que lo que se mide coincida con lo que vendes.</p>
+<form style="display: flex; align-items: center; gap: 8px; max-width: 580px; box-sizing: border-box; padding: 8px 8px 8px 24px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E4E2DC; box-shadow: 0 8px 30px rgba(17,17,20,0.06);">
+<label for="hero-web" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Tu web</label>
+<input id="hero-web" type="url" placeholder="Escribe la URL de tu web" style="flex-grow: 1; height: 48px; border: 0; outline: none; font-size: 16px; font-family: inherit; background: transparent;">
+<button type="button" style="height: 52px; padding: 0 26px; border: 0; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; box-shadow: 0 6px 18px rgba(13,127,113,0.30);">Pide tu auditoría</button>
+</form>
+<span style="font-size: 15px; color: #52525B;">Te respondo en 48 horas. ¿Prefieres hablarlo? <a href="#llamada" style="font-weight: 700; color: #0B6B60; text-decoration: underline;">Reserva una llamada gratuita de 30 min</a></span>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; max-width: 620px;">
+<span style="display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; font-size: 14px; font-weight: 600;"><span style="color: {{accentText}};">✓</span>Google Ads</span>
+<span style="display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; font-size: 14px; font-weight: 600;"><span style="color: {{accentText}};">✓</span>Meta Ads</span>
+<span style="display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; font-size: 14px; font-weight: 600;"><span style="color: {{accentText}};">✓</span>TikTok Ads</span>
+<span style="display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; font-size: 14px; font-weight: 600;"><span style="color: {{accentText}};">✓</span>LinkedIn Ads</span>
+<span style="display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; font-size: 14px; font-weight: 600;"><span style="color: {{accentText}};">✓</span>Programática</span>
+<span style="display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; font-size: 14px; font-weight: 600;"><span style="color: {{accentText}};">✓</span>Medición</span>
+</div>
+</div>
+<!-- Foto con métricas flotantes -->
+<div style="width: 520px; height: 620px; position: relative; flex-shrink: 0;">
+<img src="../assets/lara.jpg" alt="Lara Borrego, consultora de paid media" style="position: absolute; left: 60px; top: 0; width: 400px; height: 560px; border-radius: 28px; object-fit: cover; object-position: center 20%; display: block;">
+<div style="position: absolute; left: 0; top: 150px; box-sizing: border-box; padding: 16px 20px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 12px 36px rgba(17,17,20,0.12); display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 26px; font-weight: 800; color: {{accentText}};">11</span><span style="font-size: 13px; font-weight: 600; color: #52525B;">plataformas y formatos</span>
+</div>
+<div style="position: absolute; right: 0; top: 60px; box-sizing: border-box; padding: 16px 20px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 12px 36px rgba(17,17,20,0.12); display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 26px; font-weight: 800; color: {{accentText}};">8+ años</span><span style="font-size: 13px; font-weight: 600; color: #52525B;">en paid media y ad ops</span>
+</div>
+<div style="position: absolute; right: 0; top: 360px; box-sizing: border-box; padding: 16px 20px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 12px 36px rgba(17,17,20,0.12); display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 26px; font-weight: 800; color: {{accentText}};">+30%</span><span style="font-size: 13px; font-weight: 600; color: #52525B;">ROAS en e-commerce</span>
+</div>
+<div style="position: absolute; left: 110px; top: 520px; box-sizing: border-box; padding: 14px 22px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 12px 36px rgba(17,17,20,0.12); display: flex; flex-direction: column; align-items: center; gap: 2px;">
+<span style="font-size: 14px; font-weight: 700;">Lara Borrego · yo llevo tu cuenta</span>
+<a href="#casos" style="font-size: 13px; font-weight: 700; color: #0B6B60;">Ver casos →</a>
+</div>
+</div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" style="box-sizing: border-box; padding: 96px 80px; display: flex; flex-direction: column; gap: 48px;">
+<div style="display: flex; flex-direction: column; gap: 18px; max-width: 760px;">
+<span style="align-self: flex-start; display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #3F3F46;"><span style="width: 8px; height: 8px; border-radius: 999px; background: {{accent}};"></span>Qué hago</span>
+<h2 style="font-size: 52px; line-height: 1.08; font-weight: 800; letter-spacing: -0.035em;">Trabajo en casi cualquier plataforma donde se compre publicidad.</h2>
+<p style="font-size: 18px; line-height: 1.6; color: #52525B;">He gestionado desde la cuenta de Search de un negocio local hasta planes con programática, televisión conectada y pantallas en la calle. Da igual el tamaño: reviso cada cuenta con el mismo detalle.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+<a href="#" style="box-sizing: border-box; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; gap: 14px;">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #E3F3F0; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B6B60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path><path d="M11 8v6M8 11h6"></path></svg></span>
+<h3 style="font-size: 21px; font-weight: 700;">Auditoría de cuentas</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Estructura, señales, medición, pujas y creatividades. Un plan priorizado a 90 días.</p>
+<span style="font-size: 14px; font-weight: 700; color: #0B6B60;">Pide una auditoría →</span>
+</a>
+<a href="#" style="box-sizing: border-box; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; gap: 14px;">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #E3F3F0; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B6B60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span>
+<h3 style="font-size: 21px; font-weight: 700;">Google y Microsoft Ads</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Search, Performance Max, AI Max, Shopping, YouTube y Demand Gen para leads y e-commerce.</p>
+<span style="font-size: 14px; font-weight: 700; color: #0B6B60;">Ver Google Ads →</span>
+</a>
+<a href="#" style="box-sizing: border-box; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; gap: 14px;">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #E3F3F0; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B6B60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle></svg></span>
+<h3 style="font-size: 21px; font-weight: 700;">Meta, TikTok y LinkedIn</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Advantage+ y Andromeda, crecimiento en TikTok y captación B2B en LinkedIn.</p>
+<span style="font-size: 14px; font-weight: 700; color: #0B6B60;">Ver Meta, TikTok y LinkedIn →</span>
+</a>
+<a href="#" style="box-sizing: border-box; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; gap: 14px;">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #E3F3F0; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B6B60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="13" rx="2"></rect><path d="M8 21h8"></path></svg></span>
+<h3 style="font-size: 21px; font-weight: 700;">Programática y omnicanal</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">DV360, Amazon DSP, DOOH, televisión conectada y audio digital.</p>
+<span style="font-size: 14px; font-weight: 700; color: #0B6B60;">Ver programática →</span>
+</a>
+<a href="#" style="box-sizing: border-box; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; gap: 14px;">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #E3F3F0; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B6B60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg></span>
+<h3 style="font-size: 21px; font-weight: 700;">ChatGPT Ads y retail media</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Anuncios en ChatGPT, disponibles en España desde agosto de 2026, y campañas en Amazon.</p>
+<span style="font-size: 14px; font-weight: 700; color: #0B6B60;">Ver ChatGPT Ads →</span>
+</a>
+<a href="#" style="box-sizing: border-box; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; gap: 14px;">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #E3F3F0; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B6B60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3 19c.8-3 3.2-5 6-5s5.2 2 6 5"></path><path d="M15 14.5c2.4 0 4.3 1.6 5 4.5"></path></svg></span>
+<h3 style="font-size: 21px; font-weight: 700;">Apoyo a agencias</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Bolsa de horas senior, revisión de cuentas y formación de equipos in-house.</p>
+<span style="font-size: 14px; font-weight: 700; color: #0B6B60;">Ver apoyo a agencias →</span>
+</a>
+</div>
+</section>
+
+<!-- COMPARATIVA -->
+<section style="box-sizing: border-box; padding: 0 80px 96px; display: flex; flex-direction: column; gap: 40px;">
+<h2 style="font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; max-width: 760px;">¿Freelance o agencia? Esto es lo que cambia.</h2>
+<div style="box-sizing: border-box; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; overflow: hidden;">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 20px 36px; background: #F5F4F0; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
+<span style="color: #71717A;">Qué recibes</span><span style="color: #71717A;">Agencia típica</span><span style="color: #0B6B60;">Conmigo</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 20px 36px; border-top: 1px solid #ECEAE4; font-size: 16px;">
+<span style="font-weight: 700;">Quién toca tu cuenta</span><span style="color: #71717A;">Un junior con muchas cuentas</span><span style="font-weight: 700;"><span style="color: {{accentText}};">✓ </span>Yo, en persona</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 20px 36px; border-top: 1px solid #ECEAE4; font-size: 16px;">
+<span style="font-weight: 700;">Plataformas</span><span style="color: #71717A;">Google y Meta, el resto se subcontrata</span><span style="font-weight: 700;"><span style="color: {{accentText}};">✓ </span>De Search a DV360 y CTV</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 20px 36px; border-top: 1px solid #ECEAE4; font-size: 16px;">
+<span style="font-weight: 700;">Qué se mide</span><span style="color: #71717A;">Clics, CTR y conversiones de plataforma</span><span style="font-weight: 700;"><span style="color: {{accentText}};">✓ </span>Ventas, leads cualificados y margen</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 20px 36px; border-top: 1px solid #ECEAE4; font-size: 16px;">
+<span style="font-weight: 700;">Web, analítica, CRM y marca</span><span style="color: #71717A;">"No entra en el servicio"</span><span style="font-weight: 700;"><span style="color: {{accentText}};">✓ </span>Especialistas coordinados por mí</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 20px 36px; border-top: 1px solid #ECEAE4; font-size: 16px;">
+<span style="font-weight: 700;">Propiedad de las cuentas</span><span style="color: #71717A;">A veces, de la agencia</span><span style="font-weight: 700;"><span style="color: {{accentText}};">✓ </span>Siempre tuyas</span>
+</div>
+</div>
+</section>
+
+<!-- VISION 360 -->
+<section id="vision360" style="box-sizing: border-box; padding: 112px 80px; background: #15141F; color: #F4F4F5; display: flex; flex-direction: column; gap: 56px;">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 64px;">
+<div style="display: flex; flex-direction: column; gap: 20px; max-width: 760px;">
+<span style="align-self: flex-start; display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px; background: #22212E; border: 1px solid #33313F; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #D4D4D8;"><span style="width: 8px; height: 8px; border-radius: 999px; background: {{accent}};"></span>Visión 360</span>
+<h2 style="font-size: 60px; line-height: 1.04; font-weight: 800; letter-spacing: -0.04em;">Cuando hace falta algo más que anuncios, <span style="color: {{accentLight}};">lo coordino yo.</span></h2>
+</div>
+<p style="font-size: 18px; line-height: 1.65; color: #A1A1AA; max-width: 460px;">A menudo lo que frena una campaña es una web lenta, unas conversiones mal configuradas o un CRM que nadie revisa. Para eso trabajo con profesionales de confianza en cada área. Yo llevo la estrategia y el paid media y me ocupo de que todo encaje.</p>
+</div>
+<div style="display: flex; gap: 24px; align-items: stretch;">
+<div style="width: 400px; flex-shrink: 0; box-sizing: border-box; padding: 40px; border-radius: 26px; background: {{accent}}; color: #FFFFFF; display: flex; flex-direction: column; gap: 18px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.9;">El centro del plan</span>
+<h3 style="font-size: 34px; line-height: 1.1; font-weight: 800; letter-spacing: -0.03em;">Estrategia y paid media</h3>
+<p style="font-size: 16px; line-height: 1.6;">Defino objetivos, presupuesto y KPIs de negocio, gestiono las campañas y dirijo al equipo. Tú hablas solo conmigo.</p>
+<div style="flex-grow: 1;"></div>
+<div style="display: flex; align-items: center; gap: 14px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.35);">
+<img src="../assets/lara.jpg" alt="" style="width: 52px; height: 52px; border-radius: 999px; object-fit: cover; object-position: center 20%; border: 2px solid #FFFFFF;">
+<div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 800;">Lara Borrego</span><span style="font-size: 14px; opacity: 0.9;">Directora del proyecto</span></div>
+</div>
+</div>
+<div style="flex-grow: 1; flex-basis: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<div style="box-sizing: border-box; padding: 28px; border-radius: 22px; background: #1E1D2A; border: 1px solid #33313F; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5ED3C1;">Especialista</span>
+<h3 style="font-size: 21px; font-weight: 700;">Analítica y medición</h3>
+<p style="font-size: 15px; line-height: 1.55; color: #A1A1AA;">GA4, GTM, tracking server-side, Conversions API y dashboards de negocio.</p>
+</div>
+<div style="box-sizing: border-box; padding: 28px; border-radius: 22px; background: #1E1D2A; border: 1px solid #33313F; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5ED3C1;">Especialista</span>
+<h3 style="font-size: 21px; font-weight: 700;">Desarrollo web</h3>
+<p style="font-size: 15px; line-height: 1.55; color: #A1A1AA;">Webs, e-commerce y landings rápidas, pensadas para convertir tráfico de pago.</p>
+</div>
+<div style="box-sizing: border-box; padding: 28px; border-radius: 22px; background: #1E1D2A; border: 1px solid #33313F; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5ED3C1;">Especialista</span>
+<h3 style="font-size: 21px; font-weight: 700;">UX/UI y CRO</h3>
+<p style="font-size: 15px; line-height: 1.55; color: #A1A1AA;">Experiencia de usuario y tests de conversión sobre lo que ya tienes.</p>
+</div>
+<div style="box-sizing: border-box; padding: 28px; border-radius: 22px; background: #1E1D2A; border: 1px solid #33313F; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5ED3C1;">Especialista</span>
+<h3 style="font-size: 21px; font-weight: 700;">Branding y creatividad</h3>
+<p style="font-size: 15px; line-height: 1.55; color: #A1A1AA;">Identidad, piezas y vídeo para que cada anuncio se reconozca como tuyo.</p>
+</div>
+<div style="box-sizing: border-box; padding: 28px; border-radius: 22px; background: #1E1D2A; border: 1px solid #33313F; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5ED3C1;">Especialista</span>
+<h3 style="font-size: 21px; font-weight: 700;">CRM y automatización</h3>
+<p style="font-size: 15px; line-height: 1.55; color: #A1A1AA;">Lead scoring, flujos y conversiones offline para pujar por ventas reales.</p>
+</div>
+<div style="box-sizing: border-box; padding: 28px; border-radius: 22px; background: #1E1D2A; border: 1px solid #33313F; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5ED3C1;">Especialista</span>
+<h3 style="font-size: 21px; font-weight: 700;">Social media</h3>
+<p style="font-size: 15px; line-height: 1.55; color: #A1A1AA;">Contenido orgánico y comunidad alineados con las campañas de pago.</p>
+</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 40px; border-top: 1px solid #33313F;">
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 20px; font-weight: 700;"><span style="color: {{accentLight}};">01 </span>Un solo interlocutor</span><span style="font-size: 15px; line-height: 1.6; color: #A1A1AA;">No tienes que coordinar a cinco proveedores ni repetir lo mismo en cada reunión.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 20px; font-weight: 700;"><span style="color: {{accentLight}};">02 </span>Objetivos compartidos</span><span style="font-size: 15px; line-height: 1.6; color: #A1A1AA;">Todo el equipo trabaja con los mismos indicadores de negocio, empezando por las ventas.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 20px; font-weight: 700;"><span style="color: {{accentLight}};">03 </span>Equipo a medida</span><span style="font-size: 15px; line-height: 1.6; color: #A1A1AA;">Solo entra quien tu proyecto necesita y durante el tiempo que haga falta.</span></div>
+</div>
+<a href="#llamada" style="align-self: flex-start; display: flex; align-items: center; gap: 10px; height: 54px; padding: 0 28px; border-radius: 999px; background: #FFFFFF; color: #15141F; font-weight: 700;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"></rect><path d="M3 9h18M8 2v4M16 2v4"></path></svg>Cuéntame tu proyecto en una llamada gratuita de 30 min</a>
+</section>
+
+<!-- CASOS -->
+<section id="casos" style="box-sizing: border-box; padding: 96px 80px; display: flex; flex-direction: column; gap: 48px;">
+<div style="display: flex; flex-direction: column; gap: 18px; max-width: 760px;">
+<span style="align-self: flex-start; display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEAE4; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #3F3F46;"><span style="width: 8px; height: 8px; border-radius: 999px; background: {{accent}};"></span>Resultados</span>
+<h2 style="font-size: 52px; line-height: 1.08; font-weight: 800; letter-spacing: -0.035em;">Algunos resultados de proyectos recientes.</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+<div style="box-sizing: border-box; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 52px; font-weight: 800; letter-spacing: -0.03em; color: {{accentText}};">+30%</span><span style="font-size: 14px; font-weight: 700; color: #3F3F46; margin-top: -8px;">de ROAS</span>
+<h3 style="font-size: 19px; font-weight: 700;">E-commerce de mascotas</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Shopping y PMax con feed segmentado por margen y pujas tROAS por rentabilidad.</p>
+<span style="font-size: 13px; color: #71717A; padding-top: 10px; border-top: 1px solid #ECEAE4;">Google Ads · cliente confidencial</span>
+</div>
+<div style="box-sizing: border-box; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 52px; font-weight: 800; letter-spacing: -0.03em; color: {{accentText}};">+60%</span><span style="font-size: 14px; font-weight: 700; color: #3F3F46; margin-top: -8px;">de visitas a tienda</span>
+<h3 style="font-size: 19px; font-weight: 700;">Cadena de supermercados</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Plan omnicanal con DOOH y campañas locales, midiendo visitas físicas por zona.</p>
+<span style="font-size: 13px; color: #71717A; padding-top: 10px; border-top: 1px solid #ECEAE4;">Programática · cliente confidencial</span>
+</div>
+<div style="box-sizing: border-box; padding: 32px; border-radius: 22px; background: #FFFFFF; border: 1px solid #ECEAE4; box-shadow: 0 6px 24px rgba(17,17,20,0.04); display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 52px; font-weight: 800; letter-spacing: -0.03em; color: {{accentText}};">-40%</span><span style="font-size: 14px; font-weight: 700; color: #3F3F46; margin-top: -8px;">de coste por lead</span>
+<h3 style="font-size: 19px; font-weight: 700;">Centro de formación</h3>
+<p style="font-size: 15px; line-height: 1.6; color: #52525B;">Lead scoring y matrículas del CRM de vuelta a Google y Meta para pujar por alumnos.</p>
+<span style="font-size: 13px; color: #71717A; padding-top: 10px; border-top: 1px solid #ECEAE4;">Google y Meta · cliente confidencial</span>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 28px;"><a href="#llamada" style="display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 24px; border-radius: 999px; border: 1.5px solid #111114; font-weight: 700; font-size: 16px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"></rect><path d="M3 9h18M8 2v4M16 2v4"></path></svg>¿Te cuento cómo lo hicimos? Llamada gratuita de 30 min</a><a href="#" style="font-size: 15px; font-weight: 700; color: #0B6B60;">Ver todos los casos →</a></div>
+</section>
+
+
+<div style="flex-grow: 1;"></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0D7F71","options":["#0D7F71","#0F766E","#0E7F74","#0B6E8A"]},"$preview":{"width":1440,"height":4700}}'>
+class Component extends DCLogic {
+renderVals() {
+const a = this.props.accent ?? '#0D7F71';
+return { accent: a, accentText: a, accentLight: '#5ED3C1' };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+---
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import lara from '../assets/img/lara-borrego-freelance-paid-media.jpg';
+import { contactHref } from '../lib/contact';
+import { whatsappUrl } from '../config/site';
+
+// Banda oscura con llamada a la acción (final del blog y de los artículos).
+interface Props {
+  title: string;
+  text: string;
+  cta?: string;
+}
+
+const { title, text, cta = 'Reservar llamada gratuita de 30 min' } = Astro.props;
+---
+
+<section class="section section--flush-top cta-band-wrap">
+  <div class="container">
+    <div class="cta-band on-dark">
+      <div class="cta-band__copy">
+        <div class="cta-band__who">
+          <Image src={lara} alt="" width={96} height={96} class="cta-band__avatar" />
+          <span>Lara Borrego · te respondo yo</span>
+        </div>
+        <h2 class="h2 h2--sm">{title}</h2>
+        <p class="text">{text}</p>
+      </div>
+      <div class="cta-band__actions">
+        <Button href={contactHref('llamada', false)} tipo="llamada" size="lg" icon="calendar">{cta}</Button>
+        <a href={whatsappUrl()} class="cta-band__wa" target="_blank" rel="noopener" data-whatsapp>
+          <WhatsAppIcon size={20} /> Escríbeme por WhatsApp<span class="visually-hidden"> (se abre en una pestaña nueva)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band-wrap {
+    padding-bottom: 80px;
+  }
+
+  .cta-band {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+    padding: 56px 64px;
+    border-radius: var(--radius-block-lg);
+    background: var(--dark);
+    color: var(--on-dark);
+  }
+
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    right: -120px;
+    top: -120px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(94, 211, 193, 0.2), transparent);
+    animation: blob 14s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .cta-band__copy {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 760px;
+  }
+
+  .cta-band .text {
+    font-size: 17px;
+  }
+
+  .cta-band__who {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--on-dark-2);
+  }
+
+  .cta-band__who :global(.cta-band__avatar) {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    border: 2px solid var(--accent-light);
+  }
+
+  .cta-band__actions {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .cta-band__wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 52px;
+    padding: 0 24px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--dark-border);
+    color: var(--on-dark);
+    font-weight: 700;
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .cta-band__wa:hover {
+    border-color: #179447;
+    background: #179447;
+    color: #fff;
+  }
+
+  @media (max-width: 1023px) {
+    .cta-band {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 44px 40px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .cta-band-wrap {
+      padding-bottom: 48px;
+    }
+
+    .cta-band {
+      padding: 36px 24px;
+      border-radius: var(--radius-block);
+    }
+  }
+</style>

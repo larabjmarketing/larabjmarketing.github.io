@@ -1,0 +1,20 @@
+---
+// Páginas de servicio: una por entrada de src/data/services.ts, todas con la misma plantilla.
+import type { GetStaticPaths } from 'astro';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import ChatgptAdsBlocks from '../components/service/ChatgptAdsBlocks.astro';
+import Areas360 from '../components/service/Areas360.astro';
+import Servicios360 from '../components/home/Servicios360.astro';
+import { SERVICES, type Service } from '../data/services';
+
+export const getStaticPaths = (() =>
+  SERVICES.map((service) => ({ params: { servicio: service.slug }, props: { service } }))) satisfies GetStaticPaths;
+
+const { service } = Astro.props as { service: Service };
+---
+
+<ServiceLayout service={service}>
+  {service.slug === 'chatgpt-ads' && <ChatgptAdsBlocks slot="after-hero" />}
+  {service.slug === 'servicios-360' && <Servicios360 slot="after-hero" id="equipo" />}
+  {service.slug === 'servicios-360' && <Areas360 slot="after-features" />}
+</ServiceLayout>

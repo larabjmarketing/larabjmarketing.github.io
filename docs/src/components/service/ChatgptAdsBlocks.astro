@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import Eyebrow from '../Eyebrow.astro';
+import IconCard from '../cards/IconCard.astro';
+import captura from '../../assets/blog/cap-chatgpt-ads-ejemplo.jpg';
+
+// Bloques propios de /chatgpt-ads/ (datos del artículo "ChatGPT Ads en España").
+const facts = [
+  {
+    icon: 'users' as const,
+    title: 'Quién lo ve',
+    text: 'Usuarios mayores de edad de los planes gratuito y Go. Los planes Plus, Pro, Business, Enterprise y Edu no tienen publicidad.',
+  },
+  {
+    icon: 'cart' as const,
+    title: 'Cómo se compra',
+    text: 'Pujas por CPM, CPC o conversión optimizada, con segmentación geográfica y audiencias personalizadas. En Europa, de momento, a través de OpenAI, agencias y socios.',
+  },
+  {
+    icon: 'chart' as const,
+    title: 'Cómo se mide',
+    text: 'Con un píxel de OpenAI y una API de conversiones. El anunciante recibe métricas agregadas de campaña, nunca las conversaciones.',
+  },
+];
+---
+
+<section class="section section--surface">
+  <div class="container ad-view">
+    <div class="ad-view__copy">
+      <Eyebrow tone="surface">Cómo se ve un anuncio</Eyebrow>
+      <h2 class="h2 h2--md">El anuncio aparece justo después de la respuesta.</h2>
+      <p class="text">
+        Primero aparece la respuesta completa de ChatGPT. Debajo, una línea introduce la opción patrocinada y después la
+        tarjeta del anuncio: imagen, nombre del anunciante, título, texto y la etiqueta "Ad".
+      </p>
+      <p class="text">
+        Según OpenAI, los anuncios no influyen en las respuestas. Lo interesante para un anunciante es el momento: el
+        usuario acaba de explicar con sus palabras qué necesita, y el anuncio aparece justo después.
+      </p>
+    </div>
+    <figure class="ad-view__figure">
+      <Image
+        src={captura}
+        alt="Anuncio en ChatGPT debajo de una respuesta sobre cómo ahorrar en la factura de la luz"
+        widths={[560, 840, 1120]}
+        sizes="(max-width: 1023px) calc(100vw - 40px), 560px"
+        class="ad-view__img"
+      />
+      <figcaption>Captura propia: anuncio en ChatGPT después de preguntar cómo ahorrar en la factura de la luz.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <Eyebrow>Lo básico</Eyebrow>
+      <h2 class="h2 h2--md">Quién ve los anuncios, cómo se compran y cómo se miden.</h2>
+    </div>
+    <div class="grid grid--3">
+      {facts.map((f) => <IconCard icon={f.icon} title={f.title} text={f.text} />)}
+    </div>
+    <p class="sources">
+      Fuentes:{' '}
+      <a href="https://openai.com/index/chatgpt-ads-expands-across-europe/" target="_blank" rel="noopener" class="inline-link">OpenAI</a>{' '}
+      y{' '}
+      <a href="https://forbes.es/tecnologia/1004079/chatgpt-anuncios-espana-openai-ads/" target="_blank" rel="noopener" class="inline-link">Forbes España</a>.
+    </p>
+  </div>
+</section>
+
+<style>
+  .ad-view {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+    gap: 72px;
+    align-items: center;
+  }
+
+  .ad-view__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ad-view__figure {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ad-view__figure :global(.ad-view__img) {
+    width: 100%;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-raised);
+  }
+
+  figcaption {
+    font-size: 14px;
+    color: var(--muted-2);
+  }
+
+  .sources {
+    margin-top: 28px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 1023px) {
+    .ad-view {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+    }
+  }
+</style>
