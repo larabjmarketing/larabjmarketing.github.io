@@ -1,0 +1,212 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import Icon, { type IconName } from '../Icon.astro';
+import Button from '../Button.astro';
+
+// Bloque propio de /seo-geo/: las dos formas de aparecer en ChatGPT (citado con GEO o anunciado con ChatGPT Ads).
+// Datos de ChatGPT Ads sacados del artículo "ChatGPT Ads en España".
+const columns: { tone: 'organic' | 'paid'; label: string; title: string; icon: IconName; points: string[] }[] = [
+  {
+    tone: 'organic',
+    label: 'Orgánico',
+    title: 'GEO: que te citen en la respuesta',
+    icon: 'sparkle',
+    points: [
+      'Tu marca aparece dentro de la respuesta, como fuente o recomendación',
+      'No pagas por cada clic ni por cada impresión',
+      'Depende del SEO, el contenido y la autoridad, y lleva tiempo',
+      'Funciona también en Gemini, Perplexity y AI Overviews',
+    ],
+  },
+  {
+    tone: 'paid',
+    label: 'De pago',
+    title: 'ChatGPT Ads: que te vean debajo',
+    icon: 'chat',
+    points: [
+      'El anuncio aparece debajo de la respuesta, marcado como publicidad',
+      'Disponible en España desde agosto de 2026',
+      'Lo ven usuarios mayores de edad de los planes gratuito y Go',
+      'Se mide con un píxel y una API de conversiones, como en Google o Meta',
+    ],
+  },
+];
+---
+
+<section class="section geo-ads">
+  <div class="container">
+    <div class="section-head">
+      <Eyebrow>GEO y ChatGPT Ads</Eyebrow>
+      <h2 class="h2 h2--md">En ChatGPT puedes aparecer de dos formas: citado o anunciado.</h2>
+      <p class="text">
+        El GEO trabaja para que el asistente te mencione, y eso lleva tiempo. Con ChatGPT Ads puedes estar presente desde
+        ya, justo cuando alguien acaba de explicar qué necesita. Juntos, uno cubre el corto plazo y el otro construye el
+        largo.
+      </p>
+    </div>
+
+    <div class="geo-ads__grid grid grid--2">
+      {
+        columns.map((col) => (
+          <article class:list={['geo-card', `geo-card--${col.tone}`]}>
+            <div class="geo-card__head">
+              <span class="geo-card__icon">
+                <Icon name={col.icon} size={22} />
+              </span>
+              <div>
+                <p class="label geo-card__label">{col.label}</p>
+                <h3>{col.title}</h3>
+              </div>
+            </div>
+            <ul role="list">
+              {col.points.map((p) => (
+                <li>
+                  <Icon name="check" size={15} strokeWidth={2.6} />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="geo-ads__cta">
+      <p>
+        <strong>¿Quieres probar ChatGPT Ads mientras crece el orgánico?</strong> Preparo la medición y la primera prueba
+        con el mismo plan que el GEO.
+      </p>
+      <Button href="/chatgpt-ads/" variant="outline">Ver publicidad en ChatGPT</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .geo-ads__grid {
+    align-items: stretch;
+  }
+
+  .geo-card {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 32px;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .geo-card--paid {
+    background: var(--dark);
+    border-color: var(--dark);
+    color: var(--on-dark);
+  }
+
+  .geo-card__head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .geo-card__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-tint);
+    color: var(--accent-dark);
+  }
+
+  .geo-card--paid .geo-card__icon {
+    background: rgba(94, 211, 193, 0.14);
+    color: var(--accent-light);
+  }
+
+  .geo-card__label {
+    color: var(--accent-dark);
+  }
+
+  .geo-card--paid .geo-card__label {
+    color: var(--accent-light);
+  }
+
+  h3 {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 800;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .geo-card--paid li {
+    color: var(--on-dark-muted);
+  }
+
+  li :global(svg) {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: var(--accent);
+  }
+
+  .geo-card--paid li :global(svg) {
+    color: var(--accent-light);
+  }
+
+  .geo-ads__cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-top: var(--grid-gap);
+    padding: 24px 28px;
+    border-radius: var(--radius-card);
+    background: var(--accent-tint);
+    border: 1px solid var(--accent-border);
+  }
+
+  .geo-ads__cta p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .geo-ads__cta strong {
+    color: var(--ink);
+  }
+
+  .geo-ads__cta :global(.btn) {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 1023px) {
+    .geo-ads__cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .geo-card {
+      padding: 24px;
+    }
+  }
+</style>

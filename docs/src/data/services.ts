@@ -653,8 +653,8 @@ export const SERVICES: Service[] = [
     articles: ['chatgpt'],
     otherServices: [
       { label: 'Google Ads', href: '/freelance-google-ads/' },
+      { label: 'SEO y GEO', href: '/seo-geo/' },
       { label: 'Tracking server-side', href: '/medicion-server-side/' },
-      { label: 'Servicios 360', href: '/servicios-360/' },
     ],
     contact: {
       title: '¿Probamos ChatGPT Ads?',
@@ -962,6 +962,10 @@ export const SERVICES: Service[] = [
         {
           q: '¿El GEO sustituye al SEO?',
           a: 'No. Los asistentes se apoyan en buena parte en los mismos resultados y fuentes que el buscador. Sin una base de SEO sólida, el GEO tiene poco recorrido; por eso los trabajo juntos.',
+        },
+        {
+          q: '¿Puedo aparecer ya en ChatGPT mientras se trabaja el GEO?',
+          a: 'Sí, con ChatGPT Ads. Desde agosto de 2026 se puede anunciar en ChatGPT en España: el anuncio aparece debajo de la respuesta, marcado como publicidad. Es una forma de estar presente desde ya mientras el GEO da resultados.',
         },
         {
           q: '¿Quién hace el trabajo?',

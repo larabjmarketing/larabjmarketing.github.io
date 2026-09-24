@@ -4,6 +4,7 @@ import type { GetStaticPaths } from 'astro';
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import ChatgptAdsBlocks from '../components/service/ChatgptAdsBlocks.astro';
 import Areas360 from '../components/service/Areas360.astro';
+import GeoChatgptAds from '../components/service/GeoChatgptAds.astro';
 import Servicios360 from '../components/home/Servicios360.astro';
 import { SERVICES, type Service } from '../data/services';
 
@@ -17,4 +18,5 @@ const { service } = Astro.props as { service: Service };
   {service.slug === 'chatgpt-ads' && <ChatgptAdsBlocks slot="after-hero" />}
   {service.slug === 'servicios-360' && <Servicios360 slot="after-hero" id="equipo" />}
   {service.slug === 'servicios-360' && <Areas360 slot="after-features" />}
+  {service.slug === 'seo-geo' && <GeoChatgptAds slot="after-features" />}
 </ServiceLayout>
