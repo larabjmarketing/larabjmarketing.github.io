@@ -179,6 +179,11 @@ const { id = 'servicios-360', hasContactForm = true } = Astro.props;
     border: 1px solid var(--dark-border);
   }
 
+  /* 7 especialistas: la última tarjeta ocupa la fila entera */
+  .v360__card:last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+  }
+
   .v360__tag {
     font-size: var(--fs-label);
     font-weight: 700;
@@ -242,6 +247,14 @@ const { id = 'servicios-360', hasContactForm = true } = Astro.props;
 
     .v360__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .v360__card:last-child:nth-child(3n + 1) {
+      grid-column: auto;
+    }
+
+    .v360__card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
     }
   }
 

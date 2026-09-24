@@ -11,6 +11,11 @@ export const SPECIALISTS = [
     text: 'Webs, e-commerce y landings rápidas, pensadas para convertir tráfico de pago.',
   },
   {
+    id: 'seo-geo',
+    title: 'SEO y GEO',
+    text: 'Posicionamiento en Google y en las respuestas de ChatGPT, Gemini o Perplexity.',
+  },
+  {
     id: 'ux-ui-cro',
     title: 'UX/UI y CRO',
     text: 'Experiencia de usuario y tests de conversión sobre lo que ya tienes.',

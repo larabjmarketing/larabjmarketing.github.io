@@ -45,6 +45,7 @@ export const PAID_MEDIA: NavLink[] = [
 export const SERVICIOS_360: NavLink[] = [
   { label: 'Qué es Servicios 360', href: '/servicios-360/' },
   { label: 'Tracking server-side y medición', href: '/medicion-server-side/' },
+  { label: 'SEO y GEO', href: '/seo-geo/' },
   { label: 'Desarrollo web', href: '/servicios-360/#desarrollo-web' },
   { label: 'UX/UI y CRO', href: '/servicios-360/#ux-ui-cro' },
   { label: 'Branding y creatividad', href: '/servicios-360/#branding' },
@@ -96,6 +97,7 @@ export const FOOTER_COLUMNS: NavGroup[] = [
     label: 'Servicios 360',
     items: [
       { label: 'Analítica y medición', href: '/medicion-server-side/' },
+      { label: 'SEO y GEO', href: '/seo-geo/' },
       { label: 'Web y UX/UI', href: '/servicios-360/#desarrollo-web' },
       { label: 'Branding', href: '/servicios-360/#branding' },
       { label: 'CRM y social media', href: '/servicios-360/#crm' },

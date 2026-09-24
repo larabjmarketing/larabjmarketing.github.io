@@ -839,7 +839,7 @@ export const SERVICES: Service[] = [
     slug: 'servicios-360',
     seoTitle: 'Marketing 360 con una sola responsable | Lara Borrego',
     description:
-      'Marketing 360 freelance: estrategia y paid media con especialistas en analítica, web, UX, branding, CRM y social media, y un solo interlocutor. Hablemos.',
+      'Marketing 360 freelance: estrategia y paid media con especialistas en analítica, web, UX, SEO, branding, CRM y social media y un solo interlocutor. Hablemos.',
     serviceType: 'Marketing 360',
     parent: '360',
     breadcrumb: 'Servicios 360',
@@ -847,13 +847,13 @@ export const SERVICES: Service[] = [
     headline: 'Marketing 360 con una sola responsable.',
     highlight: 'una sola responsable',
     subtitle:
-      'Llevo la estrategia y el paid media y coordino a especialistas de confianza en analítica, web, UX, branding, CRM y social media. Tú hablas solo conmigo.',
+      'Llevo la estrategia y el paid media y coordino a especialistas de confianza en analítica, web, UX, SEO y GEO, branding, CRM y social media. Tú hablas solo conmigo.',
     primaryCta: 'Cuéntame tu proyecto',
     primaryTipo: 'llamada',
     cardCaption: 'Dirige tu proyecto en persona',
     metrics: [
       M.anos(),
-      { value: '6', label: 'áreas coordinadas por mí' },
+      { value: '7', label: 'áreas coordinadas por mí' },
       { value: '1', label: 'único interlocutor' },
       M.respuesta,
     ],
@@ -890,13 +890,100 @@ export const SERVICES: Service[] = [
     articles: ['serverSide', 'leadScoring'],
     otherServices: [
       { label: 'Google Ads', href: '/freelance-google-ads/' },
-      { label: 'Meta Ads', href: '/freelance-meta-ads/' },
+      { label: 'SEO y GEO', href: '/seo-geo/' },
       { label: 'Tracking server-side', href: '/medicion-server-side/' },
     ],
     contact: {
       title: '¿Hablamos de tu proyecto?',
       text: 'Cuéntame qué tienes en marcha y qué te falta. Te respondo en 48 horas con cómo lo organizaría.',
       defaultTipo: 'llamada',
+    },
+  },
+  /* ------------------------------------------------------------------ */
+  {
+    slug: 'seo-geo',
+    seoTitle: 'SEO y GEO: posicionamiento en Google y en IA | Lara Borrego',
+    description:
+      'SEO y GEO: posicionamiento en Google y en las respuestas de ChatGPT, Gemini y Perplexity, coordinado con tu paid media. Pide tu auditoría SEO y GEO.',
+    serviceType: 'SEO y GEO (Generative Engine Optimization)',
+    parent: '360',
+    breadcrumb: 'SEO y GEO',
+    eyebrow: 'SEO y GEO',
+    headline: 'Que te encuentren en Google y en las respuestas de la IA.',
+    highlight: 'respuestas de la IA',
+    subtitle:
+      'Coordino la estrategia de SEO y GEO para que tu marca aparezca en Google y en las respuestas de ChatGPT, Gemini o Perplexity. Lo ejecuta un especialista de confianza y yo lo conecto con tus campañas y tu medición.',
+    primaryCta: 'Pide una auditoría SEO y GEO',
+    primaryTipo: 'auditoria',
+    cardCaption: 'Coordina tu SEO y GEO en persona',
+    metrics: [M.anos(), { value: '1', label: 'único interlocutor' }, M.respuesta, M.preaviso],
+    features: {
+      eyebrow: 'Qué incluye',
+      title: 'SEO y GEO, trabajados juntos.',
+      text: 'El SEO sigue siendo la base: si Google no entiende tu web, la IA tampoco. El GEO añade lo necesario para que los asistentes te citen cuando alguien pregunta por lo que haces.',
+      items: [
+        { icon: 'search-plus', title: 'Auditoría SEO técnica', text: 'Rastreo, indexación, velocidad, estructura de URLs y datos estructurados: lo que impide que Google lea bien tu web.' },
+        { icon: 'target', title: 'Palabras clave e intención', text: 'Qué busca tu cliente y con qué palabras, priorizado por negocio y cruzado con lo que ya sabemos por tus campañas de Search.' },
+        { icon: 'pen', title: 'Contenido que responde', text: 'Páginas y artículos que responden de forma clara y directa, con el formato que Google y los asistentes de IA reutilizan.' },
+        { icon: 'sparkle', title: 'Visibilidad en respuestas de IA', text: 'Revisión de cómo aparece tu marca en ChatGPT, Gemini, Perplexity y AI Overviews, y qué falta para que te citen.' },
+        { icon: 'link', title: 'Autoridad y menciones', text: 'Enlaces y menciones en medios y directorios relevantes, que pesan en Google y en las fuentes que usan los asistentes.' },
+        { icon: 'chart', title: 'Medición conjunta', text: 'Tráfico orgánico, conversiones y visitas llegadas desde asistentes de IA medidos en GA4, junto al paid media.' },
+      ],
+    },
+    audience: {
+      title: 'Para quién es.',
+      items: [
+        { title: 'Negocios que dependen de Google Ads', text: 'Si casi todo tu tráfico es de pago, el SEO reduce esa dependencia y abarata a medio plazo el coste de cada cliente.' },
+        { title: 'Sectores de consulta', text: 'Formación, salud privada, software o servicios profesionales: sectores en los que la gente pregunta a la IA antes de decidir.' },
+        { title: 'E-commerce', text: 'Categorías y fichas de producto preparadas para aparecer en las búsquedas, en los listados gratuitos de Shopping y en las recomendaciones de los asistentes.' },
+      ],
+    },
+    includes: {
+      eyebrow: 'Cómo trabajamos',
+      title: 'Qué incluye el servicio de SEO y GEO.',
+      items: [
+        'Auditoría inicial de SEO técnico, contenido y visibilidad en IA',
+        'Plan priorizado por impacto en el negocio',
+        'Ejecución por un especialista de SEO con el que trabajo de forma habitual',
+        'Coordinación con el paid media para que SEO y campañas no compitan entre sí',
+        'Datos estructurados y, si aplica, ficha de Google Business Profile',
+        'Informe mensual de posiciones, tráfico orgánico y presencia en asistentes de IA',
+        'Un único interlocutor: yo',
+      ],
+    },
+    faq: {
+      title: 'Dudas sobre SEO y GEO.',
+      items: [
+        PRECIO,
+        {
+          q: '¿Qué es el GEO?',
+          a: 'GEO (Generative Engine Optimization) es trabajar tu web y tu presencia online para que los asistentes de IA, como ChatGPT, Gemini, Perplexity o los AI Overviews de Google, te mencionen y te enlacen cuando alguien pregunta por lo que ofreces.',
+        },
+        {
+          q: '¿El GEO sustituye al SEO?',
+          a: 'No. Los asistentes se apoyan en buena parte en los mismos resultados y fuentes que el buscador. Sin una base de SEO sólida, el GEO tiene poco recorrido; por eso los trabajo juntos.',
+        },
+        {
+          q: '¿Quién hace el trabajo?',
+          a: 'Un especialista de SEO con el que colaboro de forma habitual. Yo defino los objetivos, reviso cada entrega y lo conecto con tus campañas y tu medición, así que hablas solo conmigo.',
+        },
+        {
+          q: '¿Cuándo se ven resultados?',
+          a: 'El SEO es un trabajo a medio plazo. Las correcciones técnicas se notan antes; el contenido y la autoridad necesitan más tiempo. En la llamada inicial te doy una previsión realista para tu caso.',
+        },
+      ],
+    },
+    articles: ['chatgpt', 'serverSide'],
+    otherServices: [
+      { label: 'Servicios 360', href: '/servicios-360/' },
+      { label: 'Google Ads', href: '/freelance-google-ads/' },
+      { label: 'ChatGPT Ads', href: '/chatgpt-ads/' },
+    ],
+    contact: {
+      title: '¿Revisamos tu visibilidad en Google y en la IA?',
+      text: 'Cuéntame qué web tienes y qué te gustaría conseguir. Te respondo en 48 horas con lo que veo y con lo que haría primero.',
+      auditoriaLabel: 'Una auditoría SEO y GEO',
+      defaultTipo: 'auditoria',
     },
   },
 ];
@@ -915,6 +1002,13 @@ export const AREAS_360 = [
     title: 'Desarrollo web',
     text: 'Una web lenta o confusa encarece cada clic que pagas. Los especialistas de desarrollo con los que trabajo construyen webs y landings pensadas para convertir tráfico de pago.',
     includes: ['Landings para campañas', 'Webs corporativas y e-commerce', 'Mejoras de velocidad', 'Integración con analítica y CRM'],
+  },
+  {
+    id: 'seo-geo',
+    title: 'SEO y GEO',
+    text: 'El tráfico orgánico abarata cada cliente y cada vez más búsquedas se resuelven en asistentes de IA. Un especialista en SEO trabaja la técnica, el contenido y la autoridad para que aparezcas en Google y en esas respuestas.',
+    includes: ['Auditoría SEO técnica', 'Palabras clave y contenido', 'Visibilidad en ChatGPT, Gemini y Perplexity', 'Autoridad y menciones'],
+    link: { label: 'Ver SEO y GEO', href: '/seo-geo/' },
   },
   {
     id: 'ux-ui-cro',

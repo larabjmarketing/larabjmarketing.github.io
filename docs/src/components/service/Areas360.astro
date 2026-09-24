@@ -8,6 +8,7 @@ const ICONS: Record<string, IconName> = {
   analitica: 'chart',
   'desarrollo-web': 'code',
   'ux-ui-cro': 'eye',
+  'seo-geo': 'search',
   branding: 'pen',
   crm: 'flow',
   'social-media': 'megaphone',
@@ -64,6 +65,11 @@ const ICONS: Record<string, IconName> = {
     background: var(--surface);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-card);
+  }
+
+  /* Con un número impar de áreas, la última ocupa todo el ancho */
+  .area:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .area:target {
