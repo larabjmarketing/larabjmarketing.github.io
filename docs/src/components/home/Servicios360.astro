@@ -22,21 +22,21 @@ const { id = 'servicios-360', hasContactForm = true } = Astro.props;
       <div class="v360__title">
         <Eyebrow tone="dark">Servicios 360</Eyebrow>
         <h2 class="h2 v360__h2">
-          Cuando hace falta algo más que anuncios, <span class="accent-light">lo coordino yo.</span>
+          Servicios 360: cuando tus campañas necesitan <span class="accent-light">algo más que anuncios</span>
         </h2>
       </div>
       <p class="text v360__intro">
-        A menudo lo que frena una campaña es una web lenta, unas conversiones mal configuradas o un CRM que nadie revisa.
-        Para eso trabajo con profesionales de confianza en cada área. Yo llevo la estrategia y el paid media y me ocupo de
-        que todo encaje.
+        Muchas veces lo que frena una campaña no son los anuncios, sino una web lenta, unas conversiones mal configuradas o
+        un CRM sin seguimiento. Para resolverlo trabajo con profesionales de confianza en cada área. Yo dirijo la estrategia
+        y el paid media y me aseguro de que todas las piezas encajen.
       </p>
     </div>
 
     <div class="v360__board">
       <div class="v360__core">
-        <p class="label">El centro del plan</p>
+        <p class="label">Dirección del proyecto</p>
         <h3>Estrategia y paid media</h3>
-        <p>Defino objetivos, presupuesto y KPIs de negocio, gestiono las campañas y dirijo al equipo. Tú hablas solo conmigo.</p>
+        <p>Defino objetivos, presupuesto y KPIs de negocio, gestiono las campañas y coordino al equipo. Tienes un único interlocutor: yo.</p>
         <div class="v360__lead">
           <Image src={lara} alt="" width={104} height={104} class="v360__avatar" />
           <div>
@@ -50,7 +50,7 @@ const { id = 'servicios-360', hasContactForm = true } = Astro.props;
         {
           SPECIALISTS.map((s) => (
             <li class="v360__card">
-              <p class="v360__tag">Especialista</p>
+              <p class="v360__tag">Especialista en</p>
               <h3>{s.title}</h3>
               <p>{s.text}</p>
             </li>
@@ -73,9 +73,12 @@ const { id = 'servicios-360', hasContactForm = true } = Astro.props;
       }
     </ol>
 
-    <Button href={contactHref('llamada', hasContactForm)} tipo="llamada" variant="light" icon="calendar" class="v360__cta">
-      Cuéntame tu proyecto en una llamada gratuita de 30 min
-    </Button>
+    <div class="v360__cta">
+      <Button href={contactHref('llamada', hasContactForm)} tipo="llamada" variant="light" size="lg" icon="calendar">
+        Cuéntame tu proyecto
+      </Button>
+      <p class="v360__cta-note">Llamada gratuita de 30 minutos</p>
+    </div>
   </div>
 </section>
 
@@ -224,8 +227,17 @@ const { id = 'servicios-360', hasContactForm = true } = Astro.props;
     font-weight: 700;
   }
 
-  .v360__inner :global(.v360__cta) {
+  .v360__cta {
     align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .v360__cta-note {
+    font-size: 14px;
+    color: var(--on-dark-muted);
   }
 
   @media (max-width: 1339px) {

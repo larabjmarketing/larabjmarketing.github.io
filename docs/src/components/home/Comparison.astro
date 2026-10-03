@@ -1,23 +1,23 @@
 ---
-// Tabla comparativa "Agencia típica vs conmigo". En móvil cada fila se convierte en tarjeta.
+// Tabla comparativa "Agencia tradicional vs conmigo" (<table> con <th> para buscadores e IA). En móvil cada fila se convierte en tarjeta.
 const rows = [
-  { what: 'Quién toca tu cuenta', agency: 'Un junior con muchas cuentas', me: 'Yo, en persona' },
-  { what: 'Plataformas', agency: 'Google y Meta, el resto se subcontrata', me: 'De Search a DV360 y CTV' },
+  { what: 'Quién gestiona tu cuenta', agency: 'Un perfil junior que lleva muchas cuentas', me: 'Yo, directamente' },
+  { what: 'Plataformas', agency: 'Google y Meta; el resto se subcontrata', me: 'De Search a DV360 y televisión conectada' },
   { what: 'Qué se mide', agency: 'Clics, CTR y conversiones de plataforma', me: 'Ventas, leads cualificados y margen' },
-  { what: 'Web, analítica, CRM y marca', agency: '"No entra en el servicio"', me: 'Especialistas coordinados por mí' },
-  { what: 'Propiedad de las cuentas', agency: 'A veces, de la agencia', me: 'Siempre tuyas' },
+  { what: 'Web, analítica, CRM y marca', agency: 'Se contratan por separado', me: 'Especialistas coordinados por mí' },
+  { what: 'Propiedad de las cuentas', agency: 'En ocasiones, de la agencia', me: 'Siempre tuyas' },
 ];
 ---
 
 <section class="section section--flush-top">
   <div class="container">
-    <h2 class="h2 h2--sm compare__title">¿Freelance o agencia? Esto es lo que cambia.</h2>
+    <h2 class="h2 h2--sm compare__title">¿Freelance de paid media o agencia? Estas son las diferencias</h2>
     <div class="compare">
       <table>
         <thead>
           <tr>
             <th scope="col">Qué recibes</th>
-            <th scope="col">Agencia típica</th>
+            <th scope="col">Agencia tradicional</th>
             <th scope="col" class="compare__me-head">Conmigo</th>
           </tr>
         </thead>
@@ -26,7 +26,7 @@ const rows = [
             rows.map((row) => (
               <tr>
                 <th scope="row">{row.what}</th>
-                <td class="compare__agency" data-label="Agencia típica">{row.agency}</td>
+                <td class="compare__agency" data-label="Agencia tradicional">{row.agency}</td>
                 <td class="compare__me" data-label="Conmigo">
                   <span class="accent" aria-hidden="true">✓ </span>
                   {row.me}
