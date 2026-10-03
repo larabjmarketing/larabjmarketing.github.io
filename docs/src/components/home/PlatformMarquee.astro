@@ -11,7 +11,7 @@ const ITEMS = [
   'Performance Max',
   'DV360',
   'Amazon DSP',
-  'Televisión conectada',
+  'Televisión conectada (CTV)',
   'DOOH',
   'Audio digital',
   'ChatGPT Ads',
@@ -20,7 +20,8 @@ const ITEMS = [
 ];
 ---
 
-<section class="marquee" aria-label="Plataformas y formatos">
+<section class="marquee" aria-labelledby="marquee-title">
+  <h2 class="marquee__title" id="marquee-title">Plataformas con las que trabajo</h2>
   <div class="marquee__track">
     <ul class="marquee__list" role="list">
       {ITEMS.map((item) => <li>{item}</li>)}
@@ -38,6 +39,16 @@ const ITEMS = [
     border-block: 1px solid var(--border);
     background: var(--surface);
     mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .marquee__title {
+    margin-bottom: 14px;
+    text-align: center;
+    font-size: var(--fs-label);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
   }
 
   .marquee__track {

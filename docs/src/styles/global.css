@@ -312,3 +312,10 @@ textarea {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Cifras ("+30 %", "+8 años"): nunca se parten en dos líneas */
+.metric__value,
+.case-card__value,
+.case__value {
+  white-space: nowrap;
+}

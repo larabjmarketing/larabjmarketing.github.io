@@ -66,7 +66,7 @@ if (motionOn) {
     targets.forEach((el) => el.classList.add('is-visible'));
   }
 
-  /* ---------- Contadores (+30%, 8+ años, -40%...) ---------- */
+  /* ---------- Contadores (+30 %, +8 años, -40 %...) ---------- */
   const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
   const countUp = (el: HTMLElement) => {

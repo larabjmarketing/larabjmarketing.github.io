@@ -67,12 +67,12 @@ const PRECIO: FaqItem = {
 export const SIN_PERMANENCIA = 'Sin permanencia. Trabajo mes a mes con un preaviso de 30 días.';
 
 const M = {
-  anos: (label = 'en paid media y ad ops'): ServiceMetric => ({ value: '8+ años', label }),
-  roas: { value: '+30%', label: 'ROAS en e-commerce' },
-  visitas: { value: '+60%', label: 'visitas a tienda en retail' },
-  cpl: (label = 'coste por lead en formación'): ServiceMetric => ({ value: '-40%', label }),
+  anos: (label = 'en paid media y ad operations'): ServiceMetric => ({ value: '+8 años', label }),
+  roas: { value: '+30 %', label: 'de ROAS en e-commerce' },
+  visitas: { value: '+60 %', label: 'de visitas a tienda en retail' },
+  cpl: (label = 'de coste por lead en formación'): ServiceMetric => ({ value: '-40 %', label }),
   respuesta: { value: '48 h', label: 'para responder tu solicitud' },
-  plataformas: { value: '11', label: 'plataformas y formatos' },
+  plataformas: { value: '+15', label: 'plataformas y formatos' },
   preaviso: { value: '30 días', label: 'de preaviso, sin permanencia' },
 } as const;
 
@@ -522,7 +522,7 @@ export const SERVICES: Service[] = [
       'Planifico y compro campañas programáticas y omnicanal: DSP, televisión conectada, exterior digital y audio, medidas por su impacto real.',
     primaryCta: 'Hablemos de tu plan de medios',
     primaryTipo: 'gestion',
-    metrics: [M.anos('en programática y ad ops'), M.visitas, M.plataformas, M.respuesta],
+    metrics: [M.anos('en programática y ad operations'), M.visitas, M.plataformas, M.respuesta],
     features: {
       eyebrow: 'Qué compro',
       title: 'Canales y formatos de publicidad programática.',
@@ -762,7 +762,7 @@ export const SERVICES: Service[] = [
     primaryCta: 'Pide una auditoría de medición',
     primaryTipo: 'auditoria',
     cardCaption: 'Revisa tu medición en persona',
-    metrics: [M.anos(), M.cpl('coste por lead con datos del CRM'), M.respuesta, M.preaviso],
+    metrics: [M.anos(), M.cpl('de coste por lead con datos del CRM'), M.respuesta, M.preaviso],
     features: {
       eyebrow: 'Qué incluye',
       title: 'Todo lo necesario para medir bien.',
