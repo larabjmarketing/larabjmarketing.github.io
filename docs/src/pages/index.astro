@@ -71,22 +71,22 @@ const cases = [
     figure: '+30 %',
     figureLabel: 'de ROAS',
     title: 'E-commerce de mascotas',
-    text: 'Shopping y PMax con feed segmentado por margen y pujas tROAS por rentabilidad.',
-    meta: 'Google Ads · cliente confidencial',
+    text: 'Feed segmentado por margen con etiquetas personalizadas, PMax separadas por rentabilidad y tROAS distinto por grupo. Antes, los productos de menor margen se llevaban la mayor parte del gasto. Resultado en 6 meses, misma inversión.',
+    meta: 'Google Ads, cliente confidencial',
   },
   {
     figure: '+60 %',
     figureLabel: 'de visitas a tienda',
     title: 'Cadena de supermercados',
-    text: 'Plan omnicanal con DOOH y campañas locales, midiendo visitas físicas por zona.',
-    meta: 'Programática · cliente confidencial',
+    text: 'DOOH segmentado por proximidad a cada tienda y campañas locales con horarios ajustados a la afluencia real. Resultado en una campaña de temporada de 3 meses.',
+    meta: 'Programática, cliente confidencial',
   },
   {
     figure: '-40 %',
     figureLabel: 'de coste por lead',
     title: 'Centro de formación',
-    text: 'Lead scoring y matrículas del CRM de vuelta a Google y Meta para pujar por alumnos.',
-    meta: 'Google y Meta · cliente confidencial',
+    text: 'Importación offline de matrículas desde el CRM como valor de conversión. Las campañas pasaron de pujar por formularios a pujar por alumnos, en un curso académico completo.',
+    meta: 'Google y Meta, cliente confidencial',
   },
 ];
 
@@ -171,9 +171,8 @@ const auditPoints = [
         <Eyebrow>Qué hago</Eyebrow>
         <h2 class="h2">Servicios de paid media: de Google Ads a la publicidad programática</h2>
         <p class="text">
-          He gestionado desde campañas de búsqueda para negocios locales hasta planes omnicanal con publicidad programática,
-          televisión conectada y exterior digital (DOOH). Sea cual sea el tamaño de la cuenta, la reviso con el mismo nivel de
-          detalle.
+          He llevado desde campañas de búsqueda para negocios locales hasta planes con DV360, televisión conectada y DOOH
+          para grandes anunciantes. Cambia el presupuesto; el orden es el mismo: medición, estructura y luego escala.
         </p>
       </div>
       <div class="grid grid--3">
@@ -191,7 +190,7 @@ const auditPoints = [
     <div class="container">
       <div class="section-head">
         <Eyebrow>Resultados</Eyebrow>
-        <h2 class="h2">Algunos resultados de proyectos recientes.</h2>
+        <h2 class="h2">Tres casos y la palanca que movió cada resultado.</h2>
       </div>
       <div class="grid grid--3">
         {cases.map((c) => <CaseCard {...c} />)}
@@ -214,6 +213,38 @@ const auditPoints = [
         <p class="text">El orden importa: si la medición falla, optimizar las campañas sirve de poco.</p>
       </div>
       <Steps steps={steps} />
+    </div>
+  </section>
+
+  <!-- Las métricas con las que trabajo -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow tone="surface">Las métricas con las que trabajo</Eyebrow>
+        <h2 class="h2">Si no mueve el negocio, no es la métrica correcta.</h2>
+      </div>
+      <div class="grid grid--4">
+        <IconCard
+          icon="gauge"
+          title="POAS, no solo ROAS"
+          text="Retorno sobre el margen de cada venta, no sobre el ingreso bruto. Un producto con descuento puede tener buen ROAS y mal margen."
+        />
+        <IconCard
+          icon="cart"
+          title="Coste por venta cerrada"
+          text="No por lead ni por clic: por cliente que de verdad compra, con el CRM como fuente de la verdad."
+        />
+        <IconCard
+          icon="clock"
+          title="LTV y payback"
+          text="En negocios por suscripción o recurrentes, cuánto vale un cliente y cuánto tardas en recuperar lo invertido en captarlo."
+        />
+        <IconCard
+          icon="trend"
+          title="Incrementalidad"
+          text="Zonas de control y conversion lift para saber qué ventas trae de verdad cada canal, no solo cuáles se atribuye."
+        />
+      </div>
     </div>
   </section>
 
@@ -241,7 +272,7 @@ const auditPoints = [
   </section>
 
   <HighlightBand
-    label="Novedad · desde agosto 2026 en España"
+    label="Novedad, desde agosto 2026 en España"
     title="Ya se puede anunciar en ChatGPT en España."
     text="Si quieres probarlo, te ayudo a ver si tiene sentido para tu negocio, a preparar la medición y a plantear las primeras pruebas."
     href="/chatgpt-ads/"

@@ -2,19 +2,19 @@
 import Button from '../Button.astro';
 
 // Informe de auditoría de ejemplo con barras.
-// Los valores "[X] %" son marcadores del diseño: pendiente de que Lara decida qué mostrar.
+// Hallazgos tipo (no puntuaciones): ilustran qué mira una auditoría, con datos hipotéticos.
 const bars = [
-  { label: 'Inversión sin retorno detectada', value: '[X] %', width: 32 },
-  { label: 'Precisión de la medición', value: '[X] %', width: 61 },
-  { label: 'Calidad de señales', value: '[X] %', width: 45 },
-  { label: 'Estructura de campañas', value: '[X] %', width: 74 },
+  { label: 'Inversión en términos y ubicaciones sin conversión', value: '18 %', width: 32 },
+  { label: 'Conversiones primarias que no son ventas', value: '3 de 7', width: 61 },
+  { label: 'Diferencia entre conversiones de plataforma y CRM', value: '+42 %', width: 45 },
+  { label: 'Campañas compitiendo por la misma búsqueda', value: '4', width: 74 },
 ];
 ---
 
 <div class="report">
   <div class="report__head">
     <p class="label">Informe de auditoría</p>
-    <span class="report__badge">Ejemplo</span>
+    <span class="report__badge" title="Datos hipotéticos: no corresponden a un cliente real">Ejemplo ilustrativo</span>
   </div>
   <ul class="report__bars" role="list">
     {

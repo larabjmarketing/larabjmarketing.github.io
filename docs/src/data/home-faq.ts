@@ -8,7 +8,7 @@ export const HOME_FAQ: FaqItem[] = [
   },
   {
     q: '¿Con qué inversión mínima trabajas?',
-    a: 'No hay un mínimo fijo. Cada propuesta es a medida según tus objetivos, el tipo de negocio y el momento en que estás. En la llamada inicial vemos qué presupuesto en medios tiene sentido y qué plataformas priorizar para empezar.',
+    a: 'No hay un mínimo fijo. Con poca inversión suelo recomendar una sola plataforma bien medida antes que repartir en tres: Smart Bidding necesita volumen de conversiones para aprender. En la llamada inicial vemos qué presupuesto tiene sentido para tu caso.',
   },
   {
     q: '¿Qué incluye una auditoría de Google Ads y Meta Ads?',
@@ -24,7 +24,7 @@ export const HOME_FAQ: FaqItem[] = [
   },
   {
     q: '¿Trabajas con Performance Max, AI Max y Advantage+?',
-    a: 'Sí, en casi todas las cuentas que llevo. Segmento el feed por margen, defino señales de audiencia, aplico exclusiones de marca y negativas a nivel de cuenta y valido cada cambio con experimentos. Son herramientas potentes, pero necesitan buenos datos y límites claros.',
+    a: 'Sí, en casi todas las cuentas que llevo. Segmento el feed por margen, defino señales de audiencia, aplico exclusiones de marca y negativas a nivel de cuenta y valido cada cambio con experimentos. Sin valores reales ni exclusiones, PMax tiende a llevarse el presupuesto a remarketing y a búsquedas de marca que habrías captado igual. Por eso la mido contra la demanda de marca y no solo por su ROAS.',
   },
   {
     q: '¿Gestionas publicidad programática?',
@@ -32,7 +32,7 @@ export const HOME_FAQ: FaqItem[] = [
   },
   {
     q: '¿Las cuentas publicitarias son mías?',
-    a: 'Siempre. Trabajo dentro de tus cuentas de Google Ads, Meta, analítica y CRM con acceso de administradora. Si algún día dejamos de trabajar juntas, el histórico, las audiencias y los datos se quedan contigo.',
+    a: 'Siempre. Trabajo dentro de tus cuentas de Google Ads, Meta, analítica y CRM con acceso de administradora. Si algún día dejamos de colaborar, el histórico, las audiencias y los datos se quedan contigo.',
   },
   {
     q: '¿Cuándo se empiezan a ver resultados?',
@@ -52,6 +52,6 @@ export const HOME_FAQ: FaqItem[] = [
   },
   {
     q: '¿Hay permanencia?',
-    a: 'No. Trabajo mes a mes con un preaviso de 30 días. Si seguimos trabajando juntas, que sea porque te compensa.',
+    a: 'No. Trabajo mes a mes con un preaviso de 30 días. Si seguimos, que sea porque te compensa.',
   },
 ];

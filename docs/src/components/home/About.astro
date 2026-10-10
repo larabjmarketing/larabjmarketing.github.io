@@ -4,6 +4,7 @@ import Eyebrow from '../Eyebrow.astro';
 import Button from '../Button.astro';
 import lara from '../../assets/img/lara-borrego-freelance-paid-media.jpg';
 import { PAGES, PAGE_READY } from '../../config/site';
+import { contactHref } from '../../lib/contact';
 ---
 
 <section id="sobre" class="section section--surface about">
@@ -19,15 +20,22 @@ import { PAGES, PAGE_READY } from '../../config/site';
       <Eyebrow tone="surface">Sobre mí</Eyebrow>
       <h2 class="h2 h2--md">Hola, soy Lara.</h2>
       <p class="text">
-        Empecé en 2017 en ad operations en Smartclip, del grupo Atresmedia. Después dirigí el equipo de paid media en una
-        agencia de performance y hoy trabajo como freelance desde Granada, con agencias y directamente con marcas. Antes de
-        tocar una campaña me gusta entender cómo gana dinero cada negocio, porque ahí es donde se decide casi todo.
+        Empecé en 2017 en ad operations en Smartclip, del grupo Atresmedia. Después dirigí el equipo de paid media en SIDN y
+        hoy trabajo como freelance desde Granada, con agencias y directamente con marcas. Antes de tocar una campaña me
+        gusta entender cómo gana dinero cada negocio, porque ahí es donde se decide casi todo.
+      </p>
+      <p class="text">
+        Lo que más me encuentro en cuentas heredadas es Smart Bidding optimizando hacia conversiones que no son ventas.
+        Arreglar eso suele mover más resultados que cualquier cambio de anuncios.
       </p>
       <div id="docencia" class="about__teach">
         <div>
           <p class="about__teach-title">También formo a otros profesionales</p>
           <p class="text-sm">Docente de IA aplicada a la publicidad (KSchool) y de programática (Máster EPMD).</p>
         </div>
+        <Button href={contactHref('otro', false)} tipo="otro" variant="outline" size="sm" icon="book" class="about__teach-cta">
+          ¿Buscas profesora de marketing digital?
+        </Button>
         {PAGE_READY.docencia && <a href={PAGES.docencia} class="link-arrow">Ver docencia</a>}
       </div>
       <Button href="?tipo=llamada#contacto" tipo="llamada" size="lg" icon="calendar" class="about__cta">
@@ -87,6 +95,11 @@ import { PAGES, PAGE_READY } from '../../config/site';
   }
 
   .about__teach .link-arrow {
+    white-space: nowrap;
+  }
+
+  .about__teach :global(.about__teach-cta) {
+    flex-shrink: 0;
     white-space: nowrap;
   }
 

@@ -185,7 +185,7 @@ export const SERVICES: Service[] = [
       'Reviso tu cuenta de Google Ads o Meta Ads antes de tocar nada y te entrego un plan priorizado a 90 días, lo apliques conmigo o con tu equipo.',
     primaryCta: 'Pide tu auditoría',
     primaryTipo: 'auditoria',
-    cardCaption: 'Revisa tu cuenta en persona',
+    cardCaption: 'Revisa tu cuenta antes de tocarla',
     metrics: [
       M.anos('en cuentas de Google Ads y Meta'),
       { value: '90 días', label: 'de plan de acción priorizado' },
@@ -679,7 +679,7 @@ export const SERVICES: Service[] = [
       'Colaboro con agencias como apoyo senior de paid media: estrategia, gestión de cuentas, programática y formación de equipos, también bajo tu marca.',
     primaryCta: 'Hablemos de tu agencia',
     primaryTipo: 'llamada',
-    cardCaption: 'Trabaja con tu equipo en persona',
+    cardCaption: 'Colabora con tu equipo, también bajo tu marca',
     metrics: [M.anos(), M.plataformas, M.respuesta, M.preaviso],
     features: {
       eyebrow: 'Modalidades',
@@ -761,7 +761,7 @@ export const SERVICES: Service[] = [
       'Configuro tracking server-side, API de conversiones y conversiones mejoradas para que Google y Meta reciban las conversiones que hoy se pierden.',
     primaryCta: 'Pide una auditoría de medición',
     primaryTipo: 'auditoria',
-    cardCaption: 'Revisa tu medición en persona',
+    cardCaption: 'Recupera las conversiones que pierdes',
     metrics: [M.anos(), M.cpl('de coste por lead con datos del CRM'), M.respuesta, M.preaviso],
     features: {
       eyebrow: 'Qué incluye',
@@ -850,7 +850,7 @@ export const SERVICES: Service[] = [
       'Llevo la estrategia y el paid media y coordino a especialistas de confianza en analítica, web, UX, SEO y GEO, branding, CRM y social media. Tú hablas solo conmigo.',
     primaryCta: 'Cuéntame tu proyecto',
     primaryTipo: 'llamada',
-    cardCaption: 'Dirige tu proyecto en persona',
+    cardCaption: 'Una sola responsable para todo',
     metrics: [
       M.anos(),
       { value: '7', label: 'áreas coordinadas por mí' },
@@ -915,7 +915,7 @@ export const SERVICES: Service[] = [
       'Coordino la estrategia de SEO y GEO para que tu marca aparezca en Google y en las respuestas de ChatGPT, Gemini o Perplexity. Lo ejecuta un especialista de confianza y yo lo conecto con tus campañas y tu medición.',
     primaryCta: 'Pide una auditoría SEO y GEO',
     primaryTipo: 'auditoria',
-    cardCaption: 'Coordina tu SEO y GEO en persona',
+    cardCaption: 'Coordina tu SEO y tu GEO con un criterio',
     metrics: [M.anos(), { value: '1', label: 'único interlocutor' }, M.respuesta, M.preaviso],
     features: {
       eyebrow: 'Qué incluye',

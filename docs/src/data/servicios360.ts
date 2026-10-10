@@ -40,14 +40,14 @@ export const SPECIALISTS = [
 export const PRINCIPLES = [
   {
     title: 'Un único interlocutor',
-    text: 'No tienes que coordinar a varios proveedores ni repetir lo mismo en cada reunión.',
+    text: 'Un brief y un KPI de negocio comunes para todo el equipo.',
   },
   {
     title: 'Objetivos compartidos',
-    text: 'Todo el equipo trabaja con los mismos indicadores de negocio, empezando por las ventas.',
+    text: 'Reviso cada entrega antes de que te llegue.',
   },
   {
     title: 'Equipo a medida',
-    text: 'Solo participa quien tu proyecto necesita y durante el tiempo necesario.',
+    text: 'Los especialistas entran y salen según la fase del proyecto.',
   },
 ] as const;

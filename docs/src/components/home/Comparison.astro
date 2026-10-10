@@ -1,7 +1,7 @@
 ---
 // Tabla comparativa "Agencia tradicional vs conmigo" (<table> con <th> para buscadores e IA). En móvil cada fila se convierte en tarjeta.
 const rows = [
-  { what: 'Quién gestiona tu cuenta', agency: 'Un perfil junior que lleva muchas cuentas', me: 'Yo, directamente' },
+  { what: 'Quién gestiona tu cuenta', agency: 'Un perfil junior que lleva muchas cuentas', me: 'Yo misma, directamente' },
   { what: 'Plataformas', agency: 'Google y Meta; el resto se subcontrata', me: 'De Search a DV360 y televisión conectada' },
   { what: 'Qué se mide', agency: 'Clics, CTR y conversiones de plataforma', me: 'Ventas, leads cualificados y margen' },
   { what: 'Web, analítica, CRM y marca', agency: 'Se contratan por separado', me: 'Especialistas coordinados por mí' },
@@ -36,6 +36,17 @@ const rows = [
           }
         </tbody>
       </table>
+    </div>
+
+    <div class="compare__fit">
+      <div>
+        <p class="compare__fit-title">Encajo si:</p>
+        <p class="text-sm">Quieres que quien toca la cuenta sea quien habla contigo, inviertes en varias plataformas y necesitas que la medición cuadre con tus ventas.</p>
+      </div>
+      <div>
+        <p class="compare__fit-title">Te irá mejor una agencia grande si:</p>
+        <p class="text-sm">Necesitas producción creativa a mucho volumen cada semana o un equipo dedicado en exclusiva.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -102,6 +113,32 @@ const rows = [
 
   .compare__agency {
     color: var(--muted);
+  }
+
+  .compare__fit {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+    padding: 28px 36px;
+    border-top: 1px solid var(--border);
+  }
+
+  .compare__fit-title {
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  .compare__fit .text-sm {
+    color: var(--muted);
+  }
+
+  @media (max-width: 639px) {
+    .compare__fit {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding: 24px 20px;
+    }
   }
 
   @media (max-width: 639px) {

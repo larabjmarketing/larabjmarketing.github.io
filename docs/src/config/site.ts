@@ -4,7 +4,7 @@
 export const SITE = {
   name: 'Lara Borrego',
   jobTitle: 'Freelance de Paid Media',
-  tagline: 'Freelance de Paid Media · España',
+  tagline: 'Freelance de Paid Media en España',
   email: 'larabj.marketing@gmail.com',
   linkedin: 'https://www.linkedin.com/in/lara-borrego-paid-media/',
   locale: 'es_ES',

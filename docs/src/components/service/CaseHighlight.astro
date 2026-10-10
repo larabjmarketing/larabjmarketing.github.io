@@ -18,7 +18,7 @@ const c = CASES[Astro.props.caseKey];
         <span class="case__unit">{c.figureLabel}</span>
       </p>
       <div class="case__copy">
-        <p class="label case__meta">Caso · {c.sector} · cliente confidencial</p>
+        <p class="label case__meta">Caso de {c.sector}, cliente confidencial</p>
         <h2 class="case__title">{c.title}</h2>
         <p class="text">{c.text}</p>
         {PAGE_READY.casos && <a href={PAGES.casos} class="link-arrow">Ver todos los casos</a>}
