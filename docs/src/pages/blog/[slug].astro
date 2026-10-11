@@ -7,7 +7,6 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Button from '../../components/Button.astro';
-import BarCover from '../../components/blog/BarCover.astro';
 import ArticleCard from '../../components/blog/ArticleCard.astro';
 import Figure from '../../components/blog/Figure.astro';
 import MidCta from '../../components/blog/MidCta.astro';
@@ -129,7 +128,7 @@ const jsonLd = [
           ))}
         </ol>
       ) : (
-        <BarCover tone={data.cover.tone} bars={data.cover.bars} height="280px" class="a-cover" />
+        <Image src={data.image} alt={data.imageAlt} widths={[640, 960, 1280]} sizes="(max-width: 1023px) 100vw, 1180px" class="a-cover" />
       )
     }
   </div>
@@ -338,6 +337,10 @@ const jsonLd = [
   }
 
   .a-visual :global(.a-cover) {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
     border-radius: var(--radius-block);
   }
 

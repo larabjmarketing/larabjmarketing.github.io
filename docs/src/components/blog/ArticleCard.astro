@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import BarCover from './BarCover.astro';
 import lara from '../../assets/img/lara-borrego-freelance-paid-media.jpg';
 import { postUrl, formatShortDate, isoDate, type Post } from '../../lib/blog';
 
@@ -24,7 +23,13 @@ const searchText = `${data.title} ${data.description} ${data.category}`.toLowerC
   data-category={data.category}
   data-search={searchText}
 >
-  <BarCover tone={data.cover.tone} bars={data.cover.bars} height={featured ? '100%' : '200px'} class="post-card__cover" />
+  <Image
+    src={data.image}
+    alt={data.imageAlt}
+    widths={featured ? [480, 720, 960] : [320, 480, 640]}
+    sizes={featured ? '(max-width: 1023px) 100vw, 50vw' : '(max-width: 639px) 100vw, 360px'}
+    class="post-card__cover"
+  />
   <div class="post-card__body">
     <div class="post-card__tags">
       <span class="pill">{data.category}</span>
@@ -160,9 +165,17 @@ const searchText = `${data.title} ${data.description} ${data.category}`.toLowerC
     box-shadow: 0 10px 36px rgba(17, 17, 20, 0.06);
   }
 
+  .post-card :global(.post-card__cover) {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
   .post-card--featured :global(.post-card__cover) {
     flex: 0 0 50%;
     min-height: 420px;
+    height: 100%;
   }
 
   .post-card--featured .post-card__body {
