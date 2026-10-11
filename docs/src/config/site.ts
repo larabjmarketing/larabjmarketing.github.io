@@ -43,7 +43,7 @@ export const PAID_MEDIA: NavLink[] = [
 ];
 
 export const SERVICIOS_360: NavLink[] = [
-  { label: 'Qué es Servicios 360', href: '/servicios-360/' },
+  { label: 'Marketing 360', href: '/servicios-360/' },
   { label: 'Tracking server-side y medición', href: '/medicion-server-side/' },
   { label: 'SEO y GEO', href: '/seo-geo/' },
   { label: 'Desarrollo web', href: '/servicios-360/#desarrollo-web' },

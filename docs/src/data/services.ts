@@ -775,8 +775,6 @@ export const SERVICES: Service[] = [
     highlight: 'conversiones',
     subtitle:
       'Configuro tracking server-side, API de conversiones y conversiones mejoradas para recuperar las conversiones que se pierden por cookies o bloqueadores.',
-    summary:
-      'Primero reviso qué se está midiendo y qué se pierde. Después implanto lo que falta (GTM en servidor, API de conversiones, conversiones mejoradas), empezando por lo que más impacto tiene.',
     primaryCta: 'Pide una auditoría de medición',
     primaryTipo: 'auditoria',
     cardCaption: 'Recupera las conversiones que pierdes',
