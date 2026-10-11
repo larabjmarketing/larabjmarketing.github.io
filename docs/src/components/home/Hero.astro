@@ -5,7 +5,19 @@ import Metric from '../cards/Metric.astro';
 import Icon from '../Icon.astro';
 import lara from '../../assets/img/lara-borrego-freelance-paid-media.jpg';
 
-const platforms = ['Google Ads', 'Meta Ads', 'TikTok Ads', 'LinkedIn Ads', 'Programática', 'Medición'];
+const platforms = [
+  'Google Ads',
+  'Meta Ads',
+  'TikTok Ads',
+  'LinkedIn Ads',
+  'Programática',
+  'ChatGPT Ads',
+  'Medición',
+  'SEO y GEO',
+  'Auditoría',
+  'Servicios 360',
+  'Apoyo a agencias',
+];
 ---
 
 <section class="hero">
@@ -29,7 +41,7 @@ const platforms = ['Google Ads', 'Meta Ads', 'TikTok Ads', 'LinkedIn Ads', 'Prog
         <a href="?tipo=llamada#contacto" data-tipo="llamada" class="inline-link">Reserva una llamada gratuita de 30 minutos</a>.
       </p>
 
-      <ul class="hero__chips" role="list" aria-label="Plataformas">
+      <ul class="hero__chips" role="list" aria-label="Servicios">
         {
           platforms.map((p) => (
             <li>
