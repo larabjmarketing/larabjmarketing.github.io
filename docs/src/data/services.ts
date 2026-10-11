@@ -26,6 +26,8 @@ export interface Service {
   /** Parte del titular en color de acento */
   highlight?: string;
   subtitle: string;
+  /** Párrafo corto (2 frases) que sustituye a los bloques largos de la página. */
+  summary?: string;
   primaryCta: string;
   primaryTipo: Tipo;
   cardCaption?: string;
@@ -91,6 +93,8 @@ export const SERVICES: Service[] = [
     highlight: 'ventas',
     subtitle:
       'Monto, gestiono y optimizo tus campañas de Search, Shopping, Performance Max y YouTube. Trabajo dentro de tu cuenta y cada semana reviso términos de búsqueda, conversiones y gasto.',
+    summary:
+      'Elijo la combinación de Search, Shopping, Performance Max, AI Max, YouTube y Demand Gen según tu objetivo y tu presupuesto: no hace falta tenerlas todas, hace falta que cada una tenga un papel claro.',
     primaryCta: 'Pide tu auditoría de Google Ads',
     primaryTipo: 'auditoria',
     metrics: [M.anos('gestionando Google Ads'), M.roas, M.cpl(), M.respuesta],
@@ -183,6 +187,8 @@ export const SERVICES: Service[] = [
     highlight: 'inversión',
     subtitle:
       'Reviso tu cuenta de Google Ads o Meta Ads antes de tocar nada y te entrego un plan priorizado a 90 días, lo apliques conmigo o con tu equipo.',
+    summary:
+      'Reviso estructura, términos de búsqueda, medición, señales al algoritmo, feed y creatividades. Empiezo por lo que más dinero mueve y termino con una lista de cambios ordenada por impacto.',
     primaryCta: 'Pide tu auditoría',
     primaryTipo: 'auditoria',
     cardCaption: 'Revisa tu cuenta antes de tocarla',
@@ -270,6 +276,8 @@ export const SERVICES: Service[] = [
     highlight: 'ventas',
     subtitle:
       'Campañas en Facebook e Instagram adaptadas a Andromeda y Advantage+, con creatividad como palanca principal y medición con la API de conversiones.',
+    summary:
+      'Con Andromeda la creatividad pesa más que la segmentación, así que trabajo con pocas campañas bien consolidadas y muchas pruebas de anuncios.',
     primaryCta: 'Pide tu auditoría de Meta Ads',
     primaryTipo: 'auditoria',
     metrics: [M.anos(), M.cpl(), M.roas, M.respuesta],
@@ -354,6 +362,8 @@ export const SERVICES: Service[] = [
     highlight: 'ventas',
     subtitle:
       'Campañas en TikTok con creatividad nativa, pensadas para generar demanda y medidas por su efecto en ventas y búsquedas de marca.',
+    summary:
+      'En TikTok el anuncio tiene que parecer contenido de la plataforma, así que la creatividad y la medición van juntas desde el primer día.',
     primaryCta: 'Quiero probar TikTok Ads',
     primaryTipo: 'gestion',
     metrics: [M.anos(), M.plataformas, M.respuesta, M.preaviso],
@@ -437,6 +447,8 @@ export const SERVICES: Service[] = [
     highlight: 'cualificados',
     subtitle:
       'Captación B2B en LinkedIn con segmentación por cargo, sector y empresa, y leads cualificados que vuelven al CRM.',
+    summary:
+      'En LinkedIn el clic es caro, así que cada formato (formularios, contenido patrocinado, ABM) cumple un papel claro dentro del embudo.',
     primaryCta: 'Pide tu auditoría de LinkedIn Ads',
     primaryTipo: 'auditoria',
     metrics: [M.anos(), M.plataformas, M.respuesta, M.preaviso],
@@ -520,6 +532,8 @@ export const SERVICES: Service[] = [
     highlight: 'impacto real',
     subtitle:
       'Planifico y compro campañas programáticas y omnicanal: DSP, televisión conectada, exterior digital y audio, medidas por su impacto real.',
+    summary:
+      'Elijo los canales (DSP, CTV, DOOH, audio) según el objetivo y el presupuesto, y los mido juntos para saber qué aporta cada uno.',
     primaryCta: 'Hablemos de tu plan de medios',
     primaryTipo: 'gestion',
     metrics: [M.anos('en programática y ad operations'), M.visitas, M.plataformas, M.respuesta],
@@ -603,6 +617,8 @@ export const SERVICES: Service[] = [
     highlight: 'ChatGPT',
     subtitle:
       'Desde agosto de 2026 se puede anunciar en ChatGPT en España. Te ayudo a valorar si encaja, a preparar la medición y a plantear las primeras pruebas.',
+    summary:
+      'Preparamos un objetivo claro, la medición con píxel y API de conversiones, y un presupuesto de prueba aparte del resto de canales, para comparar el resultado con lo que te cuesta en Search.',
     primaryCta: 'Quiero valorar ChatGPT Ads',
     primaryTipo: 'llamada',
     cardCaption: 'Plantea contigo la primera prueba',
@@ -677,6 +693,8 @@ export const SERVICES: Service[] = [
     highlight: 'bajo tu marca',
     subtitle:
       'Colaboro con agencias como apoyo senior de paid media: estrategia, gestión de cuentas, programática y formación de equipos, también bajo tu marca.',
+    summary:
+      'Me adapto a cómo trabaja tu equipo: desde unas horas al mes hasta proyectos completos, siempre con NDA y, si quieres, bajo tu marca.',
     primaryCta: 'Hablemos de tu agencia',
     primaryTipo: 'llamada',
     cardCaption: 'Colabora con tu equipo, también bajo tu marca',
@@ -759,6 +777,8 @@ export const SERVICES: Service[] = [
     highlight: 'conversiones',
     subtitle:
       'Configuro tracking server-side, API de conversiones y conversiones mejoradas para recuperar las conversiones que se pierden por cookies o bloqueadores.',
+    summary:
+      'Primero reviso qué se está midiendo y qué se pierde. Después implanto lo que falta (GTM en servidor, API de conversiones, conversiones mejoradas), empezando por lo que más impacto tiene.',
     primaryCta: 'Pide una auditoría de medición',
     primaryTipo: 'auditoria',
     cardCaption: 'Recupera las conversiones que pierdes',
@@ -848,6 +868,8 @@ export const SERVICES: Service[] = [
     highlight: 'una sola responsable',
     subtitle:
       'Llevo la estrategia y el paid media y coordino a especialistas de confianza en analítica, web, UX, SEO y GEO, branding, CRM y social media. Tú hablas solo conmigo.',
+    summary:
+      'Un único interlocutor para todo el proyecto, con objetivos y KPIs de negocio compartidos por todo el equipo. Reviso cada entrega antes de que llegue a ti y nos vemos cada mes para repasar el estado de todas las áreas.',
     primaryCta: 'Cuéntame tu proyecto',
     primaryTipo: 'llamada',
     cardCaption: 'Una sola responsable para todo',
@@ -913,6 +935,8 @@ export const SERVICES: Service[] = [
     highlight: 'respuestas de la IA',
     subtitle:
       'Coordino la estrategia de SEO y GEO para que tu marca aparezca en Google y en las respuestas de ChatGPT, Gemini o Perplexity. Lo ejecuta un especialista de confianza y yo lo conecto con tus campañas y tu medición.',
+    summary:
+      'El SEO sigue siendo la base: si Google no entiende tu web, la IA tampoco. El GEO añade lo necesario para que los asistentes te citen cuando alguien pregunta por lo que haces.',
     primaryCta: 'Pide una auditoría SEO y GEO',
     primaryTipo: 'auditoria',
     cardCaption: 'Coordina tu SEO y tu GEO con un criterio',

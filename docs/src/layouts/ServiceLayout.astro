@@ -1,16 +1,9 @@
 ---
-// Plantilla de página de servicio (design/Servicio-google-ads.dc.html).
-// Orden: migas, hero, qué incluye/tipos, para quién, gestión, caso, FAQ, enlaces internos y contacto.
-// Slots opcionales para secciones propias de una página:
-//   after-hero, after-features, after-includes
+// Plantilla de página de servicio, simplificada: migas, hero, resumen corto, caso, FAQ breve y contacto.
+// Slot opcional para secciones propias de una página: after-hero
 import BaseLayout from './BaseLayout.astro';
 import ServiceHero from '../components/service/ServiceHero.astro';
-import IncludesList from '../components/service/IncludesList.astro';
 import CaseHighlight from '../components/service/CaseHighlight.astro';
-import RelatedLinks from '../components/service/RelatedLinks.astro';
-import Eyebrow from '../components/Eyebrow.astro';
-import IconCard from '../components/cards/IconCard.astro';
-import AudienceCard from '../components/cards/AudienceCard.astro';
 import FaqSection from '../components/FaqSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import type { Crumb } from '../components/Breadcrumbs.astro';
@@ -81,58 +74,19 @@ const jsonLd = [
   <slot name="after-hero" />
 
   {
-    service.features && (
+    service.summary && (
       <section class="section section--surface">
-        <div class="container">
-          <div class="section-head">
-            <Eyebrow>{service.features.eyebrow}</Eyebrow>
-            <h2 class="h2 h2--md">{service.features.title}</h2>
-            {service.features.text && <p class="text">{service.features.text}</p>}
-          </div>
-          <div class="grid grid--3">
-            {service.features.items.map((item) => (
-              <IconCard icon={item.icon} title={item.title} text={item.text} />
-            ))}
-          </div>
+        <div class="container summary">
+          <p class="text summary__text">{service.summary}</p>
+          <p class="text-sm summary__note">{SIN_PERMANENCIA}</p>
         </div>
       </section>
     )
   }
-
-  <slot name="after-features" />
-
-  {
-    service.audience && (
-      <section class="section">
-        <div class="container">
-          <div class="section-head">
-            <Eyebrow>{service.audience.eyebrow ?? 'Para quién'}</Eyebrow>
-            <h2 class="h2 h2--md">{service.audience.title}</h2>
-          </div>
-          <div class="grid grid--3">
-            {service.audience.items.map((item) => (
-              <AudienceCard label={item.label} title={item.title} text={item.text} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  <IncludesList
-    eyebrow={service.includes.eyebrow}
-    title={service.includes.title}
-    items={service.includes.items}
-    note={SIN_PERMANENCIA}
-  />
-
-  <slot name="after-includes" />
 
   {service.caseStudy ? <CaseHighlight caseKey={service.caseStudy} /> : <div class="spacer" />}
 
-  <FaqSection title={service.faq.title} items={service.faq.items} class="section--flush-top" />
-
-  <RelatedLinks articles={service.articles} services={service.otherServices} />
+  <FaqSection title={service.faq.title} items={service.faq.items.slice(0, 3)} class="section--flush-top" />
 
   <ContactSection
     title={service.contact.title}
@@ -146,5 +100,19 @@ const jsonLd = [
 <style>
   .spacer {
     height: var(--section-y);
+  }
+
+  .summary {
+    max-width: 640px;
+  }
+
+  .summary__text {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .summary__note {
+    margin-top: 14px;
+    color: var(--muted);
   }
 </style>
