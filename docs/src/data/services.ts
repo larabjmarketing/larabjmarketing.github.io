@@ -186,9 +186,7 @@ export const SERVICES: Service[] = [
     headline: 'Revisa en qué se está yendo tu inversión en Google Ads y Meta Ads.',
     highlight: 'inversión',
     subtitle:
-      'Reviso tu cuenta de Google Ads o Meta Ads antes de tocar nada y te entrego un plan priorizado a 90 días, lo apliques conmigo o con tu equipo.',
-    summary:
-      'Reviso estructura, términos de búsqueda, medición, señales al algoritmo, feed y creatividades. Empiezo por lo que más dinero mueve y termino con una lista de cambios ordenada por impacto.',
+      'Reviso tu cuenta de Google Ads o Meta Ads en profundidad y te entrego un plan priorizado a 90 días, lo apliques conmigo o con tu equipo.',
     primaryCta: 'Pide tu auditoría',
     primaryTipo: 'auditoria',
     cardCaption: 'Revisa tu cuenta antes de tocarla',
