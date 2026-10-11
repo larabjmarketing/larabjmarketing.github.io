@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Eyebrow from '../Eyebrow.astro';
 import Button from '../Button.astro';
-import lara from '../../assets/img/lara-borrego-freelance-paid-media.jpg';
+import lara from '../../assets/img/lara-borrego-sobre-mi.webp';
 import { PAGES, PAGE_READY } from '../../config/site';
 import { contactHref } from '../../lib/contact';
 ---
@@ -11,7 +11,7 @@ import { contactHref } from '../../lib/contact';
   <div class="container about__inner">
     <Image
       src={lara}
-      alt="Lara Borrego"
+      alt="Lara Borrego, freelance de paid media"
       widths={[440, 660, 880]}
       sizes="(max-width: 1023px) calc(100vw - 80px), 440px"
       class="about__photo"
